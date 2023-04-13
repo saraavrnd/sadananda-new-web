@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: italic;
+  font-weight: 400;
+  src: url(../fonts/tss7ApVBdCYD5Q7hcxTE1ArZ0bb1k3JSLwe1hB965BJi50muPCU.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: italic;
+  font-weight: 700;
+  src: url(../fonts/tss7ApVBdCYD5Q7hcxTE1ArZ0bb1k3JSLwe1hB965BKF4EmuPCU.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/tss5ApVBdCYD5Q7hcxTE1ArZ0Zz8oY2KRmwvKhhvLFG6o3mp.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/tss5ApVBdCYD5Q7hcxTE1ArZ0Zz8oY2KRmwvKhhvy1a6o3mp.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Arimo';
+  font-style: italic;
+  font-weight: 400;
+  src: url(../fonts/P5sdzZCDf9_T_10c3i9MeUcyat4iJY-ERCrDfQM.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Arimo';
+  font-style: italic;
+  font-weight: 700;
+  src: url(../fonts/P5sdzZCDf9_T_10c3i9MeUcyat4iJY9jQyrDfQM.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxcABrE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/P5sfzZCDf9_T_3cV7NCUECyoxNk3CstcABrE.ttf) format('truetype');
+}
