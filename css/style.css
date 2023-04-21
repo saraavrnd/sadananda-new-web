@@ -238,19 +238,12 @@ h1, h2, h3, h4, h5, h6 {
   /*  Mobile  */;
 }
 
-.section-featured-our-team {
-	padding: 25px 0 25px;
-  /*  Mobile  */;
-}
-
-.section-featured .section-head,
-.section-featured-our-team .section-head {
+.section-featured .section-head {
 	margin-bottom: 42px;
 	text-align: center;
 }
 
-.section-featured .section-head .section-title,
-.section-featured-our-team .section-head .section-title {
+.section-featured .section-head .section-title {
 	margin-bottom: 12px;
 	text-transform: uppercase;
 	font-weight: 900;
@@ -258,15 +251,12 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 1.71429rem;
 }
 
-.section-featured .section-head .section-image,
-.section-featured-our-team .section-head .section-image {
+.section-featured .section-head .section-image {
 	margin-bottom: 10px;
 }
 
 .section-featured .section-head .section-image:before,
-    .section-featured .section-head .section-image:after,
-	.section-featured-our-team .section-head .section-image:before,
-    .section-featured-our-team .section-head .section-image:after {
+    .section-featured .section-head .section-image:after {
 	content: '';
 	display: inline-block;
 	vertical-align: middle;
@@ -276,8 +266,7 @@ h1, h2, h3, h4, h5, h6 {
 	background: #fa6f1c;
 }
 
-.section-featured .section-head p,
-.section-featured-our-team .section-head p {
+.section-featured .section-head p {
 	font-size: 14px;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
@@ -1179,6 +1168,9 @@ h1, h2, h3, h4, h5, h6 {
 .slider-intro {
 	position: relative;
 	clear: both;
+
+	/* My customizations */
+	margin-top: 30px;
   /* Animations */
   /* Animations */
   /*  Small Desktop  */
@@ -1230,7 +1222,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .slider-intro .slide {
 	position: relative;
-	height: 780px;
+	/* height: 780px; */
+	height: 300px;
 }
 
 .slider-intro .slide .slide-image {
@@ -1241,9 +1234,11 @@ h1, h2, h3, h4, h5, h6 {
 	height: 100%;
 }
 
+
 .slider-intro .slide .slide-content {
 	position: absolute;
-	left: 0;
+	left: 0px;
+	/* top: 30px; */
 	bottom: 30px;
 	width: 100%;
 	background: #fa6f1c;
