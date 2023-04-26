@@ -1,5 +1,5 @@
 #section_about_sadananda {
-    padding: 25px 0 25px;
+    padding: 5px 0 5px;
 
 }
 
@@ -19,12 +19,78 @@
 	font-size: 1.7rem;
 }
 
+
 .carousel-inner {
-	max-height: 200px !important;
+	max-height: 300px !important;
+}
+
+.carousel-inner img {
+    background-size: cover;
+}
+
+
+.slider-intro {
+	position: relative;
+	clear: both;
+
+	/* My customizations */
+	/* margin-top: 30px; */
+  /* Animations */
+  /* Animations */
+  /*  Small Desktop  */
+  /*  Tablet Portrait  */
+  /*  Mobile  */;
+}
+
+.social_contacts {
+    position: fixed;
+    bottom: 5%;
+    right: 15px;
+    /* max-width: 24px; */
+    background-color: #fa6f1c;
+}
+
+.social_contacts button {
+    color:#fff;
+    padding: 4px;
+    border: 1px solid #fff;
+    width: 100%
+} 
+
+.social_contacts button:hover {
+    background-color: black;
+}
+
+.slider-featured .slide .slide-image {
+	margin-bottom: 8px;
+	position: relative;
+}
+
+.header {
+	position: relative;
+	z-index: 300;
+	height: 80px;
+  /*  Tablet Portrait  */
+  /*  Mobile  */;
+}
+
+.header .header-logo {
+	float: left;
+	margin: 8px 0 0 0;
+}
+
+.header .header-logo img {
+	width: 20%;
+	height: auto;
+}
+
+.header .header-inner {
+	float: right;
+	margin-top: 16px;
 }
 
 .section-featured-initiatives {
-	padding: 25px 0 25px;
+	padding: 5px 0 5px;
   /*  Mobile  */;
 }
 
