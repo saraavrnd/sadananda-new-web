@@ -1,6 +1,6 @@
 #section_about_sadananda {
     padding: 5px 0 5px;
-
+	margin-top: 150px;
 }
 
 .my-slide-content {
@@ -19,9 +19,109 @@
 	font-size: 1.7rem;
 }
 
+#initiative-header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.initiative {
+	width: 200px;
+	position: relative;
+}
+
+.initiative-title {
+	color: #fff;
+}
+
+.footer {
+	color:#fff;
+}
+
+.footer-body {
+	background: #064ba0 !important;
+	padding: 85px 0 32px !important;
+}
+
+.footer-body .list-links a {
+	color: #fff;
+}
+
+.footer-credits {
+	text-align: center;
+	letter-spacing: 0.025em;
+	color: #75737f;
+}
+
+#our_initiatives_overview_in_banner {
+	position: absolute;
+	top: 350px;
+	left: 20%;
+	right: 20%;
+	max-height: 100px;
+	background-color: transparent;
+}
+
+
+.initiative .title {
+	text-align: center;
+	font-size: small;
+}
+
+.initiative img {
+	border: 2px solid white;
+	border-radius: 10px;
+}
+
+#our_initiatives_overview_in_banner .initiative .slide-overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(39, 38, 44, 0.7);
+	visibility: hidden;
+	opacity: 0;
+}
+
+#our_initiatives_overview_in_banner .initiative .slide-overlay {
+	-webkit-transition: all .2s ease-out;
+	transition: all .2s ease-out;
+}
+
+#our_initiatives_overview_in_banner .initiative .slide-overlay .button {
+	margin: 0;
+	/* min-width: 154px; */
+	/* padding: 9px 10px; */
+	font-size: 8px;
+	margin-bottom: 8px;
+}
+
+#our_initiatives_overview_in_banner .initiative .slide-overlay-inner {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+
+#our_initiatives_overview_in_banner .initiative .slide-overlay-inner {
+	-webkit-transition: all .2s ease-out;
+	transition: all .2s ease-out;
+	-webkit-transform: translate(-50%, 0%);
+	transform: translate(-50%, 0%);
+}
+
+#our_initiatives_overview_in_banner .initiative:hover .slide-overlay {
+	visibility: visible;
+	opacity: 1;
+}
+
+#our_initiatives_overview_in_banner .initiative:hover .slide-overlay-inner {
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
 
 .carousel-inner {
-	max-height: 300px !important;
+	max-height: 450px !important;
 }
 
 .carousel-inner img {
@@ -48,6 +148,7 @@
     right: 15px;
     /* max-width: 24px; */
     background-color: #fa6f1c;
+	z-index: 300;
 }
 
 .social_contacts button {
@@ -80,7 +181,7 @@
 }
 
 .header .header-logo img {
-	width: 20%;
+	width: 30%;
 	height: auto;
 }
 
@@ -136,4 +237,11 @@
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
 	line-height: 2.2;
+}
+
+@media print, screen and (min-width: 40em) {
+	.initiative {
+		width: 160px;
+		position: relative;
+	}
 }

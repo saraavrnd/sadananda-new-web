@@ -878,7 +878,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .button {
-	padding: 11px 15px 12px;
+	/* padding: 11px 15px 12px; */
 	background: transparent;
 	border: 2px solid #fa6f1c;
 	font-size: 14px;
