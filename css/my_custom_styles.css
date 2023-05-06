@@ -1,6 +1,7 @@
 #section_about_sadananda {
+	position: relative;
     padding: 5px 0 5px;
-	margin-top: 150px;
+	/* margin-top: 150px; */
 }
 
 .my-slide-content {
@@ -72,7 +73,7 @@
 	border-radius: 10px;
 }
 
-#our_initiatives_overview_in_banner .initiative .slide-overlay {
+#initiativesbanner .initiative-slide-container .initiative-image .slide-overlay {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -83,12 +84,12 @@
 	opacity: 0;
 }
 
-#our_initiatives_overview_in_banner .initiative .slide-overlay {
+#initiativesbanner .initiative-slide-container .initiative-image .slide-overlay {
 	-webkit-transition: all .2s ease-out;
 	transition: all .2s ease-out;
 }
 
-#our_initiatives_overview_in_banner .initiative .slide-overlay .button {
+#initiativesbanner .initiative-slide-container .initiative-image .slide-overlay .button {
 	margin: 0;
 	/* min-width: 154px; */
 	/* padding: 9px 10px; */
@@ -96,27 +97,121 @@
 	margin-bottom: 8px;
 }
 
-#our_initiatives_overview_in_banner .initiative .slide-overlay-inner {
+#initiativesbanner .initiative-slide-container .initiative-image .slide-overlay-inner {
 	position: absolute;
 	left: 50%;
 	top: 50%;
 }
 
-#our_initiatives_overview_in_banner .initiative .slide-overlay-inner {
+#initiativesbanner .initiative-slide-container .initiative-image .slide-overlay-inner {
 	-webkit-transition: all .2s ease-out;
 	transition: all .2s ease-out;
 	-webkit-transform: translate(-50%, 0%);
 	transform: translate(-50%, 0%);
 }
 
-#our_initiatives_overview_in_banner .initiative:hover .slide-overlay {
+#initiativesbanner .initiative-slide-container .initiative-image:hover .slide-overlay {
 	visibility: visible;
 	opacity: 1;
 }
 
-#our_initiatives_overview_in_banner .initiative:hover .slide-overlay-inner {
+#initiativesbanner .initiative-slide-container .initiative-image:hover .slide-overlay-inner {
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
+}
+
+.sadananda-slides  {
+	margin: 0px;
+	padding: 0px;
+	max-height: 300px !important;
+	margin-bottom: 40px;
+	/* height: 300px !important; */
+}
+.slide-container {
+	height: 300px !important;
+}
+
+.slide-container img {
+	display: block;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.slide-container .banner-content {
+	position: absolute;
+	left: 10%;
+	top: 5%; 
+	right: 15%;
+	/* bottom: 5%; */
+	/* text-align: center; */
+}
+
+.slide-container .banner-content .banner-title {
+	font-weight: bold;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	line-height: 1.3;
+	font-size: 3rem;
+}
+
+.slide-container .banner-content .banner-details {
+	font-weight: bold;
+	color: #fff;
+	letter-spacing: 0.1em;
+	line-height: 1.3;
+	font-size: 1rem;
+}
+
+#initiativesbanner {
+	padding-left: 50px;
+	padding-right: 50px;
+	/* position: fixed;
+	top: 800px;
+	left: 20% !important;
+	right: 20% !important; */
+	/* height: 100px; */
+	/* background-color: orange;
+	border: 2px solid red; */
+	/* border-radius: 5px; */
+}
+
+#initiativesbanner .title {
+	margin-bottom: 12px;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    font-size: 1.71429rem;
+	text-align: center;
+}
+
+
+.initiative-slide-container {
+	width: 200px;
+	height: 200px;
+	/* border: 2px solid red; */
+	/* border-radius: 5px; */
+	display: block;
+}
+
+.initiative-slide-container .initiative-image {
+	width: 200px;
+	/* height: 200px; */
+	/* border: 2px solid red; */
+	/* border-radius: 5px; */
+	display: block;
+}
+
+#initiativesbanner .initiative-slide-container .initiative-name {
+	font-weight: bold;
+	text-align: center;
+}
+#initiativesbanner .initiative-slide-container a:link {
+	text-decoration: none;
+}
+
+.owl-carousel .owl-item img {
+	width: 100% !important
 }
 
 
@@ -132,7 +227,7 @@
 .slider-intro {
 	position: relative;
 	clear: both;
-
+	max-height: 400px;
 	/* My customizations */
 	/* margin-top: 30px; */
   /* Animations */
@@ -140,6 +235,18 @@
   /*  Small Desktop  */
   /*  Tablet Portrait  */
   /*  Mobile  */;
+}
+
+.slides {
+	padding: 0 !important;
+}
+.slider-intro .slide .slide-image img {
+	height: 400px !important;
+	width: 100%;
+}
+
+.slider-intro .slide .slide-image {
+	overflow: hidden !important;
 }
 
 .social_contacts {
@@ -237,6 +344,15 @@
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
 	line-height: 2.2;
+}
+
+.section-featured {
+	padding: 25px 0 25px !important;
+  /*  Mobile  */;
+}
+
+.page-head {
+	text-align: center;
 }
 
 @media print, screen and (min-width: 40em) {

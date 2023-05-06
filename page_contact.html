@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/my_custom_styles.css">
 	<link rel="stylesheet" href="css/bt/css/bootstrap.css">
+	<link rel="stylesheet" href="css/owl/owl.carousel.css">
 
 </head>
 <body>
@@ -20,60 +21,18 @@
 			<button type="button"><i class="fab fa-twitter"></i></button>
 		</div>
 	</div>
-	<!--
-	<div class="bar">
-		<div class="grid-container">
-			<div class="grid-x grid-margin-x">
-				<div class="cell small-12">
-					<p class="bar-phone">
-						<i class="fas fa-phone"></i> Call Us : <strong><a href="tel:+1514000000">+1 514 000 0000</a></strong>
-					</p>
-
-					<div class="bar-socials">
-						<ul>
-
-							<li>
-								<a href="#">
-									<i class="fab fa-facebook-f"></i>
-								</a>
-							</li>
-
-							<li>
-								<a href="#">
-									<i class="fab fa-twitter"></i>
-								</a>
-							</li>
-
-							<li>
-								<a href="#">
-									<i class="fab fa-google-plus-g"></i>
-								</a>
-							</li>
-
-							<li>
-								<a href="#">
-									<i class="fab fa-linkedin-in"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
---><!-- /.bar -->
-
 	<header class="header">
 
 		<div class="grid-container">
 			<div class="grid-x grid-margin-x">
-				<div class="cell small-6">
+				<div class="cell small-4">
 					<a href="index.html" class="header-logo">
 						<img src="images/sadananda_org.png" alt="Sadananda">
 						<!-- <span class="site-description">Foundation</span> -->
 					</a>
 				</div>
-				<div class="cell small-6">
+				<div class="cell small-8">
+
 					<div class="header-inner">
 						<a href="#" class="button-burger">
 							<span></span>
@@ -90,24 +49,22 @@
 								</li>
 								<li>
 									<a>Initiatives</a>
-									<ul>
+									<ul class="initiatives-menu">
+										<!--
 										<li><a href="free_home_for_senior_citizens.html">Free Home for Senior Citizens</a></li>
 										<li><a href="educational_assistance.html">Educational Assistance</a></li>
 										<li><a href="free_medical_care_center.html">Free Medical Care Center</a></li>
 										<li><a href="learning_center_for_special_children.html">Learning Center for Special Children</a></li>
+										-->
 									</ul>
 								</li>
 								<li>
 									<a href="page_contact.html">Contact Us</a>
-								</li> 
-<!--
-								<li>
-									<a href="causes.html">Causes</a>
-									<ul>
-										<li><a href="causes-detail.html">Single Cause</a></li>
-									</ul>
 								</li>
-
+								<li>
+									<a href="page_events.html">Events</a>
+								</li>
+<!-- 
 								<li>
 									<a href="event.html">Events</a>
 									<ul>
@@ -142,6 +99,7 @@
 			</div>
 		</div>
 	</header><!-- /.header -->
+
 
 	<!--
 	<div class="slider-intro">
@@ -306,11 +264,11 @@
 							<h4 class="footer-section-title">Initiatives</h4><!-- /.footer-section-title -->
 
 							<div class="footer-section-body">
-								<ul class="list-links">
-									<li><a href="free_home_for_senior_citizens.html">Free Home for Senior Citizens</a></li>
+								<ul class="list-links initiatives-menu">
+									<!-- <li><a href="free_home_for_senior_citizens.html">Free Home for Senior Citizens</a></li>
 									<li><a href="educational_assistance.html">Educational Assistance</a></li>
 									<li><a href="free_medical_care_center.html">Free Medical Care Center</a></li>
-									<li><a href="learning_center_for_special_children.html">Learning Center for Special Children</a></li>
+									<li><a href="learning_center_for_special_children.html">Learning Center for Special Children</a></li> -->
 								</ul><!-- /.list-links -->
 							</div><!-- /.footer-section-body -->
 						</div><!-- /.footer-section -->
@@ -392,17 +350,86 @@
 	</div><!-- /.footer-bar -->
 <!-- /.footer -->
 <!-- /.wrapper -->
-	<!-- <script src="assets/javascripts/vendor.js"></script> -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/fastclick.min.js"></script>
-	<script src="js/foundation.min.js"></script>
-	<script src="js/modernizr.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.fullscreener.min.js"></script>
-	<script src="js/core.min.js"></script>
-	<script src="js/number.min.js"></script>
-	<script src="js/app.min.js"></script>
+			<!-- <script src="assets/javascripts/vendor.js"></script> -->
+			<script src="js/jquery-3.2.1.min.js"></script>
+			<script src="js/bt/js/bootstrap.js"></script>
+			<script src="js/owl/owl.carousel.min.js"></script>
+		
+		<!-- 	
+			<script src="js/fastclick.min.js"></script>
+			<script src="js/foundation.min.js"></script>
+			<script src="js/modernizr.min.js"></script>
+			<script src="js/owl.carousel.min.js"></script>
+			<script src="js/jquery.fullscreener.min.js"></script>
+			<script src="js/core.min.js"></script>
+			<script src="js/number.min.js"></script>
+			<script src="js/app.min.js"></script> -->
+			<script src="js/customizations.js"></script>
+		
+			<script>
+				$(document).ready(function() {
+					// loadBanners("learningcenterforsplchildren", (err, banners) => {
+					// 	if(err) {
+					// 		console.log('Failed to load the banners');
+					// 		return
+					// 	}
+					// 	renderBanner("#learningcenterforsplchildren", banners)
+					// 	$("#learningcenterforsplchildren").owlCarousel({
+					// 		navigation : true, // Show next and prev buttons
+					// 		autoplay: 2000,
+					// 		slideSpeed : 300,
+					// 		paginationSpeed : 400,
+					// 		loop: true,
+					// 		items : 1, 
+					// 		itemsDesktop : false,
+					// 		itemsDesktopSmall : false,
+					// 		itemsTablet: false,
+					// 		itemsMobile : false
+					// 	});
+					// });
+					loadInitiatives((err, initiatives) => {
+						if(err) {
+							console.log('Failed to load the initiatives');
+							return;
+						}
+						renderInitiatives("", ".initiatives-menu", initiatives);	
 
+						// $("#initiativesbanner .owl-carousel, .slides").owlCarousel({
+						// 	loop:true,
+						// 	margin:10,
+						// 	responsiveClass:true,
+						// 	center: true,
+						// 	autoWidth:true,
+						// 	nav: true,
+						// 	responsive:{
+						// 		0:{
+						// 			items:1,
+						// 			nav:true,
+						// 			margin: 20,
+						// 			center: true,
+			
+						// 		},
+						// 		600:{
+						// 			items:2,
+						// 			nav:false,
+						// 			margin: 20,
+						// 			center: true,
+			
+						// 		},
+						// 		1000:{
+						// 			items:4,
+						// 			// nav:true,
+						// 			// loop:true,
+						// 			margin: 20,
+						// 			center: true,
+			
+						// 		}
+						// 	}
+						// });
+					})
+				})
+		
+				</script>
 
 
 </body></html>
