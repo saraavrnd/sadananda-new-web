@@ -1,6 +1,6 @@
 loadBanners = function(page, cb) {
     console.log('Loading banner data for page:' + page)
-    const url = '/data/banner/' + page + '.dat'
+    const url = '/sadananda-new-web/data/banner/' + page + '.dat'
     try {
         $.ajax({
             type: 'GET',
@@ -62,7 +62,7 @@ renderBanner = function(id, bannerdata) {
 }
 
 loadInitiatives = function(cb) {
-    const url = '/data/initiatives/index.dat';
+    const url = '/sadananda-new-web/data/initiatives/index.dat';
     console.log('Loading initiatives from:', url)
 
     try {
