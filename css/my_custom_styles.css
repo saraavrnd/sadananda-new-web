@@ -1,76 +1,187 @@
-#section_about_sadananda {
+.social_contacts {
+    position: fixed;
+    bottom: 5%;
+    right: 15px;
+    /* max-width: 24px; */
+    background-color: #fa6f1c;
+	z-index: 300;
+}
+
+.social_contacts button {
+    color:#fff;
+    padding: 4px;
+    border: 1px solid #fff;
+    width: 100%
+} 
+
+.social_contacts button:hover {
+    background-color: black;
+}
+
+
+.header {
 	position: relative;
-    padding: 5px 0 5px;
-	/* margin-top: 150px; */
+	z-index: 300;
+	height: 80px;
+  /*  Tablet Portrait  */
+  /*  Mobile  */;
 }
 
-.my-slide-content {
+.header .header-logo {
+	float: left;
+	margin: 8px 0 0 0;
+}
+
+.header .header-logo img {
+	width: 30%;
+	height: auto;
+}
+
+.header .header-inner {
+	float: right;
+	margin-top: 16px;
+}
+
+.slider-featured .slide .slide-image {
+	margin-bottom: 8px;
+	position: relative;
+}
+
+.slider-featured .slide .slide-image img {
+	border-radius: 8px;
+}
+
+.sadananda-slides  {
+	margin: 0px;
+	padding: 0px;
+	max-height: 450px !important;
+	margin-bottom: 40px;
+	/* height: 300px !important; */
+}
+
+.slide-container {
+	height: 450px !important;
+}
+
+.slide-container img {
+	display: block;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.slide-container .banner-content {
 	position: absolute;
-	left: 15%;
-	top: 5%;
+	left: 10%;
+	top: 5%; 
 	right: 15%;
-	text-align: center;
+	/* bottom: 5%; */
+	/* text-align: center; */
 }
 
-.my-slide-title {
+.slide-container .banner-content .banner-title {
+	font-weight: bold;
 	color: #fff;
 	text-transform: uppercase;
-	font-weight: bold;
 	letter-spacing: 0.1em;
-	font-size: 1.7rem;
+	line-height: 1.3;
+	font-size: 3rem;
 }
 
-#initiative-header {
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.initiative {
-	width: 200px;
-	position: relative;
-}
-
-.initiative-title {
+.slide-container .banner-content .banner-details {
+	font-weight: bold;
 	color: #fff;
+	letter-spacing: 0.1em;
+	line-height: 1.3;
+	font-size: 1rem;
 }
 
-.footer {
-	color:#fff;
-}
-
-.footer-body {
-	background: #064ba0 !important;
-	padding: 85px 0 32px !important;
-}
-
-.footer-body .list-links a {
-	color: #fff;
-}
-
-.footer-credits {
-	text-align: center;
-	letter-spacing: 0.025em;
-	color: #75737f;
-}
-
-#our_initiatives_overview_in_banner {
+.sadananda-slides .owl-nav {
 	position: absolute;
-	top: 350px;
-	left: 20%;
-	right: 20%;
-	max-height: 100px;
-	background-color: transparent;
+	top: 50%;
+	left: 16px !important;
+	right: 16px  !important; 
+	z-index: 500;
 }
 
+#initiativesbanner .owl-nav {
+	position: absolute;
+	top: 25%;
+	left: 16px !important;
+	right: 16px  !important; 
+	z-index: 500;
+}
 
-.initiative .title {
+.sadananda-slides .owl-nav .owl-next,
+.sadananda-slides .owl-nav .owl-prev,
+#initiativesbanner .owl-nav .owl-prev,
+#initiativesbanner .owl-nav .owl-next {
+	font-size: 25px !important; 
+}
+
+.sadananda-slides .owl-nav .owl-next:hover,
+.sadananda-slides .owl-nav .owl-prev:hover,
+#initiativesbanner .owl-nav .owl-next:hover,
+#initiativesbanner .owl-nav .owl-prev:hover {
+	/* border: #fa6f1c 2px solid; */
+	color: red; 
+}
+
+.sadananda-slides .owl-nav .owl-next,
+#initiativesbanner .owl-nav .owl-next {
+	float: right;
+}
+
+#initiativesbanner {
+	padding-left: 50px;
+	padding-right: 50px;
+	position: absolute;
+	top: 35%;
+	left: 20% !important;
+	right: 20% !important; 
+	/* height: 100px; */
+	/* background-color: orange; */
+	z-index: 400;
+}
+
+#initiativesbanner .title {
+	margin-bottom: 12px;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    font-size: 1.71429rem;
 	text-align: center;
-	font-size: small;
+	color: white;
 }
 
-.initiative img {
-	border: 2px solid white;
-	border-radius: 10px;
+.initiative-slide-container {
+	/* max-width: 300px; */
+	height: 200px;
+	/* border: 2px solid red; */
+	/* border-radius: 5px; */
+	display: block;
+}
+
+
+.initiative-slide-container .initiative-image {
+	border: 2px solid white; 
+	border-radius: 8px;
+	max-width: 200px;
+	/* height: 200px; */
+	/* border: 2px solid red; */
+	/* border-radius: 5px; */
+	display: block;
+}
+
+#initiativesbanner .initiative-slide-container .initiative-name {
+	font-weight: bold;
+	text-align: center;
+}
+#initiativesbanner .initiative-slide-container a:link {
+	text-decoration: none;
+}
+
+.owl-carousel .owl-item img {
+	width: 100% !important
 }
 
 #initiativesbanner .initiative-slide-container .initiative-image .slide-overlay {
@@ -120,191 +231,13 @@
 	transform: translate(-50%, -50%);
 }
 
-.sadananda-slides  {
-	margin: 0px;
-	padding: 0px;
-	max-height: 300px !important;
-	margin-bottom: 40px;
-	/* height: 300px !important; */
-}
-.slide-container {
-	height: 300px !important;
-}
-
-.slide-container img {
-	display: block;
-	width: 100% !important;
-	height: 100% !important;
-}
-
-.slide-container .banner-content {
-	position: absolute;
-	left: 10%;
-	top: 5%; 
-	right: 15%;
-	/* bottom: 5%; */
-	/* text-align: center; */
-}
-
-.slide-container .banner-content .banner-title {
-	font-weight: bold;
-	color: #fff;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	line-height: 1.3;
-	font-size: 3rem;
-}
-
-.slide-container .banner-content .banner-details {
-	font-weight: bold;
-	color: #fff;
-	letter-spacing: 0.1em;
-	line-height: 1.3;
-	font-size: 1rem;
-}
-
-#initiativesbanner {
-	padding-left: 50px;
-	padding-right: 50px;
-	/* position: fixed;
-	top: 800px;
-	left: 20% !important;
-	right: 20% !important; */
-	/* height: 100px; */
-	/* background-color: orange;
-	border: 2px solid red; */
-	/* border-radius: 5px; */
-}
-
-#initiativesbanner .title {
-	margin-bottom: 12px;
-    text-transform: uppercase;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    font-size: 1.71429rem;
-	text-align: center;
-}
-
-
-.initiative-slide-container {
-	width: 200px;
-	height: 200px;
-	/* border: 2px solid red; */
-	/* border-radius: 5px; */
-	display: block;
-}
-
-.initiative-slide-container .initiative-image {
-	width: 200px;
-	/* height: 200px; */
-	/* border: 2px solid red; */
-	/* border-radius: 5px; */
-	display: block;
-}
-
-#initiativesbanner .initiative-slide-container .initiative-name {
-	font-weight: bold;
-	text-align: center;
-}
-#initiativesbanner .initiative-slide-container a:link {
-	text-decoration: none;
-}
-
-.owl-carousel .owl-item img {
-	width: 100% !important
-}
-
-
-.carousel-inner {
-	max-height: 450px !important;
-}
-
-.carousel-inner img {
-    background-size: cover;
-}
-
-
-.slider-intro {
+#section_about_sadananda {
 	position: relative;
-	clear: both;
-	max-height: 400px;
-	/* My customizations */
-	/* margin-top: 30px; */
-  /* Animations */
-  /* Animations */
-  /*  Small Desktop  */
-  /*  Tablet Portrait  */
-  /*  Mobile  */;
+    padding: 5px 0 5px;
+	margin-top: 150px;
 }
 
-.slides {
-	padding: 0 !important;
-}
-.slider-intro .slide .slide-image img {
-	height: 400px !important;
-	width: 100%;
-}
 
-.slider-intro .slide .slide-image {
-	overflow: hidden !important;
-}
-
-.social_contacts {
-    position: fixed;
-    bottom: 5%;
-    right: 15px;
-    /* max-width: 24px; */
-    background-color: #fa6f1c;
-	z-index: 300;
-}
-
-.social_contacts button {
-    color:#fff;
-    padding: 4px;
-    border: 1px solid #fff;
-    width: 100%
-} 
-
-.social_contacts button:hover {
-    background-color: black;
-}
-
-.slider-featured .slide .slide-image {
-	margin-bottom: 8px;
-	position: relative;
-}
-
-.header {
-	position: relative;
-	z-index: 300;
-	height: 80px;
-  /*  Tablet Portrait  */
-  /*  Mobile  */;
-}
-
-.header .header-logo {
-	float: left;
-	margin: 8px 0 0 0;
-}
-
-.header .header-logo img {
-	width: 30%;
-	height: auto;
-}
-
-.header .header-inner {
-	float: right;
-	margin-top: 16px;
-}
-
-.section-featured-initiatives {
-	padding: 5px 0 5px;
-  /*  Mobile  */;
-}
-
-.slider-featured .slide .slide-content-small-caption {
-    margin-bottom: 60px !important;
-}
 
 .section-featured-our-team {
 	padding: 25px 0 25px;
@@ -346,18 +279,379 @@
 	line-height: 2.2;
 }
 
+
+.footer {
+	color:#fff;
+}
+
+.footer-body {
+	background: #064ba0 !important;
+	padding: 85px 0 32px !important;
+}
+
+.footer-body .list-links a {
+	color: #fff;
+}
+
+.footer-credits {
+	text-align: center;
+	letter-spacing: 0.025em;
+	color: #75737f;
+}
+
+.page-head {
+	text-align: center;
+	padding: 16px 48px 16px;
+}
+
+.page-head .section-image {
+	margin-bottom: 16px;
+}
+ 
+
+@media  (max-width: 1199px) {
+
+	.header .header-logo img {
+		width: 40%;
+		height: auto;
+	}
+
+	#section_about_sadananda {
+		position: relative;
+		padding: 5px 0 5px;
+		margin-top: 100px;
+	}
+	.header nav {
+		/* display:  none; */
+	}
+
+	#initiativesbanner .owl-nav {
+		position: absolute;
+		top: 25%;
+		left: -16px !important;
+		right: -16px  !important; 
+		z-index: 500;
+	}
+
+
+	.footer {
+		font-size: smaller;
+	}
+	.footer-body {
+		padding: 32px 0 32px !important
+	}
+
+
+} 
+
+@media (max-width: 767px) {
+
+	.header .header-logo img {
+		width: 50%;
+		height: auto;
+	}
+
+	.header nav {
+		/* display:  none; */
+	}
+
+	.slide-container .banner-content .banner-title {
+		font-weight: bold;
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		line-height: 1.3;
+		font-size: 2.2rem;
+	}
+	
+	.slide-container .banner-content .banner-details {
+		font-weight: bold;
+		color: #fff;
+		letter-spacing: 0.1em;
+		line-height: 1.3;
+		font-size: 1rem;
+	}
+	#initiativesbanner {
+		padding-left: 16px;
+		padding-right: 16px;
+		position: absolute;
+		top: 28%;
+		left: 10% !important;
+		right: 10% !important; 
+		/* height: 100px; */
+		/* background-color: orange; */
+		z-index: 400;
+	}
+
+	#initiativesbanner .title {
+		margin-bottom: 8px;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		font-size: 1.2rem;
+	}
+
+	#initiativesbanner .owl-nav {
+		position: absolute;
+		top: 25%;
+		left: -16px !important;
+		right: -16px  !important; 
+		z-index: 500;
+	}
+	
+	#section_about_sadananda {
+		position: relative;
+		padding: 5px 0 5px;
+		margin-top: 125px;
+	}
+	.footer {
+		font-size: smaller;
+	}
+	.footer-body {
+		padding: 32px 0 32px !important
+	}
+} 
+
+
+@media (max-width: 414px)  {
+	.header .header-logo img {
+		width: auto;
+		height: auto;
+	}
+
+	.header nav {
+		display:  none;
+	}
+
+	.slide-container .banner-content .banner-title {
+		font-weight: bold;
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		line-height: 1.3;
+		font-size: 2.2rem;
+	}
+	
+	.slide-container .banner-content .banner-details {
+		font-weight: bold;
+		color: #fff;
+		letter-spacing: 0.1em;
+		line-height: 1.3;
+		font-size: 1rem;
+	}
+	#initiativesbanner {
+		padding-left: 16px;
+		padding-right: 16px;
+		position: absolute;
+		top: 18%;
+		left: 20% !important;
+		right: 20% !important; 
+		/* height: 100px; */
+		/* background-color: orange; */
+		z-index: 400;
+	}
+
+	#initiativesbanner .title {
+		margin-bottom: 8px;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		font-size: 1.2rem;
+	}
+
+	#initiativesbanner .owl-nav {
+		position: absolute;
+		top: 25%;
+		left: -16px !important;
+		right: -16px  !important; 
+		z-index: 500;
+	}
+	
+	#section_about_sadananda {
+		position: relative;
+		padding: 5px 0 5px;
+		margin-top: 125px;
+	}
+	.footer {
+		font-size: smaller;
+	}
+	.footer-body {
+		padding: 32px 0 32px !important
+	}
+} 
+
+
+@media (max-width: 375px) {
+
+	.header .header-logo img {
+		width: auto;
+		height: auto;
+	}
+
+	.header nav {
+		/* display:  none; */
+	}
+	
+	.slide-container .banner-content .banner-title {
+		font-weight: bold;
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		line-height: 1.3;
+		font-size: 2.0rem;
+	}
+	
+	.slide-container .banner-content .banner-details {
+		font-weight: bold;
+		color: #fff;
+		letter-spacing: 0.1em;
+		line-height: 1.3;
+		font-size: 1rem;
+	}
+
+	#initiativesbanner {
+		padding-left: 16px;
+		padding-right: 16px;
+		position: absolute;
+		top: 18%;
+		left: 20% !important;
+		right: 20% !important; 
+		/* height: 100px; */
+		/* background-color: orange; */
+		z-index: 400;
+	}
+
+	#initiativesbanner .title {
+		margin-bottom: 8px;
+		font-weight: 500;
+		letter-spacing: 0.05em;
+		font-size: 1.0rem;
+	}
+
+	#initiativesbanner .owl-nav {
+		position: absolute;
+		top: 25%;
+		left: -16px !important;
+		right: -16px  !important; 
+		z-index: 500;
+	}
+	
+	#section_about_sadananda {
+		position: relative;
+		padding: 5px 0 5px;
+		margin-top: 125px;
+	}
+	.footer {
+		font-size: smaller;
+	}
+	.footer-body {
+		padding: 32px 0 32px !important
+	}
+	
+	
+	
+} 
+
+
+
+
+/* nt used */
+.my-slide-content {
+	position: absolute;
+	left: 15%;
+	top: 5%;
+	right: 15%;
+	text-align: center;
+}
+
+.my-slide-title {
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	font-size: 1.7rem;
+}
+
+#initiative-header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.initiative {
+	width: 200px;
+	position: relative;
+}
+
+.initiative-title {
+	color: #fff;
+}
+
+
+
+#our_initiatives_overview_in_banner {
+	position: absolute;
+	top: 350px;
+	left: 20%;
+	right: 20%;
+	max-height: 100px;
+	background-color: transparent;
+}
+
+
+.initiative .title {
+	text-align: center;
+	font-size: small;
+}
+
+.initiative img {
+	border: 2px solid white;
+	border-radius: 10px;
+}
+
+.carousel-inner {
+	max-height: 450px !important;
+}
+
+.carousel-inner img {
+    background-size: cover;
+}
+
+
+.slider-intro {
+	position: relative;
+	clear: both;
+	max-height: 400px;
+	/* My customizations */
+	/* margin-top: 30px; */
+  /* Animations */
+  /* Animations */
+  /*  Small Desktop  */
+  /*  Tablet Portrait  */
+  /*  Mobile  */;
+}
+
+.slides {
+	padding: 0 !important;
+}
+.slider-intro .slide .slide-image img {
+	height: 400px !important;
+	width: 100%;
+}
+
+.slider-intro .slide .slide-image {
+	overflow: hidden !important;
+}
+
+.section-featured-initiatives {
+	padding: 5px 0 5px;
+  /*  Mobile  */;
+}
+
+.slider-featured .slide .slide-content-small-caption {
+    margin-bottom: 60px !important;
+}
+
 .section-featured {
 	padding: 25px 0 25px !important;
   /*  Mobile  */;
 }
 
-.page-head {
-	text-align: center;
-}
 
-@media print, screen and (min-width: 40em) {
-	.initiative {
-		width: 160px;
-		position: relative;
-	}
-}

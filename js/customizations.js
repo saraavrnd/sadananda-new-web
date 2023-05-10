@@ -1,6 +1,9 @@
+// var app_url_prefix = `/sadananda-new-web`
+var app_url_prefix = ''
 loadBanners = function(page, cb) {
     console.log('Loading banner data for page:' + page)
-    const url = '/sadananda-new-web/data/banner/' + page + '.dat'
+    
+    const url = `${app_url_prefix}/data/banner/${page}.dat`
     try {
         $.ajax({
             type: 'GET',
@@ -62,7 +65,7 @@ renderBanner = function(id, bannerdata) {
 }
 
 loadInitiatives = function(cb) {
-    const url = '/sadananda-new-web/data/initiatives/index.dat';
+    const url = `${app_url_prefix}/data/initiatives/index.dat`;
     console.log('Loading initiatives from:', url)
 
     try {

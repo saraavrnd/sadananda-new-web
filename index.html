@@ -6,9 +6,11 @@
 	<link rel="stylesheet" href="css/css.css">
 	<link rel="stylesheet" href="css/vendors.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/my_custom_styles.css">
 	<link rel="stylesheet" href="css/bt/css/bootstrap.css">
 	<link rel="stylesheet" href="css/owl/owl.carousel.css">
+
+	<link rel="stylesheet" href="css/my_custom_styles.css">
+
 </head>
 <body>
 <div class="wrapper">
@@ -533,7 +535,7 @@
 			}
 			renderBanner("#indexbanner", banners)
 			$("#indexbanner").owlCarousel({
-				navigation : true, // Show next and prev buttons
+				nav : true, // Show next and prev buttons
 				autoplay: 2000,
 				slideSpeed : 300,
 				paginationSpeed : 400,
@@ -552,34 +554,52 @@
 			}
 			renderInitiatives("#initiativesbanner .owl-carousel", ".initiatives-menu", initiatives);		
 			$("#initiativesbanner .owl-carousel").owlCarousel({
-				loop:true,
+				// loop:true,
 				margin:10,
 				responsiveClass:true,
-				center: true,
-				autoWidth:true,
+				// center: true,
+				autoWidth:false,
 				nav: true,
+				items:4,
 				responsive:{
 					0:{
 						items:1,
 						nav:true,
 						margin: 20,
 						center: true,
-
+						loop:true,
+						autoplay: 5000,
+						slideSpeed : 300,
+						paginationSpeed : 400,
 					},
-					600:{
-						items:2,
-						nav:false,
-						margin: 20,
+					414:{
+						items:1,
+						margin: 15,
 						center: true,
-
+						// autoWidth: true,
+						nav:true,
+						loop:true,
+						autoplay: 5000,
+						slideSpeed : 300,
+						paginationSpeed : 400,
+					},
+					767:{
+						items:3,
+						margin: 10,
+						center: true,
+						// autoWidth: true,
+						nav:true,
+						loop:true,
+						autoplay: 5000,
+						slideSpeed : 300,
+						paginationSpeed : 400,
 					},
 					1000:{
 						items:4,
-						// nav:true,
+						nav:false,
 						// loop:true,
 						margin: 20,
-						center: true,
-
+						// center: true,
 					}
 				}
 			});
