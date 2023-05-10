@@ -1,5 +1,5 @@
-// var app_url_prefix = `/sadananda-new-web`
-var app_url_prefix = ''
+var app_url_prefix = `/sadananda-new-web`
+// var app_url_prefix = ''
 loadBanners = function(page, cb) {
     console.log('Loading banner data for page:' + page)
     
