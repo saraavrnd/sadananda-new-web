@@ -1,0 +1,10 @@
+#This is the events data specification
+#Every line below will represent a banner data as follows:
+#image - URL of the image to be loaded
+#heading - Heading for the banner; max-length:50; 
+#sub-heading - Any additional detailed description about the banner; max-length:200
+#Note: 
+#No comma is allowed in the image and heading as the system uses the comma as separtor to get the data
+#Length constraint is given to fit the data in the UI better
+image=images/banner_tmp_new_1.jpeg,heading=Event 1,sub-heading=This event is all about...Event #1...
+image=images/banner_tmp_new_1.jpeg,heading=Event 2,sub-heading=This event is all about...Event #2...

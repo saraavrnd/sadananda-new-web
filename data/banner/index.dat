@@ -6,7 +6,8 @@
 #Note: 
 #No comma is allowed in the image and heading as the system uses the comma as separtor to get the data
 #Length constraint is given to fit the data in the UI better
-image=images/banner_tmp_new_1.jpeg,heading=Heading 1,sub-heading=This is the addition data to be shown for this banner_tmp_1
-image=images/banner_tmp2.jpeg,heading=Heading 2,sub-heading=TTMP4 sub heading
-image=images/banner_tmp3.webp,heading=Heading 3,sub-heading=TTMP4 sub heading
-image=images/banner_tmp_4.jpg,heading=Heading 4,sub-heading=TTMP4 sub heading
+image=images/banner_tmp_new_1.jpeg,heading=Heading 1,sub-heading=This is to talk about ABC
+image=images/banner_tmp_new_1.jpeg,heading=Heading 2,sub-heading=TTMP4 sub heading
+image=images/banner_tmp_new_1.jpeg,heading=Heading 3,sub-heading=TTMP4 sub heading
+image=images/banner_tmp_new_1.jpeg,heading=Heading 4,sub-heading=TTMP4 sub heading
+image=images/banner_tmp_new_1.jpeg,heading=Heading 5,sub-heading=This is sub heading for banner 5

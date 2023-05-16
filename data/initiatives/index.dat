@@ -7,7 +7,9 @@
 #Note: 
 #No comma is allowed as the system uses the comma as separtor to get the data
 #Length constraint is given to fit the data in the UI better
-id=initiative1,image=images/banner_tmp_1.webp,name=Free Home for Senior Citizens,link=free_home_for_senior_citizens.html
+id=initiative1,image=images/banner_tmp_1.webp,name=Home for Senior Citizens ,link=free_home_for_senior_citizens.html
 id=initiative2,image=images/banner_tmp2.jpeg,name=Educational Assistance,link=educational_assistance.html
 id=initiative3,image=images/banner_tmp3.webp,name=Free Medical Care Center,link=free_medical_care_center.html
 id=initiative4,image=images/banner_tmp_5.png,name=Learning Center for Special Children,link=learning_center_for_special_children.html
+
+

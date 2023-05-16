@@ -12,13 +12,16 @@
 
 </head>
 <body>
+	<div id="loading-status">
+
+	</div>
 <div class="wrapper">
 	<div class="social_contacts rounded">
 		<div class="btn-group-vertical">
-			<button type="button" ><i class="fas fa-phone"></i></button>
-			<button type="button"><i class="fab fa-facebook-f"></i></button>
-			<button type="button"><i class="fab fa-google-plus-g"></i></button>
-			<button type="button"><i class="fab fa-twitter"></i></button>
+			<a type="button" id="social_contacts_phone" href=""><i class="fas fa-phone"></i></a>
+			<a type="button" id="social_contacts_fb" href=""><i class="fab fa-facebook-f"></i></a>
+			<a type="button" id="social_contacts_twitter" href=""><i class="fab fa-twitter"></i></a>
+			<a type="button" id="social_contacts_email" href=""><i class="fas fa-envelope"></i></a>
 		</div>
 	</div>
 
@@ -101,94 +104,16 @@
 		</div>
 	</header><!-- /.header -->
 
-	<!--
-	<div class="slider-intro">
-		<div class="slider-clip">
-			<ul class="slides owl-carousel">
-				<li class="slide">
-					<div class="slide-image fullscreener">
-						<img src="images/free_home_for_senior_citizens.jpeg" height="890" width="1800" alt="">
-					</div>
-
-					<div class="slide-content">
-						<div class="grid-container">
-							<div class="grid-x grid-margin-x">
-
-								<div class="cell small-12 large-7">
-									<h2 class="slide-title">Send Childrens To School</h2>
-
-									<div class="slide-entry">
-										<p>Integer sit amet augue iaculis, ultricies justo nec, commodo nisi. Class taciti sociosqu ad litora torquent per conubia nostra</p>
-									</div>
-								</div>
-
-								<div class="cell small-12 large-5">
-									<div class="slide-aside">
-										<div class="slide-tag">Urgent Cause</div>
-
-										<div class="slide-progress">
-											<div class="slide-raised">
-												<span>Raised</span>
-
-												<strong>$56,354</strong>
-											</div>
-
-											<div class="slide-to-go">
-												<span>To Go</span>
-
-												<strong>$1,15,699</strong>
-											</div>
-										</div>
-
-										<div class="slide-actions">
-											<a href="#">Donate Now</a>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</li>
-
-				<li class="slide-alt">
-					<div class="slide-image fullscreener">
-						<img src="images/slider-intro-image2.jpg" height="890" width="1800" alt="">
-					</div>
-
-					<div class="slide-content">
-						<div class="grid-container">
-							<div class="grid-x grid-margin-x">
-								<div class="cell small-12">
-									<div class="slide-content-inner">
-										<h2 class="slide-title">We Can Change It Together Lets Do It Now!</h2>
-
-										<p>Integer sit amet augue iaculis, ultricies justo nec, commodo nisi. Classtaciti sociosqu.</p>
-
-										<div class="slide-actions">
-											<a href="#" class="button button-white">Learn More</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-
-		<div class="slider-actions"></div>
-	</div>
-	-->
 	<div id="freemedicalcare" class="sadananda-slides owl-carousel">
 	</div>
 	<header class="page-head">
-		<h2 class="page-title">Medical Care Center</h2><!-- /.section-title -->
+		<div class="page-head-title">
+			<h2 class="page-title">Medical Care Center</h2><!-- /.section-title -->
 
-		<div class="section-image">
-			<img src="images/ico-droplet.png" height="22" width="14" alt="">
-		</div><!-- /.section-image -->
-
+			<div class="section-image">
+				<img src="images/ico-droplet.png" height="22" width="14" alt="">
+			</div><!-- /.section-image -->
+		</div>
 		<section class="section-featured">
 			<div class="grid-container">
 				<div class="grid-x grid-margin-x">
@@ -330,22 +255,29 @@
 		</p>
 
 	</header><!-- /.section-head -->
-
 	<footer class="footer">
 		<div class="footer-body">
 			<div class="grid-container">
 				<div class="grid-x grid-margin-x">
-					<!--
-					<div class="cell small-12 medium-auto">
-						<div class="footer-section">
-							<h4 class="footer-section-title">About Charity</h4>
-
-							<div class="footer-section-body">
-								<p>Charity vitae diam pulvinar, tempus dia aliquam tellus. Quisque mattis odio eu placerat luctus. Vivamus magna elit, ultrices non lacinia vel, tempor vitae tell Fusce sit amet sem sit amet.</p>
+				
+				<div class="modal fade" id="legalDisclaimer" tabindex="-1" role="dialog" aria-labelledby="legalDisclaimerTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="legalDisclaimerTitle">Legal Disclamer</h5>
+								<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button> -->
 							</div>
+							<div class="modal-body">
+							</div>
+							<!-- <div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div> -->
 						</div>
 					</div>
-				-->
+					</div>
+					  
 					<div class="cell small-12 medium-auto">
 						<div class="footer-section">
 							<h4 class="footer-section-title">Quick Links</h4><!-- /.footer-section-title -->
@@ -365,9 +297,11 @@
 										<a href="#">Gallery</a>
 									</li>
 									<li>
-										<a href="#">Legal Desclaimer</a>
+										<a href="javascript:showLegalDisclaimer();">
+										<!-- <a data-target="#legalDisclaimer" data-toggle="modal"> -->
+											Legal Desclaimer
+										</a>
 									</li>
-
 								</ul><!-- /.list-links -->
 								<!--
 								<ul class="list-links">
@@ -390,59 +324,42 @@
 							<h4 class="footer-section-title">Initiatives</h4><!-- /.footer-section-title -->
 
 							<div class="footer-section-body">
-								<ul class="list-links initiatives-menu">
-									<!-- <li><a href="free_home_for_senior_citizens.html">Free Home for Senior Citizens</a></li>
+								<ul class="list-links initiatives-menu" >
+									<!--
+									<li><a href="free_home_for_senior_citizens.html">Free Home for Senior Citizens</a></li>
 									<li><a href="educational_assistance.html">Educational Assistance</a></li>
 									<li><a href="free_medical_care_center.html">Free Medical Care Center</a></li>
-									<li><a href="learning_center_for_special_children.html">Learning Center for Special Children</a></li> -->
+									<li><a href="learning_center_for_special_children.html">Learning Center for Special Children</a></li>
+									-->
 								</ul><!-- /.list-links -->
 							</div><!-- /.footer-section-body -->
 						</div><!-- /.footer-section -->
 					</div><!-- /.cell small-12 medium-auto -->
-					<!--
-					<div class="cell small-12 medium-auto">
-						<div class="footer-section">
-							<h4 class="footer-section-title">Newsletter Signup</h4>
-
-							<div class="footer-section-body">
-								<p>Select your newsletters, enter your email address, and click "Subscribe"</p>
-
-								<div class="subscribe">
-									<form action="?" method="post">
-										<input type="submit" value="Go" class="subscribe-btn">
-
-										<div class="subscribe-inner">
-											<input type="email" id="mail" name="mail" value="" placeholder="Email Address" class="subscribe-field">
-										</div><
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				-->
-
 					<div class="cell small-12 medium-auto">
 						<div class="footer-section">
 							<h4 class="footer-section-title">Contact Us</h4><!-- /.footer-section-title -->
 
 							<div class="footer-section-body">
-								<p><b>Address:</b> 51 Sherbrooke W., Montreal, Quebec, Canada</p>
-
+								<p>
+									<span>
+										<i class="fas fa-address-card"></i> Address:
+									</span>
+									<p id="contact_address"></p>
+								</p>
+								<br/>
 								<div class="footer-contacts">
 									<p>
 										<span>
 											<i class="fas fa-phone"></i> Phone:
 										</span>
-
-										+1 514 000 0000
+										<p id="contact_phone"></p>
 									</p>
-
+									<br/>
 									<p>
 										<span>
 											<i class="far fa-envelope"></i> Email:
 										</span>
-
-										<a href="#">info@charitytheme.com</a>
+										<p><a href="#" id="contact_email"></a></p>
 									</p>
 								</div><!-- /.footer-contacts -->
 							</div><!-- /.footer-section-body -->
@@ -471,9 +388,8 @@
 			</div>
 		</div>
 	-->
-	</footer>
+	</footer></div><!-- /.footer-bar -->
 
-</div><!-- /.footer-bar -->
 <!-- /.footer -->
 <!-- /.wrapper -->
 	<!-- <script src="assets/javascripts/vendor.js"></script> -->
@@ -494,6 +410,8 @@
 
 	<script>
 		$(document).ready(function() {
+			showLoading(true);
+
 			loadBanners("freemedicalcare", (err, banners) => {
 				if(err) {
 					console.log('Failed to load the banners');
@@ -512,6 +430,8 @@
 					itemsTablet: false,
 					itemsMobile : false
 				});
+				loadstatus('banner', 1)
+
 			});
 			loadInitiatives((err, initiatives) => {
 				if(err) {
@@ -569,7 +489,20 @@
 						}
 					}
 				});
+				loadstatus('initiative', 1)
+
 			})
+
+			loadAboutUs((err, about_us_data) => {
+				if(err) {
+					console.log('Failed to load the About us data');
+					return;
+				}
+				renderAboutUsAndSocialContacts(about_us_data)
+				loadstatus('about_us', 1)
+
+			})
+
 		})
 
 		</script>

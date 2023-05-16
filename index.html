@@ -13,374 +13,123 @@
 
 </head>
 <body>
-<div class="wrapper">
-	<div class="social_contacts rounded">
-		<div class="btn-group-vertical">
-			<button type="button" ><i class="fas fa-phone"></i></button>
-			<button type="button"><i class="fab fa-facebook-f"></i></button>
-			<button type="button"><i class="fab fa-google-plus-g"></i></button>
-			<button type="button"><i class="fab fa-twitter"></i></button>
-		</div>
+	<div id="loading-status">
+
 	</div>
+	<div class="wrapper">
+		<div class="social_contacts rounded">
+			<div class="btn-group-vertical">
+				<a type="button" id="social_contacts_phone" href=""><i class="fas fa-phone"></i></a>
+				<a type="button" id="social_contacts_fb" href=""><i class="fab fa-facebook-f"></i></a>
+				<a type="button" id="social_contacts_twitter" href=""><i class="fab fa-twitter"></i></a>
+				<a type="button" id="social_contacts_email" href=""><i class="fas fa-envelope"></i></a>
+			</div>
+		</div>
 
-	<header class="header">
+		<header class="header">
 
-		<div class="grid-container">
-			<div class="grid-x grid-margin-x">
-				<div class="cell small-4">
-					<a href="index.html" class="header-logo">
-						<img src="images/sadananda_org.png" alt="Sadananda">
-						<!-- <span class="site-description">Foundation</span> -->
-					</a>
-				</div>
-				<div class="cell small-8">
-					<div class="header-inner">
-						<a href="#" class="button-burger">
-							<span></span>
+			<div class="grid-container">
+				<div class="grid-x grid-margin-x">
+					<div class="cell small-4">
+						<a href="index.html" class="header-logo">
+							<img src="images/sadananda_org.png" alt="Sadananda">
+							<!-- <span class="site-description">Foundation</span> -->
 						</a>
-						<nav class="nav">
-							<ul>
-								<li>
-									<a href="index.html">Home</a>
-								</li>
+					</div>
+					<div class="cell small-8">
+						<div class="header-inner">
+							<a href="#" class="button-burger">
+								<span></span>
+							</a>
+							<nav class="nav">
+								<ul>
+									<li>
+										<a href="index.html">Home</a>
+									</li>
 
-								<li>
-									<a href="about_us.html">About Us</a>
-								</li>
-								<li>
-									<a>Initiatives</a>
-									<ul class="initiatives-menu">
-										<!--
-										<li><a href="free_home_for_senior_citizens.html">Free Home for Senior Citizens</a></li>
-										<li><a href="educational_assistance.html">Educational Assistance</a></li>
-										<li><a href="free_medical_care_center.html">Free Medical Care Center</a></li>
-										<li><a href="learning_center_for_special_children.html">Learning Center for Special Children</a></li>
-										-->
-									</ul>
-								</li>
-								<li>
-									<a href="page_contact.html">Contact Us</a>
-								</li>
-								<li>
-									<a href="page_events.html">Events</a>
-								</li>
-<!-- 
-								<li>
-									<a href="event.html">Events</a>
-									<ul>
-										<li><a href="event-detail.html">Single Event</a></li>
-									</ul>
-								</li>
-
-								<li>
-									<a href="blog.html">Blog</a>
-									<ul>
-										<li>
-											<a href="blog-detail.html">Single Post</a>
-										</li>
-									</ul>
-								</li>
-
-								<li>
-									<a href="staff.html">Staff</a>
-								</li>
-
-								<li>
-									<a href="page-contact.html">Contact Us</a>
-								</li> -->
-							</ul>
-						</nav><!-- /.nav -->
-
-						<div class="header-actions">
-							<a href="page-donate.html" class="button">Donate</a>
-						</div><!-- /.header-actions -->
-					</div><!-- /.header-inner -->
+									<li>
+										<a href="about_us.html">About Us</a>
+									</li>
+									<li>
+										<a>Initiatives <span><i class="fa fa-angle-down"></i></span></a>
+										<ul class="initiatives-menu">
+										</ul>
+									</li>
+									<li>
+										<a href="page_contact.html">Contact Us</a>
+									</li>
+									<li>
+										<a href="page_events.html">Events</a>
+									</li>
+								</ul>
+							</nav><!-- /.nav -->
+							<div class="header-actions">
+								<a href="page-donate.html" class="button">Donate</a>
+							</div><!-- /.header-actions -->
+						</div><!-- /.header-inner -->
+					</div>
 				</div>
 			</div>
-		</div>
-	</header><!-- /.header -->
-<!-- 	
-	<div id="initiative_carousel" class="slider-intro carousel slide" data-interval="2000" data-ride="carousel">
-		<div class="carousel-indicators">
-		  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-		  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-		  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-		  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-		</div>
-		<div class="carousel-inner" > 
-		  <div class="carousel-item active">
-			<img src="images/banner_tmp_1.webp" class="d-block w-100" alt="EDUCATIONAL ASSISTANCE">
-			<div class="my-slide-content">
-				<h2 class="my-slide-title">EDUCATIONAL ASSISTANCE</h2>
-				<p>A child’s environment plays a crucial role in shaping his/her future. Many children from low-income communities come from single-parent households or an abusive environment with alcoholic fathers</p>
-			</div>
-		  </div>
-		  <div class="carousel-item">
-			<img src="/images/banner_tmp2.jpeg" class="d-block w-100" alt="Free Home for Senior Citizens">
-				<div class="my-slide-content">
-					<h2 class="my-slide-title">Free Home for Senior Citizens</h2>
-					<p>A Free Home for Senior Citizens was started in 2003, 
-						accommodating three elders who met our criteria of having no living children or any source of income, 
-						in a modest home in Ambattur which was given free of rent by a well wisher</p>
-				</div>
-		  </div>
-		  <div class="carousel-item">
-			<img src="images/banner_tmp3.webp" class="d-block w-100" alt="Free Medical Care Center">
-			<div class="my-slide-content">
-				<h2 class="my-slide-title">Free Medical Care Center</h2>
-				<p>Anandam Medical Care Centre (AMCC) was started in 2015 to make health care more 
-					accessible for people from low-income households in the neighbourhood</p>
-			</div>
-		  </div>
-		  <div class="carousel-item">
-			<img src="images/banner_tmp_4.jpg" class="d-block w-100" alt="Learning Center for Special Children">
-			<div class="my-slide-content">
-				<h2 class="my-slide-title">Learning Center for Special Children</h2>
-				<p>Special children need special care. 
-					It is with this simple premise that we started the Anandam Learning Centre 
-					in 2018 for children with learning difficulties such as autism, 
-					dyslexia, slow learning disability, low IQ, etc</p>
-			</div>
-		  </div>
-		</div>	
-
-		<button class="carousel-control-prev" type="button" data-bs-target="#initiative_carousel" data-bs-slide="prev">
-		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		  <span class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button" data-bs-target="#initiative_carousel" data-bs-slide="next">
-		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		  <span class="visually-hidden">Next</span>
-		</button>
-	</div> -->
-	<!-- <div class="sadananda-slides">
-	<div class="slide-container" style="background-image: url('images/banner_tmp_4.jpg');">
-	</div>
-</div> -->
-	
-	<div id="indexbanner" class="sadananda-slides owl-carousel">
-		<!-- <div class="slide-container" >
-			<img src="images/banner_tmp_1.webp">
-			<div class="banner-content">
-				<h2 class="banner-title">Test Name 1</h2>
-				<p class="banner-details">This is the test description</p>
-			</div>
-		</div>
-		<div class="slide-container">
-			<img src="images/banner_tmp_4.jpg">
-			<div class="banner-content">
-				<h2 class="banner-title">Test Name 2</h2>
-				<p class="banner-details">This is the test description</p>
-			</div>
-		</div>
-		<div class="slide-container">
-			<img src="images/banner_tmp2.jpeg">
-			<div class="banner-content">
-				<h2 class="banner-title">Test Name 3</h2>
-				<p class="banner-details">This is the test description</p>
-			</div>
-		</div>
-		<div class="slide-container">
-			<img src="images/banner_tmp3.webp">
-			<div class="banner-content">
-				<h2 class="banner-title">Test Name 4</h2>
-				<p class="banner-details">This is the test description</p>
-			</div>
-		</div> -->
+		</header><!-- /.header -->
 		
-	</div> 
+		<div id="indexbanner" class="sadananda-slides owl-carousel">
+		</div> 
 
-	
-	<div id="initiativesbanner">
-		<h2 class="title">Initiatives</h2>
-		<div class="owl-carousel">
+		<div class="initiative-title">Our Initiatives</div>
 
-			<!--
-			<div class="initiative-slide-container" >
-				<img src="images/banner_tmp_1.webp" class="rounded">
-				<h6 class="initiative-name">
-					Free Home for Senior Citizens
-				</h6>
-			</div>
-			<div class="initiative-slide-container" >
-				<img src="images/banner_tmp2.jpeg" class="rounded">
-				<h6 class="initiative-name">
-					Education
-				</h6>
-			</div>
-			<div class="initiative-slide-container" >
-				<img src="images/banner_tmp3.webp" class="rounded">
-				<h6 class="initiative-name">
-					Medical
-				</h6>
-			</div>
-			<div class="initiative-slide-container" >
-				<img src="images/banner_tmp_5.png" class="rounded">
-				<h6 class="initiative-name">
-					Test Initiative
-				</h6>
-			</div>
-			-->
+		<!-- <div id="about-sadanada-link">
+			<button type="button" class="btn btn-light">About Sadananda
+			</button>
 		</div>
-	</div>
+		 -->
+		<div id="initiativesbanner">
+			<div class="owl-carousel">
+			</div>
+		</div>
 
-	<section id="section_about_sadananda">
-		<div class="grid-container">
-			<div class="grid-x grid-margin-x">
-				<div class="cell small-12">
-					<p>
-					Anandam was registered in 1995 with the aim of supporting the lowest strata of the society & constantly finding ways for their empowerment and upliftment. 
-					Anandam started its first initiative, a Free Home for Senior Citizens in 2003, with 3 elders who have no living children & no source of income and today the Home has grown to accommodate 105 elders. The speciality of the Home lies in the fact that they live as one big joint family & the elders do all the chores & activities together.
-					</p>
-					<p>
-						Sadananda is a non-profit organization established in the USA to help the needy & deserving in India. Sadananda, USA has partnered with Anandam in Chennai to provide a channel for well-wishers in USA to support the many initiatives that Anandam has established for the upliftment of the needy & poor
-					</p>
+		<section id="section_about_sadananda">
+			<div class="grid-container">
+				<div class="grid-x grid-margin-x">
+					<div class="cell small-12 page-head">
+						<div class="page-head-title">
+							<h2 class="page-title">About Sadananda</h2><!-- /.section-title -->
+							<div class="section-image">
+								<img src="images/ico-droplet.png" height="22" width="14" alt="">
+							</div><!-- /.section-image -->
+						</div>
+						<p id="anandam_mini_desc">
+						</p>
+						<p id="sadananda_mini_desc">
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-
-	<!--
-
-	<div class="slider-intro">
-		<div class="slider-clip">
-			<ul class="slides owl-carousel">
-				<li class="slide">
-					<div class="slide-image">
-						<img src="images/free_home_for_senior_citizens.jpeg"  alt="">
-					</div>
-
-					<div class="slide-content">
-						<div class="grid-container">
-							<div class="grid-x grid-margin-x">
-
-								<div class="cell small-12 large-7">
-									<h2 class="slide-title">Send Childrens To School</h2>
-
-									<div class="slide-entry">
-										<p>Integer sit amet augue iaculis, ultricies justo nec, commodo nisi. Class taciti sociosqu ad litora torquent per conubia nostra</p>
-									</div>
-								</div>
-
-								<div class="cell small-12 large-5">
-									<div class="slide-aside">
-										<div class="slide-tag">Urgent Cause</div>
-
-										<div class="slide-progress">
-											<div class="slide-raised">
-												<span>Raised</span>
-
-												<strong>$56,354</strong>
-											</div>
-
-											<div class="slide-to-go">
-												<span>To Go</span>
-
-												<strong>$1,15,699</strong>
-											</div>
-										</div>
-
-										<div class="slide-actions">
-											<a href="#">Donate Now</a>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</li>
-
-				<li class="slide-alt">
-					<div class="slide-image">
-						<img src="images/educational_assistance.jpg"  alt="">
-					</div>
-					<div class="slide-content">
-						<div class="grid-container">
-							<div class="grid-x grid-margin-x">
-								<div class="cell small-12">
-									<div class="slide-content-inner">
-										<h2 class="slide-title">We Can Change It Together Lets Do It Now!</h2>
-
-										<p>Integer sit amet augue iaculis, ultricies justo nec, commodo nisi. Classtaciti sociosqu.</p>
-
-										<div class="slide-actions">
-											<a href="#" class="button button-white">Learn More</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="slide-alt">
-					<div class="slide-image">
-						<img src="images/free_medical_care.jpeg" alt="">
-					</div>
-					<div class="slide-content">
-						<div class="grid-container">
-							<div class="grid-x grid-margin-x">
-								<div class="cell small-12">
-									<div class="slide-content-inner">
-										<h2 class="slide-title">We Can Change It Together Lets Do It Now!</h2>
-
-										<p>Integer sit amet augue iaculis, ultricies justo nec, commodo nisi. Classtaciti sociosqu.</p>
-
-										<div class="slide-actions">
-											<a href="#" class="button button-white">Learn More</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="slide-alt">
-					<div class="slide-image">
-						<img src="images/learning_center_for_spl_children.png" alt="">
-					</div>
-					<div class="slide-content">
-						<div class="grid-container">
-							<div class="grid-x grid-margin-x">
-								<div class="cell small-12">
-									<div class="slide-content-inner">
-										<h2 class="slide-title">We Can Change It Together Lets Do It Now!</h2>
-
-										<p>Integer sit amet augue iaculis, ultricies justo nec, commodo nisi. Classtaciti sociosqu.</p>
-
-										<div class="slide-actions">
-											<a href="#" class="button button-white">Learn More</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	-->
-
-		<div class="slider-actions"></div>
+		</section>
 	</div>
-
-	
 
 	<footer class="footer">
 		<div class="footer-body">
 			<div class="grid-container">
 				<div class="grid-x grid-margin-x">
-					<!--
-					<div class="cell small-12 medium-auto">
-						<div class="footer-section">
-							<h4 class="footer-section-title">About Charity</h4>
-
-							<div class="footer-section-body">
-								<p>Charity vitae diam pulvinar, tempus dia aliquam tellus. Quisque mattis odio eu placerat luctus. Vivamus magna elit, ultrices non lacinia vel, tempor vitae tell Fusce sit amet sem sit amet.</p>
+				
+				<div class="modal fade" id="legalDisclaimer" tabindex="-1" role="dialog" aria-labelledby="legalDisclaimerTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="legalDisclaimerTitle">Legal Disclamer</h5>
+								<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button> -->
 							</div>
+							<div class="modal-body">
+							</div>
+							<!-- <div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div> -->
 						</div>
 					</div>
-				-->
+					</div>
+					  
 					<div class="cell small-12 medium-auto">
 						<div class="footer-section">
 							<h4 class="footer-section-title">Quick Links</h4><!-- /.footer-section-title -->
@@ -400,9 +149,11 @@
 										<a href="#">Gallery</a>
 									</li>
 									<li>
-										<a href="#">Legal Desclaimer</a>
+										<a href="javascript:showLegalDisclaimer();">
+										<!-- <a data-target="#legalDisclaimer" data-toggle="modal"> -->
+											Legal Desclaimer
+										</a>
 									</li>
-
 								</ul><!-- /.list-links -->
 								<!--
 								<ul class="list-links">
@@ -436,50 +187,31 @@
 							</div><!-- /.footer-section-body -->
 						</div><!-- /.footer-section -->
 					</div><!-- /.cell small-12 medium-auto -->
-					<!--
-					<div class="cell small-12 medium-auto">
-						<div class="footer-section">
-							<h4 class="footer-section-title">Newsletter Signup</h4>
-
-							<div class="footer-section-body">
-								<p>Select your newsletters, enter your email address, and click "Subscribe"</p>
-
-								<div class="subscribe">
-									<form action="?" method="post">
-										<input type="submit" value="Go" class="subscribe-btn">
-
-										<div class="subscribe-inner">
-											<input type="email" id="mail" name="mail" value="" placeholder="Email Address" class="subscribe-field">
-										</div><
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				-->
-
 					<div class="cell small-12 medium-auto">
 						<div class="footer-section">
 							<h4 class="footer-section-title">Contact Us</h4><!-- /.footer-section-title -->
 
 							<div class="footer-section-body">
-								<p><b>Address:</b> 51 Sherbrooke W., Montreal, Quebec, Canada</p>
-
+								<p>
+									<span>
+										<i class="fas fa-address-card"></i> Address:
+									</span>
+									<p id="contact_address"></p>
+								</p>
+								<br/>
 								<div class="footer-contacts">
 									<p>
 										<span>
 											<i class="fas fa-phone"></i> Phone:
 										</span>
-
-										+1 514 000 0000
+										<p id="contact_phone"></p>
 									</p>
-
+									<br/>
 									<p>
 										<span>
 											<i class="far fa-envelope"></i> Email:
 										</span>
-
-										<a href="#">info@charitytheme.com</a>
+										<p><a href="#" id="contact_email"></a></p>
 									</p>
 								</div><!-- /.footer-contacts -->
 							</div><!-- /.footer-section-body -->
@@ -527,83 +259,102 @@
 	<script src="js/customizations.js"></script>
 
 	<script>
+
 	$(document).ready(function() {
-		loadBanners("index", (err, banners) => {
-			if(err) {
-				console.log('Failed to load the banners');
-				return
-			}
-			renderBanner("#indexbanner", banners)
-			$("#indexbanner").owlCarousel({
-				nav : true, // Show next and prev buttons
-				autoplay: 2000,
-				slideSpeed : 300,
-				paginationSpeed : 400,
-				loop: true,
-				items : 1, 
-				itemsDesktop : false,
-				itemsDesktopSmall : false,
-				itemsTablet: false,
-				itemsMobile : false
-			});
-		});
-		loadInitiatives((err, initiatives) => {
-			if(err) {
-				console.log('Failed to load the initiatives');
-				return;
-			}
-			renderInitiatives("#initiativesbanner .owl-carousel", ".initiatives-menu", initiatives);		
-			$("#initiativesbanner .owl-carousel").owlCarousel({
-				// loop:true,
-				margin:10,
-				responsiveClass:true,
-				// center: true,
-				autoWidth:false,
-				nav: true,
-				items:4,
-				responsive:{
-					0:{
-						items:1,
-						nav:true,
-						margin: 20,
-						center: true,
-						loop:true,
-						autoplay: 5000,
-						slideSpeed : 300,
-						paginationSpeed : 400,
-					},
-					414:{
-						items:1,
-						margin: 15,
-						center: true,
-						// autoWidth: true,
-						nav:true,
-						loop:true,
-						autoplay: 5000,
-						slideSpeed : 300,
-						paginationSpeed : 400,
-					},
-					767:{
-						items:3,
-						margin: 10,
-						center: true,
-						// autoWidth: true,
-						nav:true,
-						loop:true,
-						autoplay: 5000,
-						slideSpeed : 300,
-						paginationSpeed : 400,
-					},
-					1000:{
-						items:4,
-						nav:false,
-						// loop:true,
-						margin: 20,
-						// center: true,
-					}
+
+	    showLoading(true);
+
+		// setTimeout(() => {
+
+			loadBanners("index", (err, banners) => {
+				if(err) {
+					console.log('Failed to load the banners');
+					return
 				}
+				renderBanner("#indexbanner", banners)
+				$("#indexbanner").owlCarousel({
+					nav : true, // Show next and prev buttons
+					autoplay: 2000,
+					slideSpeed : 300,
+					paginationSpeed : 400,
+					loop: true,
+					items : 1, 
+					itemsDesktop : false,
+					itemsDesktopSmall : false,
+					itemsTablet: false,
+					itemsMobile : false
+				});
+				loadstatus('banner', 1)
 			});
-		})
+			loadInitiatives((err, initiatives) => {
+				if(err) {
+					console.log('Failed to load the initiatives');
+					return;
+				}
+				renderInitiatives("#initiativesbanner .owl-carousel", ".initiatives-menu", initiatives);		
+				$("#initiativesbanner .owl-carousel").owlCarousel({
+					// loop:true,
+					margin:10,
+					responsiveClass:true,
+					// center: true,
+					autoWidth:false,
+					nav: true,
+					items:4,
+					responsive:{
+						0:{
+							items:1,
+							nav:true,
+							margin: 20,
+							center: true,
+							loop:true,
+							autoplay: 5000,
+							slideSpeed : 300,
+							paginationSpeed : 400,
+						},
+						414:{
+							items:1,
+							margin: 15,
+							center: true,
+							// autoWidth: true,
+							nav:true,
+							loop:true,
+							autoplay: 5000,
+							slideSpeed : 300,
+							paginationSpeed : 400,
+						},
+						767:{
+							items:3,
+							margin: 10,
+							center: true,
+							// autoWidth: true,
+							nav:true,
+							loop:true,
+							autoplay: 5000,
+							slideSpeed : 300,
+							paginationSpeed : 400,
+						},
+						1000:{
+							items:4,
+							nav:false,
+							// loop:true,
+							margin: 20,
+							// center: true,
+						}
+					}
+				});
+				loadstatus('initiative', 1)
+
+			})
+			
+			loadAboutUs((err, about_us_data) => {
+				if(err) {
+					console.log('Failed to load the About us data');
+					return;
+				}
+				renderAboutUsAndSocialContacts(about_us_data)
+				loadstatus('about_us', 1)
+			})
+		// }, 5000)
 	})
 	</script>
 </body></html>
