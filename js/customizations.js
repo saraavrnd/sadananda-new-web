@@ -70,6 +70,25 @@ renderBanner = function(id, bannerdata) {
     $(id).html(bannerHTML.join(''))
 }
 
+pushSchemeUnderInitiative = function(initiatives, initiative_id, scheme_details) {
+
+    const selected_initiative_list = initiatives.filter((initiative) => {
+        return initiative.id == initiative_id
+    })
+    if(selected_initiative_list.length <= 0) {
+        console.log('Failed to find the initiative:' + initiative_id + ' in the given list')
+        return;
+    }
+    var selected_initiative = selected_initiative_list[0];  //TAKE THE FIRST ONE
+    var schemes = selected_initiative['schemes']
+    if(schemes == null) {
+        schemes = {}
+    }
+    const scheme_id = scheme_details['id']
+    schemes[scheme_id] = scheme_details;
+    selected_initiative['schemes'] = schemes;
+}
+
 loadInitiatives = function(cb) {
     const url = `${app_url_prefix}/data/initiatives/index.dat`;
     console.log('Loading initiatives from:', url)
@@ -86,15 +105,44 @@ loadInitiatives = function(cb) {
                 // console.log('Lines', lines)
                 var initiatives = []
                 lines.forEach((line) => {
-                    const tokens = line.split(',')
-                    if(tokens.length == 4) {
-                        
-                        initiatives.push( {
-                            id: tokens[0].split('=')[1],
-                            image: tokens[1].split('=')[1],
-                            name: tokens[2].split('=')[1],
-                            link: tokens[3].split('=')[1],
-                        })
+                    if(line.indexOf('type=initiative') != -1) {
+                        const tokens = line.split(',')
+                        if(tokens.length == 5) {
+                            
+                            initiatives.push( {
+                                id: tokens[0].split('=')[1],
+                                type: tokens[1].split('=')[1],
+                                image: tokens[2].split('=')[1],
+                                name: tokens[3].split('=')[1],
+                                link: tokens[4].split('=')[1],
+                            })
+                        }
+                    } else if(line.indexOf('type=scheme') != -1) {
+                        const tokens = line.split(',')
+                        // id=scheme1,
+                        // type=scheme,
+                        // initiative_id=initiative1,
+                        // image=images/adopt_grandma_grandpa.jpg,
+                        // name=Adopt a Grandma / Grandpa,
+                        // minimum_donation=10,
+                        // currency=DOLLOR,
+                        // description=To meet basic needs of one grandma/grandpa for a month
+
+                        if(tokens.length >= 8) {
+                            
+                            const initiative_id = tokens[2].split('=')[1]
+                            const scheme_details = {
+                                id: tokens[0].split('=')[1],
+                                type: tokens[1].split('=')[1],
+                                initiative_id: initiative_id,
+                                image: tokens[3].split('=')[1],
+                                name: tokens[4].split('=')[1],
+                                minimum_donation: tokens[5].split('=')[1],
+                                currency: tokens[6].split('=')[1],
+                                description: line.substr(line.indexOf('description=') + 12),
+                            }
+                            pushSchemeUnderInitiative(initiatives, initiative_id, scheme_details)
+                        }
                     }
                 })
                 console.log('Banners', initiatives)
@@ -114,7 +162,7 @@ loadInitiatives = function(cb) {
     }
 }
 
-renderInitiatives = function(id, menuid, initiatives) {
+renderInitiatives = function(id, menuid, initiatives, initiative_id) {
     const initiativetemplate = `<div class="initiative-slide-container" >
                                 <div class="initiative-image">
                                     <a href="<REPLACE_LINK>">
@@ -156,6 +204,52 @@ renderInitiatives = function(id, menuid, initiatives) {
         initiativeMenuHTML.push(tmp)
     })
     $(menuid).html(initiativeMenuHTML.join(''));
+
+    var schemeDetailsHTML  = [];
+    if(initiative_id != undefined && initiative_id.length > 0) {
+        const scheme_template = `<li class="slide">
+                                    <div class="slide-image">
+                                        <img src="<REPLACE_IMAGE>" class="rounded" height="175" width="270" alt="">
+                                        
+                                        <div class="slide-overlay">
+                                            <div class="slide-overlay-inner">
+                                                <a href="page-donate.html?scheme_id=<REPLACE_SCHEME_ID>&initiative_id=<REPLACE_INITIATIVE_ID>" class="button button-white">Donate Now</a>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.slide-image -->
+
+                                    <div class="slide-content">
+                                        <h3><REPLACE_SCHEME_NAME></h3>
+
+                                        <p>
+                                            <REPLACE_SCHEME_DESCRIPTION>
+                                        </p>
+                                    </div><!-- /.slide-content -->
+                                </li>`
+        const selected_initiative_list = initiatives.filter((initiative) => {
+            return initiative['id'] == initiative_id
+        })
+        if(selected_initiative_list.length <= 0) {
+            console.log('No initiative is found for the given initiative:' + initiative_id);
+            return;
+        }
+        const schemes = selected_initiative_list[0].schemes;
+        if(schemes == undefined) {
+            console.log('No schemes are mapped to the given initiative:' + initiative_id)
+            return; //no schemes are listed
+        }
+        const scheme_ids = Object.keys(schemes);
+        scheme_ids.forEach((scheme_id) => {
+            const scheme_details = schemes[scheme_id];
+            var tmp = scheme_template.replaceAll("<REPLACE_IMAGE>", scheme_details.image);
+            tmp = tmp.replaceAll("<REPLACE_SCHEME_ID>", scheme_details.id);
+            tmp = tmp.replaceAll("<REPLACE_INITIATIVE_ID>", scheme_details.initiative_id);
+            tmp = tmp.replaceAll("<REPLACE_SCHEME_NAME>", scheme_details.name);
+            tmp = tmp.replaceAll("<REPLACE_SCHEME_DESCRIPTION>", scheme_details.description);
+            schemeDetailsHTML.push(tmp)
+        })
+        $(id).html(schemeDetailsHTML.join(''));
+    }
 }	
 
 loadAboutUs = function(cb) {

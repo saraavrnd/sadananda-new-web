@@ -93,121 +93,7 @@
 						<div class="slider-featured">
 							<div class="slider-clip">
 								<ul class="slides owl-carousel">
-									<li class="slide">
-										<div class="slide-image">
-											<img src="images/uniform_diwali_dress.jpg" height="175" width="270" alt="">
-											
-											<div class="slide-overlay">
-												<div class="slide-overlay-inner">
-													<a href="page-donate.html" class="button button-white">Donate Now</a>
-												</div>
-											</div>
-										</div><!-- /.slide-image -->
-
-										<div class="slide-content">
-											<h3>Uniform / Diwali Dress</h3>
-
-											<span>
-												To provide two sets of uniform or one set of new diwali dress for one student per year.
-											</span>
-										</div><!-- /.slide-content -->
-
-										<!--
-										<div class="slide-foot">
-											<div class="progressbar">
-												<div class="progressbar-inner" data-progress="80"></div>
-											</div>
-
-											<strong>$22,354.00</strong> / $54,700.00 <span>(51%)</span>
-										</div>
-										-->
-									</li><!-- /.slide -->
-
-									<li class="slide">
-										<div class="slide-image">
-											<img src="images/nutritional_boost.jpeg" height="175" width="270" alt="">
-
-											
-											<!-- <div class="slide-tag">Urgent</div> -->
-
-											<div class="slide-overlay">
-												<div class="slide-overlay-inner">
-													<a href="page-donate.html" class="button button-white">Donate Now</a>
-												</div>
-											</div>
-										</div><!-- /.slide-image -->
-
-										<div class="slide-content">
-											<h3>Nutritional Boost</h3>
-
-											<p>
-												To provide refreshments for one day for all the students
-											</p>
-										</div><!-- /.slide-content -->
-										<!--
-										<div class="slide-foot">
-											<div class="progressbar">
-												<div class="progressbar-inner" data-progress="65"></div>
-											</div>
-
-											<strong>$56,354.00</strong> / $1,14,700.00 <span>(72%)</span>
-										</div>-->
-									</li><!-- /.slide -->
-
-									<li class="slide">
-										<div class="slide-image">
-											<img src="images/school_educational_expenses.jpg" height="175" width="269" alt="">
-											
-											<div class="slide-overlay">
-												<div class="slide-overlay-inner">
-													<a href="page-donate.html" class="button button-white">Donate Now</a>
-												</div>
-											</div>
-										</div><!-- /.slide-image -->
-
-										<div class="slide-content">
-											<h3>School Educational Expenses</h3>
-
-											<p>
-												To support school educational expenses for one student per year
-											</p>
-										</div><!-- /.slide-content -->
-										<!--
-										<div class="slide-foot">
-											<div class="progressbar">
-												<div class="progressbar-inner" data-progress="90"></div>
-											</div>
-
-											<strong>$11,354.00</strong> / $24,700.00 <span>(62%)</span>
-										</div>-->
-									</li><!-- /.slide -->
-
-									<li class="slide">
-										<div class="slide-image">
-											<img src="images/college_educational_expenses.jpeg" height="175" width="269" alt="">
-											
-											<div class="slide-overlay">
-												<div class="slide-overlay-inner">
-													<a href="page-donate.html" class="button button-white">Donate Now</a>
-												</div>
-											</div>
-										</div><!-- /.slide-image -->
-
-										<div class="slide-content">
-											<h3>College Educational Expenses</h3>
-											<p>
-												To support college educational expenses for one student per year
-											</p>
-										</div><!-- /.slide-content -->
-										<!--
-										<div class="slide-foot">
-											<div class="progressbar">
-												<div class="progressbar-inner" data-progress="80"></div>
-											</div>
-
-											<strong>$56,354.00</strong> / $1,14,700.00 <span>(72%)</span>
-										</div>-->
-									</li><!-- /.slide -->
+									
 								</ul><!-- /.slides -->
 							</div><!-- /.slider-clip -->
 
@@ -413,7 +299,7 @@
 					console.log('Failed to load the initiatives');
 					return;
 				}
-				renderInitiatives("#initiativesbanner .owl-carousel", ".initiatives-menu", initiatives);		
+				renderInitiatives("ul.slides", ".initiatives-menu", initiatives, "initiative2");		
 				$("#initiativesbanner .owl-carousel, .slides").owlCarousel({
 					loop:true,
 					margin:10,
@@ -454,8 +340,9 @@
 					return;
 				}
 				renderAboutUsAndSocialContacts(about_us_data)
+				loadstatus('about_us', 1)
+
 			})
-			loadstatus('about_us', 1)
 
 		})
 

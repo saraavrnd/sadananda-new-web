@@ -93,121 +93,6 @@
 						<div class="slider-featured">
 							<div class="slider-clip">
 								<ul class="slides owl-carousel">
-									<li class="slide">
-										<div class="slide-image">
-											<img src="images/adopt_grandma_grandpa.jpg" class="rounded" height="175" width="270" alt="">
-											
-											<div class="slide-overlay">
-												<div class="slide-overlay-inner">
-													<a href="page-donate.html" class="button button-white">Donate Now</a>
-												</div>
-											</div>
-										</div><!-- /.slide-image -->
-
-										<div class="slide-content">
-											<h3>Adopt a Grandma / Grandpa</h3>
-
-											<p>
-												To meet basic needs of one grandma/grandpa for a month
-											</p>
-										</div><!-- /.slide-content -->
-
-										<!--
-										<div class="slide-foot">
-											<div class="progressbar">
-												<div class="progressbar-inner" data-progress="80"></div>
-											</div>
-
-											<strong>$22,354.00</strong> / $54,700.00 <span>(51%)</span>
-										</div>
-										-->
-									</li><!-- /.slide -->
-
-									<li class="slide">
-										<div class="slide-image">
-											<img src="images/one_time_food_expenses.jpg" class="rounded" height="175" width="270" alt="">
-
-											
-											<!-- <div class="slide-tag">Urgent</div> -->
-
-											<div class="slide-overlay">
-												<div class="slide-overlay-inner">
-													<a href="page-donate.html" class="button button-white">Donate Now</a>
-												</div>
-											</div>
-										</div><!-- /.slide-image -->
-
-										<div class="slide-content">
-											<h3>One Time Food Expenses</h3>
-
-											<p>
-												Food expenses for one meal for the 105 elders
-											</p>
-										</div><!-- /.slide-content -->
-										<!--
-										<div class="slide-foot">
-											<div class="progressbar">
-												<div class="progressbar-inner" data-progress="65"></div>
-											</div>
-
-											<strong>$56,354.00</strong> / $1,14,700.00 <span>(72%)</span>
-										</div>-->
-									</li><!-- /.slide -->
-
-									<li class="slide">
-										<div class="slide-image">
-											<img src="images/one_day_food_expenses.jpg" class="rounded" height="175" width="269" alt="">
-											
-											<div class="slide-overlay">
-												<div class="slide-overlay-inner">
-													<a href="page-donate.html" class="button button-white">Donate Now</a>
-												</div>
-											</div>
-										</div><!-- /.slide-image -->
-
-										<div class="slide-content">
-											<h3>One Day Food Expenses</h3>
-
-											<p>
-												Food expenses for one day for the 105 elders.
-											</p>
-										</div><!-- /.slide-content -->
-										<!--
-										<div class="slide-foot">
-											<div class="progressbar">
-												<div class="progressbar-inner" data-progress="90"></div>
-											</div>
-
-											<strong>$11,354.00</strong> / $24,700.00 <span>(62%)</span>
-										</div>-->
-									</li><!-- /.slide -->
-
-									<li class="slide">
-										<div class="slide-image">
-											<img src="images/corpus_fund.jpg" class="rounded" height="175" width="269" alt="">
-											
-											<div class="slide-overlay">
-												<div class="slide-overlay-inner">
-													<a href="page-donate.html" class="button button-white">Donate Now</a>
-												</div>
-											</div>
-										</div><!-- /.slide-image -->
-
-										<div class="slide-content">
-											<h3>Corpus Fund</h3>
-											<p>
-												Proceeds from this one time donation will be used to sponsor food for all the elders of the home on one day of your choice every year.
-											</p>
-										</div><!-- /.slide-content -->
-										<!--
-										<div class="slide-foot">
-											<div class="progressbar">
-												<div class="progressbar-inner" data-progress="80"></div>
-											</div>
-
-											<strong>$56,354.00</strong> / $1,14,700.00 <span>(72%)</span>
-										</div>-->
-									</li><!-- /.slide -->
 								</ul><!-- /.slides -->
 							</div><!-- /.slider-clip -->
 
@@ -414,7 +299,7 @@
 					console.log('Failed to load the initiatives');
 					return;
 				}
-				renderInitiatives("", ".initiatives-menu", initiatives);		
+				renderInitiatives("ul.slides", ".initiatives-menu", initiatives, "initiative1");		
 				
 				$(".slides").owlCarousel({
 					loop:true,
