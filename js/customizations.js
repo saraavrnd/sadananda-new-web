@@ -145,7 +145,7 @@ loadInitiatives = function(cb) {
                         }
                     }
                 })
-                console.log('Banners', initiatives)
+                // console.log('Banners', initiatives)
                 cb(undefined, initiatives)
             },
             error: (request, status, error) => {
@@ -276,7 +276,7 @@ loadAboutUs = function(cb) {
                         about_us[key] = value
                     }
                 })
-                console.log('About', about_us)
+                // console.log('About', about_us)
                 cb(undefined, about_us)
             },
             error: (request, status, error) => {
@@ -361,5 +361,77 @@ loadstatus = function(step, result) {
     ) {
         showLoading(false);
     }
+
+}
+
+loadGallery = function(cb) {
+
+    console.log('Loading gallery data')
+    const url = `${app_url_prefix}/data/gallery.dat`
+
+    try {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: (data)  => {
+                // console.log("Banner data:", data);
+                const lines = data.split('\n').filter((line) => {
+                    return $.trim(line).length > 0 && (! $.trim(line).startsWith('#'))
+                })
+                // console.log('Lines', lines)
+                var gallery = []
+                lines.forEach((line) => {
+                    const tokens = line.split(',')
+                    if(tokens.length >= 2) {
+
+                        const desc = $.trim(line.substr(line.indexOf(',')+6))
+                        
+                        gallery.push( {
+                            image: $.trim(tokens[0].substr(tokens[0].indexOf("=") + 1)),
+                            desc: desc,
+                        })
+                    }
+                })
+                // console.log('Gallery Details', gallery)
+                cb(undefined, gallery)
+            },
+            error: (request, status, error) => {
+                console.error('Failed to get the gallery data')
+                console.error('Request', request)
+                console.error('Status', status)
+                console.error('Error', error)
+                cb(error, undefined)
+            }
+        });
+    } catch(ex) {
+        console.log('Exception occurred while loading the gallery data', ex)
+        cb(ex, undefined)
+    }
+
+}
+
+renderGallery = function(id, galleryDetails) {
+    const galleryItemTemplate = `<div class="col-sm-6 col-md-4 col-lg-3">
+                                    <a href="<REPLACE_IMAGE_URL>">
+                                        <img class="img-fluid"src="<REPLACE_IMAGE_URL>" alt="<REPLACE_IMAGE_DESC>">
+                                    </a>
+                                </div>`;
+    var galleryHTML = []
+    galleryDetails.forEach((imgDetails) => {
+        var tmp = galleryItemTemplate.replaceAll("<REPLACE_IMAGE_URL>", imgDetails.image);
+        tmp = tmp.replace("<REPLACE_IMAGE_DESC>", imgDetails.desc);
+        galleryHTML.push(tmp)
+    })
+    $(id).html(galleryHTML.join(''))
+    baguetteBox.run(id, {
+        animation: "slideIn",
+        captions: function(element) {
+            if(element.getElementsByTagName('img').length > 0) {
+                return element.getElementsByTagName('img')[0].alt;
+            } else {
+                return ''
+            }
+        }
+    });              
 
 }

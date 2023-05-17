@@ -1,6 +1,9 @@
 body {
 	background-color: #fff;
 }
+
+
+
 #loading-status {
     width:100%;
     height:100%;
@@ -429,6 +432,16 @@ a {
 
 .modal .modal-body {
 	color: black
+}
+
+.gallery {
+	padding: 40px;
+}
+
+.gallery img {
+	width: 100%;
+	border-radius: 0;
+	position: relative;
 }
  
 
