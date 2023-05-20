@@ -78,8 +78,11 @@
 
 	<div id="learningcenterforsplchildren" class="sadananda-slides owl-carousel">
 	</div>
-	<header class="page-head">
-		<div class="page-head-title">
+	<div id="schemabanner" class="owl-carousel">
+	</div>
+
+	<header class="initiative-head">
+		<div class="initiative-head-title">
 
 			<h2 class="page-title">Learning Center for Special Children</h2><!-- /.section-title -->
 
@@ -87,26 +90,6 @@
 				<img src="images/ico-droplet.png" height="22" width="14" alt="">
 			</div><!-- /.section-image -->
 		</div>
-
-		<section class="section-featured">
-			<div class="grid-container">
-				<div class="grid-x grid-margin-x">
-				<div class="cell small-12">
-					<div class="section-body">
-						<div class="slider-featured">
-							<div class="slider-clip">
-								<ul class="slides owl-carousel">
-									
-								</ul><!-- /.slides -->
-							</div><!-- /.slider-clip -->
-
-							<div class="slider-actions"></div><!-- /.slider-actions -->
-						</div><!-- /.slider-featured -->
-				</div>
-				</div><!-- /.cell small-12 -->
-			</div></div><!-- /.grid -->
-		</section><!-- /.section-featured -->
-
 		<p>
 			Special children need special care. It is with this simple premise that we started the Anandam Learning Centre  in 2018 for children with learning difficulties such as autism, dyslexia, slow learning disability, low IQ, etc.
 		</p>
@@ -303,18 +286,18 @@
 					console.log('Failed to load the initiatives');
 					return;
 				}
-				renderInitiatives("ul.slides", ".initiatives-menu", initiatives, "initiative4");		
-				$(".slides").owlCarousel({
-					loop:true,
-					margin:20,
+				renderInitiatives("#schemabanner", ".initiatives-menu", initiatives, "initiative4");		
+				$("#schemabanner").owlCarousel({
+					margin: 150,
 					responsiveClass:true,
 					// center: true,
 					autoWidth:true,
 					nav: true,
+					items:4,
 
 					responsive:{
 						0:{
-							items:1,
+							autoWidth:true,
 							nav:true,
 							margin: 20,
 							center: true,
@@ -323,6 +306,7 @@
 							slideSpeed : 300,
 							paginationSpeed : 400,
 						},
+						
 						414:{
 							items:1,
 							margin: 15,
@@ -349,8 +333,9 @@
 							items:4,
 							nav:false,
 							// loop:true,
-							margin: 20,
+							margin: 100,
 							// center: true,
+
 						}
 					}
 				});

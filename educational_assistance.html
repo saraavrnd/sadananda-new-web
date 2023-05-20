@@ -77,33 +77,17 @@
 	</header><!-- /.header -->
 	<div id="educationalassistance" class="sadananda-slides owl-carousel">
 	</div>
-	<header class="page-head">
-		<div class="page-head-title">
+	<div id="schemabanner" class="owl-carousel">
+	</div>
+
+	<header class="initiative-head">
+		<div class="initiative-head-title">
 			<h2 class="page-title">Educational Assistance</h2><!-- /.section-title -->
 
 			<div class="section-image">
 				<img src="images/ico-droplet.png" height="22" width="14" alt="">
 			</div><!-- /.section-image -->
 		</div>
-		<section class="section-featured">
-			<div class="grid-container">
-				<div class="grid-x grid-margin-x">
-				<div class="cell small-12">
-					<div class="section-body">
-						<div class="slider-featured">
-							<div class="slider-clip">
-								<ul class="slides owl-carousel">
-									
-								</ul><!-- /.slides -->
-							</div><!-- /.slider-clip -->
-
-							<div class="slider-actions"></div><!-- /.slider-actions -->
-						</div><!-- /.slider-featured -->
-					</div>
-
-				</div><!-- /.cell small-12 -->
-			</div></div><!-- /.grid -->
-		</section><!-- /.section-featured -->
 		<p>
 			A child’s environment plays a crucial role in shaping his/her future. Many children from low-income communities come from single-parent households or an abusive environment with alcoholic fathers. They are also, more often than not, first-generation learners.
 		</p>
@@ -299,36 +283,56 @@
 					console.log('Failed to load the initiatives');
 					return;
 				}
-				renderInitiatives("ul.slides", ".initiatives-menu", initiatives, "initiative2");		
-				$("#initiativesbanner .owl-carousel, .slides").owlCarousel({
-					loop:true,
-					margin:10,
+				renderInitiatives("#schemabanner", ".initiatives-menu", initiatives, "initiative2");		
+				$("#schemabanner, .slides").owlCarousel({
+					margin: 150,
 					responsiveClass:true,
-					center: true,
+					// center: true,
 					autoWidth:true,
 					nav: true,
+					items:4,
+
 					responsive:{
 						0:{
-							items:1,
+							autoWidth:true,
 							nav:true,
 							margin: 20,
 							center: true,
-	
+							loop:true,
+							autoplay: 5000,
+							slideSpeed : 300,
+							paginationSpeed : 400,
 						},
-						600:{
-							items:2,
-							nav:false,
-							margin: 20,
+						
+						414:{
+							items:1,
+							margin: 15,
 							center: true,
-	
+							// autoWidth: true,
+							nav:true,
+							loop:true,
+							autoplay: 5000,
+							slideSpeed : 300,
+							paginationSpeed : 400,
+						},
+						767:{
+							items:3,
+							margin: 10,
+							center: true,
+							// autoWidth: true,
+							nav:true,
+							loop:true,
+							autoplay: 5000,
+							slideSpeed : 300,
+							paginationSpeed : 400,
 						},
 						1000:{
 							items:4,
-							// nav:true,
+							nav:false,
 							// loop:true,
-							margin: 20,
-							center: true,
-	
+							margin: 100,
+							// center: true,
+
 						}
 					}
 				});

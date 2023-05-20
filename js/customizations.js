@@ -1,5 +1,5 @@
-var app_url_prefix = `/sadananda-new-web`
-// var app_url_prefix = ''
+// var app_url_prefix = `/sadananda-new-web`
+var app_url_prefix = ''
 var load_results = {
     'banner' : 0,
     'initiative' : 0,
@@ -207,6 +207,23 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
 
     var schemeDetailsHTML  = [];
     if(initiative_id != undefined && initiative_id.length > 0) {
+
+        const scheme_template = `<div class="initiative-slide-container" >
+                                    <div class="initiative-image">
+                                        <img src="<REPLACE_IMAGE>" class="rounded">
+                                        <div class="slide-overlay">
+                                            <div class="slide-overlay-inner">
+                                                <a href="page-donate.html?scheme_id=<REPLACE_SCHEME_ID>&initiative_id=<REPLACE_INITIATIVE_ID>" class="button button-white">Donate Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h6 class="initiative-name">
+                                        <REPLACE_SCHEME_NAME>
+                                    </h6>
+                                
+                                </div>`
+
+                                /*
         const scheme_template = `<li class="slide">
                                     <div class="slide-image">
                                         <img src="<REPLACE_IMAGE>" class="rounded" height="175" width="270" alt="">
@@ -226,6 +243,7 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
                                         </p>
                                     </div><!-- /.slide-content -->
                                 </li>`
+                                */
         const selected_initiative_list = initiatives.filter((initiative) => {
             return initiative['id'] == initiative_id
         })
