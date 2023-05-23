@@ -6,7 +6,6 @@
 #Note: 
 #No comma is allowed in the image and heading as the system uses the comma as separtor to get the data
 #Length constraint is given to fit the data in the UI better
-image=images/educational_assistance_sub_1.jpg,heading=Heading 1,sub-heading=This is the addition data to be shown for this banner_tmp_1
-image=images/educational_assistance_sub_2.jpg,heading=Heading 2,sub-heading=TTMP4 sub heading
-image=images/educational_assistance_sub_3.jpeg,heading=Heading 3,sub-heading=TTMP4 sub heading
-image=images/educational_assistance_sub_4.png,heading=Heading 5,sub-heading=TTMP4 sub heading
+image=images/Slide-1-Education.png,heading=,sub-heading=
+image=images/Slide-2-Education.png,heading=,sub-heading=
+image=images/Slide-3-Education.png,heading=,sub-heading=

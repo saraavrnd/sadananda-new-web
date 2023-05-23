@@ -7,9 +7,9 @@
 #Note: 
 #No comma is allowed as the system uses the comma as separtor to get the data
 #Length constraint is given to fit the data in the UI better
-id=initiative1,type=initiative,image=images/banner_tmp_1.webp,name=Home for Senior Citizens,link=free_home_for_senior_citizens.html
-id=initiative2,type=initiative,image=images/banner_tmp2.jpeg,name=Educational Assistance,link=educational_assistance.html
-id=initiative3,type=initiative,image=images/banner_tmp3.webp,name=Free Medical Care Center,link=free_medical_care_center.html
+id=initiative1,type=initiative,image=images/initiative-1-thumbnail1.jpeg,name=Home for Senior Citizens,link=free_home_for_senior_citizens.html
+id=initiative2,type=initiative,image=images/initiative-2-thumbnail2.jpeg,name=Educational Assistance,link=educational_assistance.html
+id=initiative3,type=initiative,image=images/initiative-3-thumbnail3.jpeg,name=Free Medical Care Center,link=free_medical_care_center.html
 id=initiative4,type=initiative,image=images/banner_tmp_5.png,name=Learning Center for Special Children,link=learning_center_for_special_children.html
 id=scheme1,type=scheme,initiative_id=initiative1,image=images/adopt_grandma_grandpa.jpg,name=Adopt a Grandma / Grandpa,minimum_donation=10,currency=DOLLOR,description=To meet basic needs of one grandma/grandpa for a month
 id=scheme2,type=scheme,initiative_id=initiative1,image=images/one_time_food_expenses.jpg,name=One Time Food Expenses,minimum_donation=20,currency=DOLLOR,description=Food expenses for one meal for the 105 elders

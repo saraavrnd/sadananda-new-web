@@ -6,7 +6,6 @@
 #Note: 
 #No comma is allowed in the image and heading as the system uses the comma as separtor to get the data
 #Length constraint is given to fit the data in the UI better
-image=images/lrn_cntr_spl_child_sub_1.jpeg,heading=,sub-heading=
-image=images/lrn_cntr_spl_child_sub_2.jpeg,heading=Heading 2,sub-heading=TTMP4 sub heading
-image=images/lrn_cntr_spl_child_sub_3.jpeg,heading=Heading 3,sub-heading=TTMP4 sub heading
-image=images/lrn_cntr_spl_child_sub_4.jpeg,heading=Heading 4,sub-heading=TTMP4 sub heading
+image=images/Slide-1-Special-school.png,heading=,sub-heading=
+image=images/Slide-2-Special-school.png,heading=,sub-heading=
+image=images/Slide-3-Special-school.png,heading=,sub-heading=
