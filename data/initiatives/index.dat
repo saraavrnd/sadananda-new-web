@@ -10,7 +10,7 @@
 id=initiative1,type=initiative,image=images/initiative-1-thumbnail1.jpeg,name=Home for Senior Citizens,link=free_home_for_senior_citizens.html
 id=initiative2,type=initiative,image=images/initiative-2-thumbnail2.jpeg,name=Educational Assistance,link=educational_assistance.html
 id=initiative3,type=initiative,image=images/initiative-3-thumbnail3.jpeg,name=Free Medical Care Center,link=free_medical_care_center.html
-id=initiative4,type=initiative,image=images/banner_tmp_5.png,name=Learning Center for Special Children,link=learning_center_for_special_children.html
+id=initiative4,type=initiative,image=images/initiative-3-thumbnail3.jpeg,name=Learning Center for <br/>Special Children,link=learning_center_for_special_children.html
 id=scheme1,type=scheme,initiative_id=initiative1,image=images/adopt_grandma_grandpa.jpg,name=Adopt a Grandma / Grandpa,minimum_donation=10,currency=DOLLOR,description=To meet basic needs of one grandma/grandpa for a month
 id=scheme2,type=scheme,initiative_id=initiative1,image=images/one_time_food_expenses.jpg,name=One Time Food Expenses,minimum_donation=20,currency=DOLLOR,description=Food expenses for one meal for the 105 elders
 id=scheme3,type=scheme,initiative_id=initiative1,image=images/one_day_food_expenses.jpg,name=One Day Food Expenses,minimum_donation=100,currency=DOLLOR,description=Food expenses for one day for the 105 elders

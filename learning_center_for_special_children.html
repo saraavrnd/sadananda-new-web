@@ -78,7 +78,9 @@
 
 	<div id="learningcenterforsplchildren" class="sadananda-slides owl-carousel">
 	</div>
-	<div id="schemabanner" class="owl-carousel">
+	<div id="schemabanner" class="carousel" data-bs-ride="carousel" >
+		<div class="carousel-inner" role="listbox">
+		</div>
 	</div>
 
 	<header class="initiative-head">
@@ -286,59 +288,59 @@
 					console.log('Failed to load the initiatives');
 					return;
 				}
-				renderInitiatives("#schemabanner", ".initiatives-menu", initiatives, "initiative4");		
-				$("#schemabanner").owlCarousel({
-					margin: 150,
-					responsiveClass:true,
-					// center: true,
-					autoWidth:true,
-					nav: true,
-					items:4,
+				renderInitiatives("#schemabanner .carousel-inner", ".initiatives-menu", initiatives, "initiative4");		
+				// $("#schemabanner").owlCarousel({
+				// 	margin: 150,
+				// 	responsiveClass:true,
+				// 	// center: true,
+				// 	autoWidth:true,
+				// 	nav: true,
+				// 	items:4,
 
-					responsive:{
-						0:{
-							autoWidth:true,
-							nav:true,
-							margin: 20,
-							center: true,
-							loop:true,
-							autoplay: 5000,
-							slideSpeed : 300,
-							paginationSpeed : 400,
-						},
+				// 	responsive:{
+				// 		0:{
+				// 			autoWidth:true,
+				// 			nav:true,
+				// 			margin: 20,
+				// 			center: true,
+				// 			loop:true,
+				// 			autoplay: 5000,
+				// 			slideSpeed : 300,
+				// 			paginationSpeed : 400,
+				// 		},
 						
-						414:{
-							items:1,
-							margin: 15,
-							center: true,
-							// autoWidth: true,
-							nav:true,
-							loop:true,
-							autoplay: 5000,
-							slideSpeed : 300,
-							paginationSpeed : 400,
-						},
-						767:{
-							items:3,
-							margin: 10,
-							center: true,
-							// autoWidth: true,
-							nav:true,
-							loop:true,
-							autoplay: 5000,
-							slideSpeed : 300,
-							paginationSpeed : 400,
-						},
-						1000:{
-							items:4,
-							nav:false,
-							// loop:true,
-							margin: 100,
-							// center: true,
+				// 		414:{
+				// 			items:1,
+				// 			margin: 15,
+				// 			center: true,
+				// 			// autoWidth: true,
+				// 			nav:true,
+				// 			loop:true,
+				// 			autoplay: 5000,
+				// 			slideSpeed : 300,
+				// 			paginationSpeed : 400,
+				// 		},
+				// 		767:{
+				// 			items:3,
+				// 			margin: 10,
+				// 			center: true,
+				// 			// autoWidth: true,
+				// 			nav:true,
+				// 			loop:true,
+				// 			autoplay: 5000,
+				// 			slideSpeed : 300,
+				// 			paginationSpeed : 400,
+				// 		},
+				// 		1000:{
+				// 			items:4,
+				// 			nav:false,
+				// 			// loop:true,
+				// 			margin: 100,
+				// 			// center: true,
 
-						}
-					}
-				});
+				// 		}
+				// 	}
+				// });
 				loadstatus('initiative', 1)
 
 			})

@@ -1,11 +1,100 @@
-var app_url_prefix = `/sadananda-new-web`
-// var app_url_prefix = ''
+// var app_url_prefix = `/sadananda-new-web`
+const initiativeCarousel = document.querySelector('#initiativesbanner');
+var app_url_prefix = ''
 var load_results = {
     'banner' : 0,
     'initiative' : 0,
     'about_us' : 0
 }
+
+init = function() {
+    var s= $(".nav");
+    s.find("li").each(function(){
+        $(this).children("ul").length && $(this).append("<span>+</span>")
+    })
+    s.find("li > span").on("click",function(e){
+        e.preventDefault(),
+        $(this).text("+"==$(this).text()?"-":"+"),
+        $(this).siblings("ul").slideToggle(300)
+    })
+    $(".button-burger").on("click",function(e){
+        $(this).toggleClass("active"),
+        s.slideToggle(300)
+        e.preventDefault()
+    })
+
+    var window_width = $(window).width();
+    console.log('Window width', window_width)
+    if( window_width <= 1023 ){
+        $('.nav').toggle('collapse');
+    }
+
+    
+}
+
+initCarousel = function() {
+    
+
+    let items = document.querySelectorAll('.carousel .carousel-item')
+    items.forEach((el) => {
+        const minPerSlide = 4
+        let next = el.nextElementSibling
+        for (var i=1; i<minPerSlide; i++) {
+            if (!next) {
+                // wrap carousel by using first child
+                next = items[0]
+            }
+            let cloneChild = next.cloneNode(true)
+            el.appendChild(cloneChild.children[0])
+            next = next.nextElementSibling
+        }
+    });
+
+    // var carouselWidth = $('.carousel-inner')[0].scrollWidth;
+    // var itemWidth = $('.carousel-item').width;
+    // var scrollPos = 0;
+    // $('.carousel-control-next').on('click', (e) => {
+    //     console.log('Next got clicked')
+    //     if(scrollPos < (carouselWidth - (itemWidth * 4))) {
+    //         scrollPos = scrollPos - itemWidth;
+    //         $('.carouserl-inner').animate(
+    //             {
+    //                 scrollLeft: scrollPos
+    //             }, 600
+    //         )
+    //     }
+    // });
+    // $('.carousel-control-prev').on('click', (e) => {
+    //     console.log('Prev got clicked')
+    //     if(scrollPos > 0) {
+    //         scrollPos = scrollPos - itemWidth;
+    //         $('.carouserl-inner').animate(
+    //             {
+    //                 scrollLeft: scrollPos
+    //             }, 600
+    //         )
+    //     }
+    // });
+
+    // if(window.matchMedia("(min-width:576px)").matches) {
+    //     const carousel = new bootstrap.Carousel(initiativeCarousel, {
+    //         interval: false
+    //     })
+    //     $(initiativeCarousel).removeClass('slide')
+    //     console.log('Enabling the slide for large screen devices')
+
+    // } else {
+    //     console.log('Enabling the slide for small screen devices')
+    //     const carousel = new bootstrap.Carousel(initiativeCarousel, {
+    //         interval: 3000
+    //     })
+    //     $(initiativeCarousel).addClass('slide')
+    // }
+}
+
 loadBanners = function(page, cb) {
+
+
     console.log('Loading banner data for page:' + page)
     
     const url = `${app_url_prefix}/data/banner/${page}.dat`
@@ -90,6 +179,10 @@ pushSchemeUnderInitiative = function(initiatives, initiative_id, scheme_details)
 }
 
 loadInitiatives = function(cb) {
+
+    //init the UI on the navigations...
+    init();
+
     const url = `${app_url_prefix}/data/initiatives/index.dat`;
     console.log('Loading initiatives from:', url)
 
@@ -163,34 +256,49 @@ loadInitiatives = function(cb) {
 }
 
 renderInitiatives = function(id, menuid, initiatives, initiative_id) {
-    const initiativetemplate = `<div class="initiative-slide-container" >
-                                <div class="initiative-image">
-                                    <a href="<REPLACE_LINK>">
-                                        <img src="<REPLACE_IMAGE>" class="rounded">
-                                    </a>
-                                    <div class="slide-overlay">
-                                        <div class="slide-overlay-inner">
-                                            <a href="page-donate.html?name=<REPLACE_ID>" class="button button-white">Donate Now</a>
-                                            <a href="<REPLACE_LINK>" class="button button-white">more...</a>
+                
+
+    const initiativetemplate = `<div class="carousel-item <REPLACE_ACTIVE>">
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="initiative-slide-container" >
+                                                <div class="initiative-image">
+                                                    <a href="<REPLACE_LINK>">
+                                                        <img src="<REPLACE_IMAGE>" class="rounded">
+                                                    </a>
+                                                    <div class="slide-overlay">
+                                                        <div class="slide-overlay-inner">
+                                                            <a href="page-donate.html?name=<REPLACE_ID>" class="button button-white">Donate Now</a>
+                                                            <a href="<REPLACE_LINK>" class="button button-white">more...</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="<REPLACE_LINK>">
+                                                    <h6 class="initiative-name">
+                                                        <REPLACE_NAME>
+                                                    </h6>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <a href="<REPLACE_LINK>">
-                                    <h6 class="initiative-name">
-                                        <REPLACE_NAME>
-                                    </h6>
-                                </a>
-                            
-                            </div>`
+                                `
+                                
     var initiativeHTML = []
+    var index = 0;
     initiatives.forEach((initiative) => {
         var tmp = initiativetemplate.replaceAll("<REPLACE_LINK>", initiative.link);
         tmp = tmp.replaceAll("<REPLACE_IMAGE>", initiative.image);
         tmp = tmp.replaceAll("<REPLACE_NAME>", initiative.name);
         tmp = tmp.replaceAll("<REPLACE_ID>", initiative.id);
+        if(index == 0) {
+            tmp = tmp.replaceAll("<REPLACE_ACTIVE>", "active");
+        } else {
+            tmp = tmp.replaceAll("<REPLACE_ACTIVE>", "");
+        }
+        index++;
         initiativeHTML.push(tmp)
     })
     $(id).html(initiativeHTML.join(''))
+    // $(id + ' .carousel-item:first-child').toggle("active")
 
     const initiatives_menu_template = `<li>
                                             <a href="<REPLACE_LINK>">
@@ -208,20 +316,25 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
     var schemeDetailsHTML  = [];
     if(initiative_id != undefined && initiative_id.length > 0) {
 
-        const scheme_template = `<div class="initiative-slide-container" >
-                                    <div class="initiative-image">
-                                        <img src="<REPLACE_IMAGE>" class="rounded">
-                                        <div class="slide-overlay">
-                                            <div class="slide-overlay-inner">
-                                                <a href="page-donate.html?scheme_id=<REPLACE_SCHEME_ID>&initiative_id=<REPLACE_INITIATIVE_ID>" class="button button-white">Donate Now</a>
+        const scheme_template = `
+                                <div class="carousel-item <REPLACE_ACTIVE>">
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="initiative-slide-container" >
+                                            <div class="initiative-image">
+                                                <img src="<REPLACE_IMAGE>" class="rounded">
+                                                <div class="slide-overlay">
+                                                    <div class="slide-overlay-inner">
+                                                        <a href="page-donate.html?scheme_id=<REPLACE_SCHEME_ID>&initiative_id=<REPLACE_INITIATIVE_ID>" class="button button-white">Donate Now</a>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <h6 class="initiative-name">
+                                                <REPLACE_SCHEME_NAME>
+                                            </h6>
                                         </div>
                                     </div>
-                                    <h6 class="initiative-name">
-                                        <REPLACE_SCHEME_NAME>
-                                    </h6>
-                                
-                                </div>`
+                                </div>
+                                `
 
                                 /*
         const scheme_template = `<li class="slide">
@@ -257,6 +370,7 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
             return; //no schemes are listed
         }
         const scheme_ids = Object.keys(schemes);
+        index = 0;
         scheme_ids.forEach((scheme_id) => {
             const scheme_details = schemes[scheme_id];
             var tmp = scheme_template.replaceAll("<REPLACE_IMAGE>", scheme_details.image);
@@ -264,10 +378,19 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
             tmp = tmp.replaceAll("<REPLACE_INITIATIVE_ID>", scheme_details.initiative_id);
             tmp = tmp.replaceAll("<REPLACE_SCHEME_NAME>", scheme_details.name);
             tmp = tmp.replaceAll("<REPLACE_SCHEME_DESCRIPTION>", scheme_details.description);
+            if(index == 0) {
+                tmp = tmp.replaceAll("<REPLACE_ACTIVE>", "active");
+            } else {
+                tmp = tmp.replaceAll("<REPLACE_ACTIVE>", "");
+            }
+            index++;
+            
             schemeDetailsHTML.push(tmp)
         })
         $(id).html(schemeDetailsHTML.join(''));
     }
+
+    initCarousel();
 }	
 
 loadAboutUs = function(cb) {
@@ -385,6 +508,9 @@ loadstatus = function(step, result) {
 loadGallery = function(cb) {
 
     console.log('Loading gallery data')
+
+    init();
+
     const url = `${app_url_prefix}/data/gallery.dat`
 
     try {
