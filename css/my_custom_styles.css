@@ -10,7 +10,7 @@ body {
     position:fixed;
     z-index:9999;
 	background-color: transparent;
-    background:url("/images/loading-status.gif") no-repeat center center rgba(0,0,0,0.25)
+    background:url("/sadananda-new-web/images/loading-status.gif") no-repeat center center rgba(0,0,0,0.25)
 }
 a {
 	text-decoration: none;
