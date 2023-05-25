@@ -6,5 +6,5 @@
 #Note: 
 #No comma is allowed in the image and heading as the system uses the comma as separtor to get the data
 #Length constraint is given to fit the data in the UI better
-image=images/banner_tmp_new_1.jpeg,heading=Event 1,sub-heading=This event is all about...Event #1...
-image=images/banner_tmp_new_1.jpeg,heading=Event 2,sub-heading=This event is all about...Event #2...
+image=images/Slide 1 - Events page-1_2-mb.jpg,heading=,sub-heading=
+image=images/Slide 2 - Events page-1_2-mb.jpg,heading=,sub-heading=

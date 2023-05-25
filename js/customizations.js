@@ -1,4 +1,6 @@
-// var app_url_prefix = `/sadananda-new-web`
+var app_url_prefix = `/sadananda-new-web`
+// var app_url_prefix = ``
+
 const initiativeCarousel = document.querySelector('#initiativesbanner');
 var app_url_prefix = ''
 var load_results = {
