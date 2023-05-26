@@ -10,7 +10,8 @@ body {
     position:fixed;
     z-index:9999;
 	background-color: transparent;
-    background:url("/sadananda-new-web/images/loading-status.gif") no-repeat center center rgba(0,0,0,0.25)
+    /* background:url("/sadananda-new-web/images/loading-status.gif") no-repeat center center rgba(0,0,0,0.25) */
+    background:url("/images/loading-status.gif") no-repeat center center rgba(0,0,0,0.25)
 }
 a {
 	text-decoration: none;
@@ -61,6 +62,10 @@ a {
 	margin-top: 16px;
 }
 
+#initiatives-menu {
+	z-index: 800;
+}
+
 .slider-featured .slide .slide-image {
 	margin-bottom: 8px;
 	position: relative;
@@ -79,19 +84,26 @@ a {
 }
 
 .slide-container {
-	height: 475px !important;
+	/* height: 475px !important; */
+	width:auto;
 }
+
+/* .slide-container .image {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+} */
 
 #events-banner  {
 	margin: 0px;
 	padding: 0px;
-	max-height: 600px !important;
+	/* max-height: 600px !important; */
 	/* margin-bottom: 40px; */
 	/* height: 300px !important; */
 }
 
 #events-banner .slide-container {
-	height: 600px !important;
+	/* height: 600px !important; */
 }
 
 
@@ -181,7 +193,7 @@ a {
 	/* background-color: #064ba0; */
 	/* opacity: 0.8; */
 	/* border-radius: 8px; */
-	z-index: 400;
+	z-index: 10;
 }
 
 #schemabanner {
@@ -196,7 +208,7 @@ a {
 	/* background-color: #064ba0; */
 	/* opacity: 0.8; */
 	/* border-radius: 8px; */
-	z-index: 400;
+	z-index: 10;
 }
 
 #schemabanner-medicalcare {
@@ -519,6 +531,12 @@ a {
 	position: relative;
 }
  
+@media  (max-width: 1280px) {
+
+	#events-banner {
+		height: 450px !important;
+	}
+}
 
 @media  (max-width: 1199px) {
 
@@ -526,6 +544,11 @@ a {
 		width: 40%;
 		height: auto;
 	}
+
+	#events-banner {
+		height: 360px !important;
+	}
+	
 
 	#section_about_sadananda {
 		position: relative;
@@ -544,6 +567,14 @@ a {
 		z-index: 500;
 	}
 
+	#schemabanner {
+		padding-left: 16px;
+		padding-right:16px;
+		position: absolute;
+		top: 28%;
+		left: 10% !important;
+		right: 10% !important; 
+	}
 
 	.footer {
 		font-size: smaller;
@@ -562,6 +593,12 @@ a {
 		width: 40%;
 		height: auto;
 	}
+
+	#events-banner {
+		height: 360px !important;
+	}
+	
+
 
 	#section_about_sadananda {
 		position: relative;
@@ -584,12 +621,20 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 32%;
+		top: 28%;
 		left: 10% !important;
 		right: 10% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
+	}
+
+	#schemabanner {
+		padding-left: 16px;
+		padding-right:16px;
+		position: absolute;
+		top: 25%;
+		left: 10% !important;
+		right: 10% !important; 
 	}
 
 	.footer {
@@ -610,6 +655,9 @@ a {
 		height: auto;
 	}
 
+	#events-banner {
+		height: 310px !important;
+	}
 	#section_about_sadananda {
 		position: relative;
 		padding: 5px 0 5px;
@@ -631,24 +679,19 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 33%;
+		top: 25%;
 		left: 10% !important;
 		right: 10% !important; 
-		/* height: 100px; */
-		/* background-color: orange; */
-		z-index: 400;
+
 	}
 
 	#schemabanner {
 		padding-left: 16px;
 		padding-right:16px;
 		position: absolute;
-		top: 30%;
+		top: 23%;
 		left: 10% !important;
 		right: 10% !important; 
-		/* height: 100px; */
-		/* background-color: orange; */
-		z-index: 400;
 	}
 
 	.footer {
@@ -668,7 +711,9 @@ a {
 		width: 50%;
 		height: auto;
 	}
-
+	#events-banner {
+		height: 280px !important;
+	}
 	/* .header nav {
 		display:  none;
 	} */
@@ -693,24 +738,22 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 32%;
+		top: 25%;
 		left: 10% !important;
 		right: 10% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 	}
 
 	#schemabanner {
 		padding-left: 16px;
 		padding-right:16px;
 		position: absolute;
-		top: 30%;
+		top: 21%;
 		left: 10% !important;
 		right: 10% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 	}
 
 
@@ -755,6 +798,10 @@ a {
 		height: auto;
 	}
 
+	#events-banner {
+		height: 270px !important;
+	}
+
 	/* .header nav {
 		display:  none;
 	} */
@@ -779,12 +826,11 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 32%;
+		top: 23%;
 		left: 10% !important;
 		right: 10% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 	}
 
 	#initiativesbanner .owl-nav {
@@ -825,6 +871,9 @@ a {
 		height: auto;
 	}
 
+	#events-banner {
+		height: 190px !important;
+	}
 
 	.slide-container .banner-content .banner-title {
 		font-weight: bold;
@@ -846,12 +895,11 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 22%;
+		top: 13%;
 		left: 20% !important;
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 		/* border: 2px solid white; */
 		/* border-radius: 8px; */
 	}
@@ -860,12 +908,11 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 18%;
+		top: 10%;
 		left: 20% !important;
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 		/* border: 2px solid white; */
 		/* border-radius: 8px; */
 	}
@@ -915,6 +962,10 @@ a {
 		padding-bottom: 8px;
 	}
 
+	.page-head, .initiative-head {
+		padding: 80px 48px 80px;
+	}
+
 	.section-featured .slider-featured {
 		margin: 0px;
 	}
@@ -941,6 +992,9 @@ a {
 		height: auto;
 	}
 
+	#events-banner {
+		height: 135px !important;
+	}
 
 	.slide-container .banner-content .banner-title {
 		font-weight: bold;
@@ -962,12 +1016,11 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 22%;
+		top: 10%;
 		left: 20% !important;
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 		/* border: 2px solid white; */
 		/* border-radius: 8px; */
 	}
@@ -976,12 +1029,11 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 17%;
+		top: 7%;
 		left: 20% !important;
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 	}
 
 
@@ -1078,24 +1130,22 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 22%;
+		top: 10%;
 		left: 20% !important;
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 	}
 
 	#schemabanner {
 		padding-left: 16px;
 		padding-right:16px;
 		position: absolute;
-		top: 17%;
+		top: 7%;
 		left: 20% !important;
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 	}
 
 	#initiativesbanner .owl-nav {
@@ -1163,7 +1213,9 @@ a {
 		width: auto;
 		height: auto;
 	}
-
+	#events-banner {
+		height: 115px !important;
+	}
 	
 	.slide-container .banner-content .banner-title {
 		font-weight: bold;
@@ -1186,24 +1238,22 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 21%;
+		top: 9%;
 		left: 20% !important;
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 	}
 
 	#schemabanner {
 		padding-left: 16px;
 		padding-right:16px;
 		position: absolute;
-		top: 17%;
+		top: 7%;
 		left: 20% !important;
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 	}
 
 	#initiativesbanner .owl-nav {
@@ -1289,7 +1339,9 @@ a {
 		height: auto;
 	}
 
-	
+	#events-banner {
+		height: 85px !important;
+	}
 	.slide-container .banner-content .banner-title {
 		font-weight: bold;
 		color: #fff;
@@ -1311,24 +1363,22 @@ a {
 		padding-left: 16px;
 		padding-right: 16px;
 		position: absolute;
-		top: 21%;
+		top: 7%;
 		left: 20% !important;
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 	}
 
 	#schemabanner {
 		padding-left: 16px;
 		padding-right: 32px;
 		position: absolute;
-		top: 14%;
+		top: 5%;
 		left: 10% !important;
 		right: 4% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
-		z-index: 400;
 	}
 
 	#initiativesbanner .owl-nav {

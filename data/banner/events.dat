@@ -6,5 +6,5 @@
 #Note: 
 #No comma is allowed in the image and heading as the system uses the comma as separtor to get the data
 #Length constraint is given to fit the data in the UI better
-image=images/Slide 1 - Events page-1_2-mb.jpg,heading=,sub-heading=
-image=images/Slide 2 - Events page-1_2-mb.jpg,heading=,sub-heading=
+image=images/Slide-1-Events-page.jpg,heading=,sub-heading=
+image=images/Slide-2-Events-page.jpg,heading=,sub-heading=

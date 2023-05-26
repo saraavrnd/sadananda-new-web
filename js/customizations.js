@@ -1,7 +1,6 @@
-var app_url_prefix = `/sadananda-new-web`
-// var app_url_prefix = ''
+// var app_url_prefix = `/sadananda-new-web`
+var app_url_prefix = ''
 
-const initiativeCarousel = document.querySelector('#initiativesbanner');
 var load_results = {
     'banner' : 0,
     'initiative' : 0,
@@ -29,13 +28,10 @@ init = function() {
     if( window_width <= 1023 ){
         $('.nav').toggle('collapse');
     }
-
-    
 }
 
-initCarousel = function() {
+initCarousel = function(id) {
     
-
     let items = document.querySelectorAll('.carousel .carousel-item')
     items.forEach((el) => {
         const minPerSlide = 4
@@ -76,21 +72,27 @@ initCarousel = function() {
     //         )
     //     }
     // });
+    if($.trim(id).length <= 0) {
+        return;
+    }
+    const initiativeCarousel = document.querySelector(id);
+    if(window.matchMedia("(min-width:576px)").matches) {
+        
+        console.log('Disabling the slide for large screen devices')
+        $(initiativeCarousel).removeClass('slide')
+        $(initiativeCarousel).removeAttr('data-bs-ride')
+        const carousel = new bootstrap.Carousel(initiativeCarousel, {
+            interval: 0
+        })
 
-    // if(window.matchMedia("(min-width:576px)").matches) {
-    //     const carousel = new bootstrap.Carousel(initiativeCarousel, {
-    //         interval: false
-    //     })
-    //     $(initiativeCarousel).removeClass('slide')
-    //     console.log('Enabling the slide for large screen devices')
-
-    // } else {
-    //     console.log('Enabling the slide for small screen devices')
-    //     const carousel = new bootstrap.Carousel(initiativeCarousel, {
-    //         interval: 3000
-    //     })
-    //     $(initiativeCarousel).addClass('slide')
-    // }
+    } else {
+        console.log('Enabling the slide for small screen devices')
+        $(initiativeCarousel).addClass('slide')
+        $(initiativeCarousel).attr('data-bs-ride', 'carousel')
+        const carousel = new bootstrap.Carousel(initiativeCarousel, {
+            interval: 3000
+        })
+    }
 }
 
 loadBanners = function(page, cb) {
@@ -141,9 +143,50 @@ loadBanners = function(page, cb) {
     }
 }
 
+getNormalizedImageSizeBasedOnWindowWidth = function() {
+    var window_width = $(window).width();
+    if(window_width <= 300) {
+        return "300"
+    } else if(window_width > 300 && window_width <= 400) {
+        return "400"
+    } else if(window_width > 400 && window_width <= 500) {
+        return "500"
+    } else if(window_width > 500 && window_width <= 600) {
+        return "600"
+    } else if(window_width > 600 && window_width <= 700) {
+        return "700"
+    } else if(window_width > 700 && window_width <= 800) {
+        return "800"
+    } else if(window_width > 800 && window_width <= 900) {
+        return "900"
+    } else if(window_width > 900 && window_width <= 1000) {
+        return "1000"
+    } else if(window_width > 1000) {
+        return "default"
+    }
+}
+
+updateImagePathAsperNormalizedImage = function(imgPath) {
+    console.log('Input img path', imgPath);
+    const normalizedImagePath = getNormalizedImageSizeBasedOnWindowWidth();
+    if(normalizedImagePath == "actual") {
+        console.log('Updated path is same as it is actual');
+        return imgPath    //dont update and use it as it is
+    } else {
+        const index = imgPath.indexOf('images/');
+        if(index != -1) {
+            const resultPath = imgPath.substr(0, index + 6) + "/" + normalizedImagePath + "/" + imgPath.substr(index + 7);
+            console.log('Updated path is', resultPath);
+            return resultPath
+        }
+    }
+    console.log('No change in the path');
+    return imgPath;
+}
 renderBanner = function(id, bannerdata) {
     const bannertemplate = `<div class="slide-container" >
-			<img src="<REPLACE_IMAGE>">
+			<!-- <div class="image" id="image-<REPLACE_BANNER_ID>"></div> -->
+			<img src="<REPLACE_IMAGE>" />
             <div class="banner-content">
             <h2 class="banner-title"><REPLACE_HEADING></h2>
             <p class="banner-details"><REPLACE_SUBHEADING></p>
@@ -151,13 +194,30 @@ renderBanner = function(id, bannerdata) {
 
 		</div>`
     var bannerHTML = []
+    var index=1;
     bannerdata.forEach((banner) => {
-        var tmp = bannertemplate.replace("<REPLACE_IMAGE>", banner.image);
+        var tmp = bannertemplate.replace("<REPLACE_IMAGE>", updateImagePathAsperNormalizedImage(banner.image));
         tmp = tmp.replace("<REPLACE_SUBHEADING>", banner.sub_heading);
         tmp = tmp.replace("<REPLACE_HEADING>", banner.heading);
-        bannerHTML.push(tmp)
+        tmp = tmp.replace("<REPLACE_BANNER_ID>", index);
+        bannerHTML.push(tmp);
+        index++;
     })
     $(id).html(bannerHTML.join(''))
+    index=1;
+    bannerdata.forEach((banner) => {
+        $(id + ' #image-' + index).css('background-image', 'url("' + banner.image + '")');
+        $(id + ' #image-' + index).css('background-repeat', 'no-repeat');
+        $(id + ' #image-' + index).css('background-size', 'cover');
+        $(id + ' #image-' + index).css('background-position', 'center');
+        $(id + ' #image-' + index).css('background-attachment', 'scroll');
+
+        $(id + ' #image-' + index).css('padding', 0);
+        $(id + ' #image-' + index).css('width', 'inherit');
+        $(id + ' #image-' + index).css('height', 'inherit');
+
+        index++;
+    })
 }
 
 pushSchemeUnderInitiative = function(initiatives, initiative_id, scheme_details) {
@@ -391,7 +451,7 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
         $(id).html(schemeDetailsHTML.join(''));
     }
 
-    initCarousel();
+    initCarousel(id);
 }	
 
 loadAboutUs = function(cb) {
