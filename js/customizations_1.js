@@ -1,6 +1,6 @@
 // var app_url_prefix = `/sadananda-new-web`
 var app_url_prefix = ''
-
+var SAVE_CONTACT_API_URL = `https://wfnov0cx4f.execute-api.us-east-2.amazonaws.com/Prod/api/saveContact`
 var load_results = {
     'banner' : 0,
     'initiative' : 0,
@@ -47,31 +47,6 @@ initCarousel = function(id) {
         }
     });
 
-    // var carouselWidth = $('.carousel-inner')[0].scrollWidth;
-    // var itemWidth = $('.carousel-item').width;
-    // var scrollPos = 0;
-    // $('.carousel-control-next').on('click', (e) => {
-    //     console.log('Next got clicked')
-    //     if(scrollPos < (carouselWidth - (itemWidth * 4))) {
-    //         scrollPos = scrollPos - itemWidth;
-    //         $('.carouserl-inner').animate(
-    //             {
-    //                 scrollLeft: scrollPos
-    //             }, 600
-    //         )
-    //     }
-    // });
-    // $('.carousel-control-prev').on('click', (e) => {
-    //     console.log('Prev got clicked')
-    //     if(scrollPos > 0) {
-    //         scrollPos = scrollPos - itemWidth;
-    //         $('.carouserl-inner').animate(
-    //             {
-    //                 scrollLeft: scrollPos
-    //             }, 600
-    //         )
-    //     }
-    // });
     if($.trim(id).length <= 0) {
         return;
     }
@@ -638,5 +613,73 @@ renderGallery = function(id, galleryDetails) {
             }
         }
     });              
+}
 
+resetContactError = function(msg) {
+    $('#anyContactError').text(msg);
+}
+
+saveContact = function() {
+
+    resetContactError('')
+    const firstname = $.trim($('#contact_firstname').val());
+    const lastname = $.trim($('#contact_lastname').val());
+    const email = $.trim($('#contact_email').val());
+    const message = $.trim($('#contact_message').val());
+    if(firstname.length <= 0) {
+        console.log('First name is empty in contacts section');
+        resetContactError('First name cannot be empty')
+        $('#contact_firstname').focus();
+        return;
+    }
+    if(email.length <= 0) {
+        console.log('Email address cannot be empty');
+        resetContactError('Email address cannot be empty')
+        $('#contact_email').focus();
+        return;
+    }
+    if(message.length <= 0) {
+        console.log('Contact message cannot be empty');
+        resetContactError('Please share a message...')
+        $('#contact_message').focus();
+        return;
+    }
+
+    const userContactDetails = {
+        "first_name": firstname,
+        "last_name": lastname,
+        "email": email,
+        "message": message,
+        "requested_datetime" : new Date()
+    }
+
+    $(document).ajaxStart(function(){
+        // $("#contact_save_status").css("display", "block");
+        resetContactError("Saving your message...")        
+    });
+
+    $(document).ajaxComplete(function(){
+        // setTimeout(() => {
+        //     $("#contact_save_status").css("display", "none");
+        // }, 10000)
+        resetContactError("Thanks for contacting us. We will get back to you as soon as possible.")        
+    });
+    try {
+        saveContactAPI = $.ajax({
+            type: "POST",
+            url: SAVE_CONTACT_API_URL,
+            data: JSON.stringify(userContactDetails),
+            dataType: "application/json",
+            crossDomain: true,
+            // dataType: 'jsonp',
+            success: function(resultData){
+                console.log("Successfully saved the user contact.");
+            },
+            error: function(err) {
+                console.log('Error occurred while saving the user contact')
+            },
+        });
+    } catch(ex) {
+
+    }
 }
