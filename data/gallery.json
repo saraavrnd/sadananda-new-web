@@ -1,0 +1,26 @@
+[
+    {
+        "image" :"images/banner_tmp_new_1.jpeg",
+        "desc" : "This is the desc for this gallery image given...."
+    },
+    {
+        "image" :"images/lrn_cntr_spl_child_corpus_fund.jpeg",
+        "desc" : "This is the desc for this gallery image given...."
+    },
+    {
+        "image" :"images/lrn_cntr_spl_child_year_therapy_expenses.jpeg",
+        "desc" : "This is the desc for this gallery image given...."
+    },
+    {
+        "image" :"images/lrn_cntr_spl_child_monthly_expenses.jpeg",
+        "desc" : "This is the desc for this gallery image given...."
+    },
+    {
+        "image" :"images/lrn_cntr_spl_child_sub_4.jpeg",
+        "desc" : "This is the desc for this gallery image given...."
+    },
+    {
+        "image" :"images/medical_care_full_day_expenses.jpg",
+        "desc" : "This is the desc for this gallery image given...."
+    }
+]
