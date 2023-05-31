@@ -72,50 +72,58 @@ initCarousel = function(id) {
 
 loadBanners = function(page, cb) {
 
-
     console.log('Loading banner data for page:' + page)
-    
-    const url = `${app_url_prefix}/data/banner/${page}.json`
-    try {
-        $.ajax({
-            type: 'GET',
-            url: url,
-            success: (data)  => {
-                console.log("Banner data:", data);
-                // const lines = data.split('\n').filter((line) => {
-                //     return $.trim(line).length > 0 && (! $.trim(line).startsWith('#'))
-                // })
-                // // console.log('Lines', lines)
-                // var banners = []
-                // lines.forEach((line) => {
-                //     const tokens = line.split('sub-heading=')
-                //     if(tokens.length == 2) {
-                //         const parts = tokens[0].split(',')
-                //         const image = $.trim(parts[0].substr(parts[0].indexOf('image=')+6))
-                //         const heading = $.trim(parts[1].substr(parts[1].indexOf('heading=')+8))
-                        
-                //         banners.push( {
-                //             image: image,
-                //             heading: heading,
-                //             sub_heading: tokens[1]
-                //         })
-                //     }
-                // })
-                // console.log('Banners', banners)
-                cb(undefined, data)
-            },
-            error: (request, status, error) => {
-                console.error('Failed to get the banner data')
-                console.error('Request', request)
-                console.error('Status', status)
-                console.error('Error', error)
-                cb(error, undefined)
-            }
-        });
-    } catch(ex) {
-        console.log('Exception occurred while loading the banners data', ex)
-        cb(ex, undefined)
+    const dataset = eval(page + "_BANNER_DATA")
+    if(! dataset) {
+        console.log('No data set is available now')
+        cb(new Error("Data is not available"), undefined);
+        return;
+    } else {
+        console.log('Available data set is:', dataset)
+        cb(undefined, dataset)
     }
+    
+    // const url = `${app_url_prefix}/data/banner/${page}.json`
+    // try {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: url,
+    //         success: (data)  => {
+    //             console.log("Banner data:", data);
+    //             // const lines = data.split('\n').filter((line) => {
+    //             //     return $.trim(line).length > 0 && (! $.trim(line).startsWith('#'))
+    //             // })
+    //             // // console.log('Lines', lines)
+    //             // var banners = []
+    //             // lines.forEach((line) => {
+    //             //     const tokens = line.split('sub-heading=')
+    //             //     if(tokens.length == 2) {
+    //             //         const parts = tokens[0].split(',')
+    //             //         const image = $.trim(parts[0].substr(parts[0].indexOf('image=')+6))
+    //             //         const heading = $.trim(parts[1].substr(parts[1].indexOf('heading=')+8))
+                        
+    //             //         banners.push( {
+    //             //             image: image,
+    //             //             heading: heading,
+    //             //             sub_heading: tokens[1]
+    //             //         })
+    //             //     }
+    //             // })
+    //             // console.log('Banners', banners)
+    //             cb(undefined, data)
+    //         },
+    //         error: (request, status, error) => {
+    //             console.error('Failed to get the banner data')
+    //             console.error('Request', request)
+    //             console.error('Status', status)
+    //             console.error('Error', error)
+    //             cb(error, undefined)
+    //         }
+    //     });
+    // } catch(ex) {
+    //     console.log('Exception occurred while loading the banners data', ex)
+    //     cb(ex, undefined)
+    // }
 }
 
 getNormalizedImageSizeBasedOnWindowWidth = function() {
@@ -220,76 +228,86 @@ loadInitiatives = function(cb) {
     //init the UI on the navigations...
     init();
 
-    const url = `${app_url_prefix}/data/initiatives/index.json`;
-    console.log('Loading initiatives from:', url)
-
-    try {
-        $.ajax({
-            type: 'GET',
-            url: url,
-            success: (data)  => {
-                // console.log("Banner data:", data);
-                // const lines = data.split('\n').filter((line) => {
-                //     return $.trim(line).length > 0 && (! $.trim(line).startsWith('#'))
-                // })
-                // // console.log('Lines', lines)
-                // var initiatives = []
-                // lines.forEach((line) => {
-                //     if(line.indexOf('type=initiative') != -1) {
-                //         const tokens = line.split(',')
-                //         if(tokens.length == 5) {
-                            
-                //             initiatives.push( {
-                //                 id: tokens[0].split('=')[1],
-                //                 type: tokens[1].split('=')[1],
-                //                 image: tokens[2].split('=')[1],
-                //                 name: tokens[3].split('=')[1],
-                //                 link: tokens[4].split('=')[1],
-                //             })
-                //         }
-                //     } else if(line.indexOf('type=scheme') != -1) {
-                //         const tokens = line.split(',')
-                //         // id=scheme1,
-                //         // type=scheme,
-                //         // initiative_id=initiative1,
-                //         // image=images/adopt_grandma_grandpa.jpg,
-                //         // name=Adopt a Grandma / Grandpa,
-                //         // minimum_donation=10,
-                //         // currency=DOLLOR,
-                //         // description=To meet basic needs of one grandma/grandpa for a month
-
-                //         if(tokens.length >= 8) {
-                            
-                //             const initiative_id = tokens[2].split('=')[1]
-                //             const scheme_details = {
-                //                 id: tokens[0].split('=')[1],
-                //                 type: tokens[1].split('=')[1],
-                //                 initiative_id: initiative_id,
-                //                 image: tokens[3].split('=')[1],
-                //                 name: tokens[4].split('=')[1],
-                //                 minimum_donation: tokens[5].split('=')[1],
-                //                 currency: tokens[6].split('=')[1],
-                //                 description: line.substr(line.indexOf('description=') + 12),
-                //             }
-                //             pushSchemeUnderInitiative(initiatives, initiative_id, scheme_details)
-                //         }
-                //     }
-                // })
-                console.log('Initiatives', data)
-                cb(undefined, data)
-            },
-            error: (request, status, error) => {
-                console.error('Failed to get the initiatives data')
-                console.error('Request', request)
-                console.error('Status', status)
-                console.error('Error', error)
-                cb(error, undefined)
-            }
-        });
-    } catch(ex) {
-        console.log('Exception occurred while loading the initiatives data', ex)
-        cb(ex, undefined)
+    const dataset = eval("INITIATIVES_DATA")
+    if(! dataset) {
+        console.log('No data set is available now')
+        cb(new Error("Data is not available"), undefined);
+        return;
+    } else {
+        console.log('Initiatives Available data set is:', dataset)
+        cb(undefined, dataset)
     }
+
+    // const url = `${app_url_prefix}/data/initiatives/index.json`;
+    // console.log('Loading initiatives from:', url)
+
+    // try {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: url,
+    //         success: (data)  => {
+    //             // console.log("Banner data:", data);
+    //             // const lines = data.split('\n').filter((line) => {
+    //             //     return $.trim(line).length > 0 && (! $.trim(line).startsWith('#'))
+    //             // })
+    //             // // console.log('Lines', lines)
+    //             // var initiatives = []
+    //             // lines.forEach((line) => {
+    //             //     if(line.indexOf('type=initiative') != -1) {
+    //             //         const tokens = line.split(',')
+    //             //         if(tokens.length == 5) {
+                            
+    //             //             initiatives.push( {
+    //             //                 id: tokens[0].split('=')[1],
+    //             //                 type: tokens[1].split('=')[1],
+    //             //                 image: tokens[2].split('=')[1],
+    //             //                 name: tokens[3].split('=')[1],
+    //             //                 link: tokens[4].split('=')[1],
+    //             //             })
+    //             //         }
+    //             //     } else if(line.indexOf('type=scheme') != -1) {
+    //             //         const tokens = line.split(',')
+    //             //         // id=scheme1,
+    //             //         // type=scheme,
+    //             //         // initiative_id=initiative1,
+    //             //         // image=images/adopt_grandma_grandpa.jpg,
+    //             //         // name=Adopt a Grandma / Grandpa,
+    //             //         // minimum_donation=10,
+    //             //         // currency=DOLLOR,
+    //             //         // description=To meet basic needs of one grandma/grandpa for a month
+
+    //             //         if(tokens.length >= 8) {
+                            
+    //             //             const initiative_id = tokens[2].split('=')[1]
+    //             //             const scheme_details = {
+    //             //                 id: tokens[0].split('=')[1],
+    //             //                 type: tokens[1].split('=')[1],
+    //             //                 initiative_id: initiative_id,
+    //             //                 image: tokens[3].split('=')[1],
+    //             //                 name: tokens[4].split('=')[1],
+    //             //                 minimum_donation: tokens[5].split('=')[1],
+    //             //                 currency: tokens[6].split('=')[1],
+    //             //                 description: line.substr(line.indexOf('description=') + 12),
+    //             //             }
+    //             //             pushSchemeUnderInitiative(initiatives, initiative_id, scheme_details)
+    //             //         }
+    //             //     }
+    //             // })
+    //             console.log('Initiatives', data)
+    //             cb(undefined, data)
+    //         },
+    //         error: (request, status, error) => {
+    //             console.error('Failed to get the initiatives data')
+    //             console.error('Request', request)
+    //             console.error('Status', status)
+    //             console.error('Error', error)
+    //             cb(error, undefined)
+    //         }
+    //     });
+    // } catch(ex) {
+    //     console.log('Exception occurred while loading the initiatives data', ex)
+    //     cb(ex, undefined)
+    // }
 }
 
 renderInitiatives = function(id, menuid, initiatives, initiative_id) {
@@ -431,44 +449,55 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
 }	
 
 loadAboutUs = function(cb) {
-    const url = `${app_url_prefix}/data/about_us.json`;
-    console.log('Loading about us from:', url)
 
-    try {
-        $.ajax({
-            type: 'GET',
-            url: url,
-            success: (data)  => {
-                // console.log("Banner data:", data);
-                // const lines = data.split('\n').filter((line) => {
-                //     return $.trim(line).length > 0 && (! $.trim(line).startsWith('#'))
-                // })
-                // // console.log('Lines', lines)
-                // var about_us = {}
-                // lines.forEach((line) => {
-                //     const index = line.indexOf('=')
-                //     if(index != -1) {
-                        
-                //         const key = line.substring(0, index);
-                //         const value = line.substring(index+1)
-                //         about_us[key] = value
-                //     }
-                // })
-                console.log('About', data)
-                cb(undefined, data)
-            },
-            error: (request, status, error) => {
-                console.error('Failed to get the about ius data')
-                console.error('Request', request)
-                console.error('Status', status)
-                console.error('Error', error)
-                cb(error, undefined)
-            }
-        });
-    } catch(ex) {
-        console.log('Exception occurred while loading the about us data', ex)
-        cb(ex, undefined)
+    const dataset = eval("ABOUT_US")
+    if(! dataset) {
+        console.log('No data set is available now')
+        cb(new Error("Data is not available"), undefined);
+        return;
+    } else {
+        console.log('About US Available data set is:', dataset)
+        cb(undefined, dataset)
     }
+
+    // const url = `${app_url_prefix}/data/about_us.json`;
+    // console.log('Loading about us from:', url)
+
+    // try {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: url,
+    //         success: (data)  => {
+    //             // console.log("Banner data:", data);
+    //             // const lines = data.split('\n').filter((line) => {
+    //             //     return $.trim(line).length > 0 && (! $.trim(line).startsWith('#'))
+    //             // })
+    //             // // console.log('Lines', lines)
+    //             // var about_us = {}
+    //             // lines.forEach((line) => {
+    //             //     const index = line.indexOf('=')
+    //             //     if(index != -1) {
+                        
+    //             //         const key = line.substring(0, index);
+    //             //         const value = line.substring(index+1)
+    //             //         about_us[key] = value
+    //             //     }
+    //             // })
+    //             console.log('About', data)
+    //             cb(undefined, data)
+    //         },
+    //         error: (request, status, error) => {
+    //             console.error('Failed to get the about ius data')
+    //             console.error('Request', request)
+    //             console.error('Status', status)
+    //             console.error('Error', error)
+    //             cb(error, undefined)
+    //         }
+    //     });
+    // } catch(ex) {
+    //     console.log('Exception occurred while loading the about us data', ex)
+    //     cb(ex, undefined)
+    // }
 }
 
 renderAboutUsAndSocialContacts = function(about_us_data) {
@@ -548,46 +577,56 @@ loadGallery = function(cb) {
 
     init();
 
-    const url = `${app_url_prefix}/data/gallery.json`
-
-    try {
-        $.ajax({
-            type: 'GET',
-            url: url,
-            success: (data)  => {
-                // console.log("Banner data:", data);
-                // const lines = data.split('\n').filter((line) => {
-                //     return $.trim(line).length > 0 && (! $.trim(line).startsWith('#'))
-                // })
-                // // console.log('Lines', lines)
-                // var gallery = []
-                // lines.forEach((line) => {
-                //     const tokens = line.split(',')
-                //     if(tokens.length >= 2) {
-
-                //         const desc = $.trim(line.substr(line.indexOf(',')+6))
-                        
-                //         gallery.push( {
-                //             image: $.trim(tokens[0].substr(tokens[0].indexOf("=") + 1)),
-                //             desc: desc,
-                //         })
-                //     }
-                // })
-                // console.log('Gallery Details', gallery)
-                cb(undefined, data)
-            },
-            error: (request, status, error) => {
-                console.error('Failed to get the gallery data')
-                console.error('Request', request)
-                console.error('Status', status)
-                console.error('Error', error)
-                cb(error, undefined)
-            }
-        });
-    } catch(ex) {
-        console.log('Exception occurred while loading the gallery data', ex)
-        cb(ex, undefined)
+    const dataset = eval("GALLERY_DATA")
+    if(! dataset) {
+        console.log('No data set is available now for gallery')
+        cb(new Error("Gallery Data is not available"), undefined);
+        return;
+    } else {
+        console.log('Gallery data set is:', dataset)
+        cb(undefined, dataset)
     }
+
+    // const url = `${app_url_prefix}/data/gallery.json`
+
+    // try {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: url,
+    //         success: (data)  => {
+    //             // console.log("Banner data:", data);
+    //             // const lines = data.split('\n').filter((line) => {
+    //             //     return $.trim(line).length > 0 && (! $.trim(line).startsWith('#'))
+    //             // })
+    //             // // console.log('Lines', lines)
+    //             // var gallery = []
+    //             // lines.forEach((line) => {
+    //             //     const tokens = line.split(',')
+    //             //     if(tokens.length >= 2) {
+
+    //             //         const desc = $.trim(line.substr(line.indexOf(',')+6))
+                        
+    //             //         gallery.push( {
+    //             //             image: $.trim(tokens[0].substr(tokens[0].indexOf("=") + 1)),
+    //             //             desc: desc,
+    //             //         })
+    //             //     }
+    //             // })
+    //             // console.log('Gallery Details', gallery)
+    //             cb(undefined, data)
+    //         },
+    //         error: (request, status, error) => {
+    //             console.error('Failed to get the gallery data')
+    //             console.error('Request', request)
+    //             console.error('Status', status)
+    //             console.error('Error', error)
+    //             cb(error, undefined)
+    //         }
+    //     });
+    // } catch(ex) {
+    //     console.log('Exception occurred while loading the gallery data', ex)
+    //     cb(ex, undefined)
+    // }
 
 }
 
