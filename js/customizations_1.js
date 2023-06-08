@@ -1,6 +1,30 @@
 // var app_url_prefix = `/sadananda-new-web`
 var app_url_prefix = ''
-var SAVE_CONTACT_API_URL = `https://wfnov0cx4f.execute-api.us-east-2.amazonaws.com/Prod/api/saveContact`
+var GET_CONFIG_API_URL = `/Prod/api/config`
+var SAVE_CONTACT_API_URL = `/Prod/api/saveContact`
+var CREATE_PAYMENT_API_URL = `/Prod/api/initiatePayment`
+var COMPLETE_PAYMENT_API_URL = `/Prod/api/completePayment`
+const INSERT_SELECTED_SCHEME = `<input type="hidden" id="user_selected_scheme" value="<REPLACE_SELECTED_SCHEME>">`
+const SELECTED_ICON_DISPLAY = `<i class="fa-solid fa-circle-check"></i>${INSERT_SELECTED_SCHEME}`
+const BTN_LOADING_STATUS = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="false"></span> Loading Payment Options...`
+var gl_about_us_data = undefined;
+var gl_donation_payment_payload = undefined;
+
+var paypal_script_src = `https://www.paypal.com/sdk/js?client-id=<REPLACE_CLIENT_ID>&components=buttons`
+var paypal_subscription_script_src = `${paypal_script_src}&vault=true&intent=subscription`
+
+const custom_donation_config = {
+    id: -1,
+    name: "Custom",
+    desc: "You can choose any amount to be donated",
+    image: "images/default/Slide-1-Sadananda-homeview.png",
+    currency: "USD"
+}
+var selected_initiative_donation = undefined;
+var initiatives_loaded = undefined;
+var selected_initiative_for_donation = undefined;
+var selected_scheme_for_donation = undefined;
+var selected_plan_id_for_subscription = undefined;
 var load_results = {
     'banner' : 0,
     'initiative' : 0,
@@ -168,22 +192,48 @@ updateImagePathAsperNormalizedImage = function(imgPath) {
 }
 
 renderBanner = function(id, bannerdata) {
-    const bannertemplate = `<div class="slide-container" >
+    const bannertemplate = `
+        <div class="slide-container" >
 			<!-- <div class="image" id="image-<REPLACE_BANNER_ID>"></div> -->
 			<img src="<REPLACE_IMAGE>" />
             <div class="banner-content">
-            <h2 class="banner-title"><REPLACE_HEADING></h2>
-            <p class="banner-details"><REPLACE_SUBHEADING></p>
-        </div>
-
+                <h2 class="banner-title"><REPLACE_HEADING></h2>
+                <p class="banner-details"><REPLACE_SUBHEADING></p>
+            </div>
 		</div>`
+    const eventbannertemplate = `
+    <div class="slide-container" >
+			<!-- <div class="image" id="image-<REPLACE_BANNER_ID>"></div> -->
+			<img src="<REPLACE_IMAGE>" />
+            <div class="banner-content">
+                <h2 class="banner-title"><REPLACE_HEADING></h2>
+                <p class="banner-details"><REPLACE_SUBHEADING></p>
+            </div>
+            <a href="javascript:open('<REPLACE_BOOK_NOW_LINK>', '_newwin');" 
+                            class="events_book_now_btn
+                            btn btn-primary btn-lg
+                            " 
+
+                >
+                <!-- <img src="images/booknow-2.png" class="img-responsive" /> -->
+                Book Now
+            </a>
+		</div>
+    `
+    var template = (id == "#events-banner") ? eventbannertemplate : bannertemplate
     var bannerHTML = []
     var index=1;
     bannerdata.forEach((banner) => {
-        var tmp = bannertemplate.replace("<REPLACE_IMAGE>", updateImagePathAsperNormalizedImage(banner.image));
+        var tmp = template.replace("<REPLACE_IMAGE>", updateImagePathAsperNormalizedImage(banner.image));
         tmp = tmp.replace("<REPLACE_SUBHEADING>", banner.sub_heading);
         tmp = tmp.replace("<REPLACE_HEADING>", banner.heading);
         tmp = tmp.replace("<REPLACE_BANNER_ID>", index);
+        var link = $.trim(banner.link)
+        if(link.length > 0) {
+            tmp = tmp.replace("<REPLACE_BOOK_NOW_LINK>", link);
+        } else {
+            tmp = tmp.replace("<REPLACE_BOOK_NOW_LINK>", "");
+        }
         bannerHTML.push(tmp);
         index++;
     })
@@ -312,6 +362,9 @@ loadInitiatives = function(cb) {
 
 renderInitiatives = function(id, menuid, initiatives, initiative_id) {
                 
+
+    //cache the initiatives for donation page
+    initiatives_loaded = initiatives;
 
     const initiativetemplate = `<div class="carousel-item <REPLACE_ACTIVE>">
                                         <div class="col-md-3 col-sm-12">
@@ -456,6 +509,10 @@ loadAboutUs = function(cb) {
         cb(new Error("Data is not available"), undefined);
         return;
     } else {
+
+        //cache it to use for later.
+        gl_about_us_data = dataset;
+
         console.log('About US Available data set is:', dataset)
         cb(undefined, dataset)
     }
@@ -517,6 +574,12 @@ renderAboutUsAndSocialContacts = function(about_us_data) {
     renderContactUS('#contact_email', 'CONTACT_EMAIL_ID', about_us_data)
 
     renderLegalClaim('#legalDisclaimer .modal-body', 'LEGAL_DISCLAIMER', about_us_data)
+
+    renderDonationTaxExemptionClass('#donation_tax_exemption_clause', 'DONATION_TAX_EXEMPTION_CLAUSE', about_us_data)
+}
+
+renderDonationTaxExemptionClass = function(id, key, about_us_data) {
+    $(id).html(about_us_data[key])
 }
 
 showLegalDisclaimer = function( ) {
@@ -722,4 +785,724 @@ saveContact = function() {
     } catch(ex) {
 
     }
+}
+
+handlePaymentResponse = function(details)  {
+    $('#donation_confirmation_dialog').modal('hide')
+
+    if(details == undefined || details.txn_results == undefined) {
+        var donation_results_pretext = `<span class="badge bg-danger">Something went wrong while doing payment. Please try again later. </span>`;
+        $('#donation_results_dialog #donationResultsTitle').html('Donation Failed')
+        $('#donation_results_text').html(donation_results_pretext)
+        $('#donation_results_dialog').modal('show')
+        return;
+    }
+
+    var donation_results_pretext = `Thanks <REPLACE_FIRST_NAME>, for your donation. 
+                                        <REPLACE_DONATION_RESULTS>`;
+    if(gl_about_us_data['DONATION_RESULTS_TEXT']) {
+        donation_results_pretext = gl_about_us_data['DONATION_RESULTS_TEXT']
+    }
+    var first_name = "";
+    if(details != undefined && details.txn_results != undefined) {
+        first_name = details.txn_results.payer.name.given_name
+    }
+    donation_results_pretext = donation_results_pretext.replace('<REPLACE_FIRST_NAME>', first_name);
+    donation_results_pretext = donation_results_pretext.replace('<REPLACE_CONTACT_NAME>', gl_about_us_data['DONATION_CONTACT_NAME']);
+    donation_results_pretext = donation_results_pretext.replace('<REPLACE_INITIATIVE_NAME>', gl_donation_payment_payload['initiative']);
+    $('#donation_results_dialog #donationResultsTitle').html('Donation Success !!')
+    $('#donation_results_text').html(donation_results_pretext)
+    $('#donation_results_dialog').modal('show')
+    
+}
+
+getEnvConfig = function(cb) {
+    
+    const url = `${GET_CONFIG_API_URL}`
+
+    try {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: (data)  => {
+                console.log("Configuation is:", data);
+                cb(undefined, data)
+            },
+            error: (request, status, error) => {
+                console.error('Failed to get the gallery data')
+                console.error('Request', request)
+                console.error('Status', status)
+                console.error('Error', error)
+                cb(error, undefined)
+            }
+        });
+    } catch(ex) {
+        console.log('Exception occurred while loading the configuration data', ex)
+        cb(ex, undefined)
+    }
+
+}
+
+loadPaypalPaymentOptions = async function() {
+
+    getEnvConfig((err, config) => {
+        if(err) {
+            console.log('Failed to get the env configuration');
+            return;
+        }
+
+        const clientID = config.client_id
+        const script_src = paypal_script_src.replaceAll('<REPLACE_CLIENT_ID>', clientID)
+        
+        console.log(`Script to load:${script_src}`)
+
+        var scriptNode = document.createElement('script');
+        scriptNode.src = script_src
+        scriptNode.addEventListener('load', () => {
+
+            console.log('Script paypal node has been added...')
+
+            paypal.Buttons({
+                onInit(data, actions)  {
+                    console.log('On Init is called with data', data);
+                    console.log('on Init is calld with actions', actions);
+                },
+                onClick()  {
+                },
+                onCancel(data) {
+                    console.log('User has cancelled the payment transaction. Data is', data);
+                    return;
+                },
+                createOrder() {
+                    console.log('Order id is called now')
+                    try {
+                        return fetch(`${CREATE_PAYMENT_API_URL}`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(gl_donation_payment_payload)
+                        })
+                        .then((response) => response.json())
+                        .then((order) => order.id);
+                    } catch(ex) {
+                        console.log('Payment initiation failed. Error:' + ex)
+                    }
+                },
+                onApprove(data) {
+                    console.log('On Approval data is', data);
+                    return fetch(`${COMPLETE_PAYMENT_API_URL}`, {
+                            method: "POST",
+                            body: JSON.stringify({
+                                id: data.orderID
+                            })
+                    })
+                    .then((response) => response.json())
+                    .then((details) => {
+                        console.log('Transaction details', details)
+                        // This function shows a transaction success message to your buyer.
+                        // alert('Transaction completed by ' + details.payer.name.given_name);
+                        handlePaymentResponse(details)
+                    });
+                },
+                style: {
+                    layout: 'horizontal',
+                    color:  'gold',
+                    shape:  'rect',
+                    label:  'paypal'
+                }
+            }).render('#payment_container');
+    
+        });
+        document.body.appendChild(scriptNode);
+    });
+}
+
+
+
+getSchemesForGivenInitiative = function(initiativeID) {
+    var selected_initiative = initiatives_loaded.filter((initiative) => initiative.id == initiativeID);
+    if(selected_initiative.length <= 0){
+        return [];
+    }
+    return selected_initiative[0].schemes;
+}
+
+getCustomDonationOption = function(template, schemeNumber) {
+
+    const schemeTemplate = ` <!-- offset-md-1 -->
+    <div class="col-sm-12 col-md-2 col-lg-2 <REPLACE_OFFSET>">
+        <div id="custom_donation_card" class="card text-white bg-secondary mb-3" style="max-width: 18rem;" name="<REPLACE_SCHEME_ID>">
+            <!-- <div class="card-header"><REPLACE_NUMBER></div> -->
+            <img class="card-img-top" src="<REPLACE_SCHEME_IMAGE>" alt="<REPLACE_SCHEME_NAME>">
+            <div class="card-body">
+                <h5 class="card-title"><REPLACE_SCHEME_NAME></h5>
+                <label class="sr-only" for="custom_donation_amount">Donation Amount: </label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text"><REPLACE_DONATION_CURRENCY></div>
+                    </div>
+                    <input 
+                        onBlur="formatCurrency(this, 'blur');"
+                        onkeyup="formatCurrency(this);
+                    type="text" class="form-control" id="custom_donation_amount" placeholder="">
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                 <span>
+                    <REPLACE_DEFAULT_SELECTED>
+                </span>
+            </div>
+        </div>		
+    </div>
+    `
+
+    var option = schemeTemplate.replace("<REPLACE_SCHEME_ID>", custom_donation_config.id);
+    option = option.replace("<REPLACE_NUMBER>", `Scheme: ${schemeNumber}`);
+
+    option = option.replace("<REPLACE_OFFSET>", "");
+    option = option.replace("<REPLACE_SCHEME_IMAGE>", custom_donation_config.image);
+    option = option.replace("<REPLACE_DEFAULT_SELECTED>", "&nbsp;");
+    option = option.replaceAll("<REPLACE_DONATION_CURRENCY>", custom_donation_config.currency);
+    option = option.replaceAll("<REPLACE_SCHEME_NAME>", custom_donation_config.name);
+    return option;    
+}
+
+selectSchemeById = function(scheme_id) {
+    console.log('CLicking the scheme by id:' + scheme_id)
+
+    if(scheme_id == undefined) {
+        //may no schemes, initiatives selected in this page via URL. select the first one.
+        const donation_cards = $(`#donation-section .card`);
+        if(donation_cards.length > 0) {
+            donation_cards[0].click();
+        } else {
+            console.log('No donation cards are avaiable')
+        }
+        return;
+    }
+    $(`#donation-section .card[name="${scheme_id}"]`).click();
+}
+
+
+function formatNumber(n) {
+    // format number 1000000 to 1,234,567
+    return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function formatCurrency(input, blur) {
+
+    var input_val = input.value;
+    // don't validate empty input
+    if (input_val === "") {
+        return;
+    }
+
+    // original length
+    var original_len = input_val.length;
+
+    // initial caret position
+    var caret_pos = input.selectionStart;
+
+    // check for decimal
+    if (input_val.indexOf(".") >= 0) {
+        // get position of first decimal
+        // this prevents multiple decimals from
+        // being entered
+        var decimal_pos = input_val.indexOf(".");
+
+        // split number by decimal point
+        var left_side = input_val.substring(0, decimal_pos);
+        var right_side = input_val.substring(decimal_pos);
+
+        // add commas to left side of number
+        left_side = formatNumber(left_side);
+
+        // validate right side
+        right_side = formatNumber(right_side);
+
+        // On blur make sure 2 numbers after decimal
+        if (blur === "blur") {
+            right_side += "00";
+        }
+
+        // Limit decimal to only 2 digits
+        right_side = right_side.substring(0, 2);
+
+        // join number by .
+        input_val = left_side + "." + right_side;
+    } else {
+        // no decimal entered
+        // add commas to number
+        // remove all non-digits
+        input_val = formatNumber(input_val);
+        input_val = input_val;
+
+        // final formatting
+        if (blur === "blur") {
+            input_val += ".00";
+        }
+    }
+
+    // send updated string to input
+    input.value = input_val;
+
+    $('#donation-section #selected_donation_amount').val(input_val);
+
+    // put caret back in the right position
+    var updated_len = input_val.length;
+    caret_pos = updated_len - original_len + caret_pos;
+    input.setSelectionRange(caret_pos, caret_pos);
+
+
+}
+
+
+addCardClickListeners = function() {
+    $('.card').on('click', (e) => {
+        console.log('Target', e.currentTarget)
+        $('#donation-section .card .card-footer span').html("&nbsp;")
+        $(e.currentTarget).find(".card-footer span").html(SELECTED_ICON_DISPLAY);
+        const selected_scheme = $.trim($(e.currentTarget).attr("name"));
+        if(selected_scheme == "-1") {
+            //custom option is selected
+            //bring the textinput focus
+            $(e.currentTarget).find('input').focus();
+            $('#donation-section #selected_donation_amount').val('');
+
+        }
+        $(e.currentTarget).find(".card-footer span input").val(selected_scheme);
+    
+        //reset the selected donation
+        const selected_scheme_by_user  = getSelectedSchemeDetails();
+        if(selected_scheme_by_user != undefined) {
+            $('#donation-section #selected_donation_amount').val(selected_scheme_by_user.minimum_donation);
+        }
+    });
+    $('#donation-section .card[name=-1]').find("input").keyup(function() {
+        const value = $(this).val();
+        // const value = $('#donation-section .card[name=-1]').find("input").val();
+        $('#donation-section #selected_donation_amount').val(value);
+    })
+
+}
+loadSchemesBasedOnSelectedInitiative = function() {
+
+    const schemeTemplate = ` <!-- offset-md-1 -->
+                            <div class="col-sm-12 col-md-2 col-lg-2 <REPLACE_OFFSET>">
+                                <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;" name="<REPLACE_SCHEME_ID>">
+                                    <!-- <div class="card-header"><REPLACE_NUMBER></div> -->
+                                    <img class="card-img-top" src="<REPLACE_SCHEME_IMAGE>" alt="<REPLACE_SCHEME_NAME>">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><REPLACE_SCHEME_NAME></h5>
+                                        <p class="card-text">
+                                            Donation Amount: 
+                                            <span class="badge badge-light">
+                                                <REPLACE_SCHEME_DONATION_AMOUNT>
+                                            </span>
+                                            <REPLACE_DONATION_CURRENCY>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                         <span>
+                                            <REPLACE_DEFAULT_SELECTED>
+                                        </span>
+                                    </div>
+                                </div>		
+                            </div>
+                            `
+    $('#select_scheme').empty();
+
+    var selected_initiative = $.trim($('#select_initiatives').selectpicker('val'));
+    if(selected_initiative.length <= 0) {
+        return;
+    }
+    var selected_schemes = getSchemesForGivenInitiative(selected_initiative)
+    var options = [];
+    var index = 0;
+
+    selected_schemes.forEach((scheme) => {
+    
+        var option = schemeTemplate.replace("<REPLACE_SCHEME_ID>", scheme.id);
+
+        option = option.replace("<REPLACE_NUMBER>", `Scheme: ${index+1}`);
+        
+        if(index == 0) {
+            option = option.replace("<REPLACE_OFFSET>", "offset-md-1");
+            option = option.replace("<REPLACE_DEFAULT_SELECTED>", SELECTED_ICON_DISPLAY);
+        }  else {
+            option = option.replace("<REPLACE_OFFSET>", "");
+            option = option.replace("<REPLACE_DEFAULT_SELECTED>", "&nbsp;");
+        }
+        option = option.replaceAll("<REPLACE_SCHEME_NAME>", scheme.name);
+        option = option.replaceAll("<REPLACE_SCHEME_IMAGE>", scheme.image);
+        option = option.replace("<REPLACE_SCHEME_DONATION_AMOUNT>", scheme.minimum_donation);
+        option = option.replaceAll("<REPLACE_DONATION_CURRENCY>", scheme.currency);
+        
+        options.push(option);
+        index++;
+    })
+
+    options.push(getCustomDonationOption(schemeTemplate, options.length + 1));
+    // console.log('List of schemes', options)
+    // $('#select_scheme').html(options.join(''));
+    // $('#select_scheme').selectpicker('refresh');
+    // $('#select_scheme').trigger('change')
+
+    $("#select_scheme").html(options.join(''));
+
+    addCardClickListeners();
+
+    const selected_data = getSelectedInitiativeFromURL();
+    if(selected_data.scheme_id != undefined && selected_data.initiative_id != undefined) {
+        const selected_scheme_id = selected_data.scheme_id
+        selectSchemeById(selected_scheme_id)    
+    } else {
+        //select the first one by default
+        console.log('No initiative/scheme details present in URL. Selecting the first one')
+        const donation_cards = $(`#donation-section .card`);
+        if(donation_cards.length > 0) {
+            donation_cards[0].click();
+        } else {
+            console.log('No donation cards are avaiable')
+        }
+    }
+
+    const selected_scheme_by_user  = getSelectedSchemeDetails();
+    if(selected_scheme_by_user != undefined) {
+        $('#donation-section #selected_donation_amount').val(selected_scheme_by_user.minimum_donation);
+    }   
+}
+
+getSelectedInitiativeDetails = function() {
+    const name = $('#select_initiatives option:selected').text();
+
+    var selected_initiative = initiatives_loaded.filter((initiative) => initiative.name == name )
+    // var selected_initiative_details = options.filter((option) => {
+    //     return $(option).text()
+    // })
+    // console.log('Selected initiative is:', selected_initiative_details );
+    if(selected_initiative == undefined || selected_initiative.length <= 0) {
+        return undefined;
+    }
+    return selected_initiative[0]
+}
+
+getSelectedSchemeDetails = function() {
+
+    const selected_initiative_id = $.trim($("#select_initiatives").selectpicker('val'));
+    if(selected_initiative_id.length <= 0) {
+        return undefined;
+    }
+    var schemes = getSchemesForGivenInitiative(selected_initiative_id);
+    if(schemes == undefined) {
+        console.log('Schemes for the selected initiative is empty')
+        return undefined;
+    }
+    //getSelected Scheme id
+    const user_selected_scheme_id = $.trim($('#user_selected_scheme').val());
+    if(user_selected_scheme_id.length <= 0) {
+        console.log('User selected scheme id not found')
+        return undefined;
+    }
+    console.log('Selected scheme id', user_selected_scheme_id)
+    const selected_scheme = schemes.filter((scheme) => scheme.id == user_selected_scheme_id)
+    if(selected_scheme.length <= 0) {
+        console.log('Selected scheme is found to be empty')
+        return undefined;
+    }
+    return selected_scheme[0]
+}
+
+getSelectedInitiativeFromURL = function() {
+    const urlParams = new URLSearchParams(location.search);
+    return {
+        initiative_id: urlParams.get("initiative_id"),
+        scheme_id: urlParams.get("scheme_id")
+    }
+}
+
+populateInitiativeSchemesForDonation = function() {
+    console.log('Initiatives to be loaded', initiatives_loaded)
+    var options = [];
+    var index = 0;
+
+    const selected_data = getSelectedInitiativeFromURL();
+    const selected_scheme_id = selected_data.scheme_id
+    const selected_initiative_id = selected_data.initiative_id
+
+    initiatives_loaded.forEach((initiative) => {
+    
+        var option = `<option value="${initiative.id}"` 
+        if(initiative.id == selected_initiative_id) {
+            option += " selected "
+        }
+        // option += ` data-thumbnail="${updateImagePathAsperNormalizedImage(initiative.image)}" `
+        option += `>${initiative.name}</option>`
+        
+        options.push(option);
+        index++;
+    })
+    // $('#select_initiatives').html(options.join(''));
+    // $('#select_initiatives').selectpicker('refresh');
+    $("#select_initiatives").selectpicker('refresh').empty().append(options.join('')).selectpicker('refresh').trigger('change');
+
+    loadSchemesBasedOnSelectedInitiative();
+}
+
+resetDonateError = function(msg) {
+    $('#anyDonateError').text(msg);
+}
+
+enableDonationBtnLoadingStatus = function(status) {
+    if(status) {
+        $('#btnDonate').html(BTN_LOADING_STATUS);
+    } else {
+        $('#btnDonate').html("Donate");
+    }
+}
+
+initiateDonateNow = function() {
+
+    gl_donation_payment_payload = undefined;
+
+    resetDonateError('')
+    var total_donation_amount = $.trim($('#selected_donation_amount').val());
+    const donor_first_name = $.trim($('#donate_contact_firstname').val());
+    const donor_last_name = $.trim($('#donate_contact_lastname').val());
+    const donor_email = $.trim($('#donate_contact_email_customer').val());
+    const donor_phone = $.trim($('#donate_contact_phone_customer').val());
+    const donor_address = $.trim($('#donate_contact_address_customer').val());
+    const donor_zip = $.trim($('#donate_contact_zip_customer').val());
+
+    if(total_donation_amount.length <= 0) {
+        resetDonateError('Donation amount found to be invalid');
+        $('#selected_donation_amount').focus();
+        return;
+    }
+    if(donor_first_name.length <= 0) {
+        resetDonateError('Your name cannot be empty');
+        $('#donate_contact_firstname').focus();
+        return;
+    }
+    if(donor_email.length <= 0) {
+        resetDonateError('Your email cannot be empty');
+        $('#donate_contact_email_customer').focus();
+        return;
+    }
+    
+
+    const recurring_donation = $('#recurring_donation_enabled').prop('checked');
+    console.log('REcurring donation enabled', recurring_donation)
+
+    if(recurring_donation) {
+        total_donation_amount = Math.floor(total_donation_amount) 
+    }
+
+    var donation_confirmation_pretext = `Dear <REPLACE_FIRST_NAME>, <br/> Thank you for your generous contribution as donation towards Sadananada <REPLACE_DONATION_FREQUENCY>`;
+    if(gl_about_us_data['DONATION_CONFIRMATION_TEXT']) {
+        donation_confirmation_pretext = gl_about_us_data['DONATION_CONFIRMATION_TEXT']
+    }
+    donation_confirmation_pretext = donation_confirmation_pretext.replace('<REPLACE_FIRST_NAME>', donor_first_name);
+
+    var donation_amount_freq_template = `
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                Selected Initiative
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <span class="badge bg-secondary"><REPLACE_DONATION_INITIATIVE> -> <REPLACE_DONATION_SCHEME></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                Donation Amount
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <span class="badge bg-success"><REPLACE_DONATION_AMOUNT> <REPLACE_DONATION_CURRENCY></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                Donation Frequency
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <span class="badge bg-primary"><REPLACE_DONATION_FREQUENCY></span>
+                                            </div>
+                                        </div>
+                                        `
+    var donation_freq = "Once"
+    if(recurring_donation) {
+        donation_freq = "Every Month"
+    }
+    var donation_details = donation_amount_freq_template.replace("<REPLACE_DONATION_AMOUNT>", total_donation_amount);
+    donation_details =  donation_details.replace("<REPLACE_DONATION_FREQUENCY>", donation_freq)
+    donation_confirmation_pretext = donation_confirmation_pretext.replace("<REPLACE_DONATION_DATA>", donation_details);
+    
+    selected_initiative_for_donation = getSelectedInitiativeDetails();
+    if(selected_initiative_for_donation == undefined) {
+        resetDonateError('Something went wrong while processing the initiatives');
+        return;
+    }
+    selected_scheme_for_donation = getSelectedSchemeDetails();
+    if(selected_scheme_for_donation == undefined) {
+        selected_scheme_for_donation = custom_donation_config;
+    }
+    console.log('Selected scheme in payment is:', selected_scheme_for_donation)
+    console.log('Selected Initiative is:', selected_initiative_for_donation.name)
+
+    donation_confirmation_pretext = donation_confirmation_pretext.replace("<REPLACE_DONATION_INITIATIVE>", selected_initiative_for_donation.name);
+    donation_confirmation_pretext = donation_confirmation_pretext.replace("<REPLACE_DONATION_SCHEME>", selected_scheme_for_donation.name);
+    donation_confirmation_pretext = donation_confirmation_pretext.replace("<REPLACE_DONATION_CURRENCY>", selected_scheme_for_donation.currency);
+
+    $('#donation_confirmation_text').html(donation_confirmation_pretext)
+
+    selected_plan_id_for_subscription = selected_initiative_for_donation.subscription_plan_id;
+
+    gl_donation_payment_payload = {
+        "first_name": donor_first_name,
+        "last_name": donor_last_name,
+        "donation_amount": total_donation_amount,
+        "currency": selected_scheme_for_donation.currency,
+        "email": donor_email,
+        "phone": donor_phone,
+        "address": donor_address,
+        "zip": donor_zip,
+        "donation_frequency" : donation_freq,
+        "subscription_plan_id": selected_plan_id_for_subscription,
+        "initiative" : selected_initiative_for_donation.name,
+        "scheme" : selected_scheme_for_donation.name,
+        "donation_initiated_at" : new Date()
+    }
+    console.log('Initiating donation with:', gl_donation_payment_payload)
+    
+    enableDonationBtnLoadingStatus(true)
+
+    getEnvConfig((err, config) => {
+        if(err) {
+            console.log('Failed to get the env configuration');
+            enableDonationBtnLoadingStatus(false)
+            return;
+        }
+        const clientID = config.client_id
+
+        var script_src = recurring_donation ? paypal_subscription_script_src : paypal_script_src
+        script_src = script_src.replaceAll('<REPLACE_CLIENT_ID>', clientID)
+        console.log(`Script to load:${script_src}`)
+
+        //Delete any script node if any
+        $('#paypalIDNode').remove();
+
+        var scriptNode = document.createElement('script');
+        scriptNode.src = script_src
+        scriptNode.id = "paypalIDNode"
+        if(recurring_donation) {
+            scriptNode.addEventListener('load', () => {
+                console.log('Script paypal node has been added for subscription...')
+                paypal.Buttons({
+                    onInit(data, actions)  {
+                        console.log('On Init is called with data', data);
+                        console.log('on Init is calld with actions', actions);
+                        enableDonationBtnLoadingStatus(false)
+                        $('#donation_confirmation_dialog').modal('show')
+                    },
+                    onClick()  {
+                    },
+                    onCancel(data) {
+                        console.log('User has cancelled the payment transaction. Data is', data);
+                        handlePaymentResponse(undefined);
+                        return;
+                    },
+                    createSubscription: function(data, actions) {
+                        console.log('Create subscription is called now for plan id:' + selected_plan_id_for_subscription)
+                        return actions.subscription.create({
+                            "plan_id": selected_plan_id_for_subscription, // Creates the subscription
+                            "quantity": total_donation_amount
+                        });
+                    },
+                    onApprove(data) {
+                        console.log('On Approval data is', data);
+                        return fetch(`${COMPLETE_PAYMENT_API_URL}`, {
+                                method: "POST",
+                                body: JSON.stringify({
+                                    id: data.orderID
+                                })
+                        })
+                        .then((response) => response.json())
+                        .then((details) => {
+                            console.log('Transaction details', details)
+                            // This function shows a transaction success message to your buyer.
+                            // alert('Transaction completed by ' + details.payer.name.given_name);
+                            handlePaymentResponse(details)
+                        });
+                    },
+                    style: {
+                        layout: 'horizontal',
+                        color:  'gold',
+                        shape:  'rect',
+                        label:  'paypal'
+                    }
+                }).render('#payment_container');
+        
+            });
+        } else {
+            scriptNode.addEventListener('load', () => {
+                console.log('Script paypal node has been added for default...')
+                paypal.Buttons({
+                    onInit(data, actions)  {
+                        console.log('On Init is called with data', data);
+                        console.log('on Init is calld with actions', actions);
+                        enableDonationBtnLoadingStatus(false)
+                        $('#donation_confirmation_dialog').modal('show')
+                    },
+                    onClick()  {
+                    },
+                    onCancel(data) {
+                        console.log('User has cancelled the payment transaction. Data is', data);
+                        handlePaymentResponse(undefined);
+                        return;
+                    },
+                    createOrder() {
+                        console.log('Order id is called now')
+                        try {
+                            return fetch(`${CREATE_PAYMENT_API_URL}`, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify(gl_donation_payment_payload)
+                            })
+                            .then((response) => response.json())
+                            .then((order) => order.id);
+                        } catch(ex) {
+                            console.log('Payment initiation failed. Error:' + ex)
+                        }
+                    },
+                    onApprove(data) {
+                        console.log('On Approval data is', data);
+                        return fetch(`${COMPLETE_PAYMENT_API_URL}`, {
+                                method: "POST",
+                                body: JSON.stringify({
+                                    id: data.orderID
+                                })
+                        })
+                        .then((response) => response.json())
+                        .then((details) => {
+                            console.log('Transaction details', details)
+                            // This function shows a transaction success message to your buyer.
+                            // alert('Transaction completed by ' + details.payer.name.given_name);
+                            handlePaymentResponse(details)
+                        });
+                    },
+                    style: {
+                        layout: 'horizontal',
+                        color:  'gold',
+                        shape:  'rect',
+                        label:  'paypal'
+                    }
+                }).render('#payment_container');
+            });
+        }
+        document.body.appendChild(scriptNode);
+    });
 }

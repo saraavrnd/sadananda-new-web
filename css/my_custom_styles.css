@@ -102,6 +102,25 @@ a {
 	/* height: 300px !important; */
 }
 
+#events-banner .events_book_now_btn {
+	/* padding-left: 50px;
+	padding-right: 50px; */
+	position: absolute;
+	top: 425px;  
+	left: 85% !important; 
+	/* right: 0% !important;  */
+	z-index: 100;
+	font-size: x-large;
+	font-weight: 900;
+	background-color: #fa6f1c;
+	border: 1px solid white;
+	width: fit-content;
+}
+
+#events-banner .events_book_now_btn img {
+	width: 300px !important;
+}
+
 #events-banner .slide-container {
 	/* height: 600px !important; */
 }
@@ -200,7 +219,7 @@ a {
 	padding-left: 50px;
 	padding-right: 50px;
 	position: absolute;
-	top: 25%;
+	top: 30%;
 	left: 5% !important;
 	right: 5% !important; 
 	/* height: 100px; */
@@ -290,7 +309,9 @@ a {
 	/* height: 200px; */
 	/* border: 2px solid red; */
 	/* border-radius: 5px; */
-	display: block;
+	/* display: block; */
+	display: flex;
+      justify-content: center;
 }
 
 #initiativesbanner .initiative-slide-container .initiative-name,
@@ -535,6 +556,11 @@ a {
 	margin-bottom: 20px !important;
 }
 
+#contactus-section .section-body .page-head {
+	padding: 16px 48px 16px;
+	text-align: center;
+}
+
 #btnContactSubmit {
 	margin-top: 8px;;
 	float: right;
@@ -557,11 +583,55 @@ a {
 	left:50%;
 	padding:2px;
 }
- 
+.mandate {
+	color: red;
+}
+
+#donation-section {
+	padding: 24px 0 24px !important;
+}
+
+#donation-section .section-head {
+	margin-bottom: 16px !important;
+}
+
+#donation-section .card:hover {
+	cursor: pointer;
+}
+
+#donation-section .card-body {
+	max-height: 160px !important;
+	height: 160px !important;
+}
+
+#donation-section .card .card-footer span {
+	font-size: xx-large;
+}
+
+#donation-section label {
+	font-weight: bold !important;
+}
+
+
+#select_scheme {
+	/* margin-left: 16px; */
+}
+#select_scheme .card-body {
+	overflow: auto;
+}
+
 @media  (max-width: 1280px) {
 
 	#events-banner {
 		height: 450px !important;
+	}
+
+	#events-banner .events_book_now_btn {
+		top: 410px !important; 
+		left: 88% !important; 
+		z-index: 100;
+		font-size: larger;
+		padding: 8px;
 	}
 }
 
@@ -671,7 +741,13 @@ a {
 		padding: 32px 0 32px !important
 	}
 
-
+	#events-banner .events_book_now_btn {
+		top: 320px !important; 
+		left: 85% !important; 
+		z-index: 100;
+		font-size: larger;
+		padding: 8px;
+	}
 } 
 
 /* Surface Pro 7: tested */
@@ -728,7 +804,13 @@ a {
 		padding: 32px 0 32px !important
 	}
 
-
+	#events-banner .events_book_now_btn {
+		top: 280px !important; 
+		left: 85% !important; 
+		z-index: 100;
+		font-size: large;
+		padding: 8px;
+	}
 } 
 
 /* ipad air: tested */
@@ -814,6 +896,31 @@ a {
 	.footer-body {
 		padding: 32px 0 32px !important
 	}
+
+	#select_scheme {
+		margin-left: 0px;
+	}
+
+	#select_scheme .card-title {
+		font-size:medium !important;
+	}
+
+	#select_scheme .card-text {
+		font-size:smaller !important;
+	}
+
+	#custom_donation_card .input-group-text {
+		font-weight: 200;
+		font-size: small;
+	}
+
+	#events-banner .events_book_now_btn {
+		top: 250px !important; 
+		left: 85% !important; 
+		z-index: 100;
+		font-size: medium;
+		padding: 8px;
+	}
 } 
 
 
@@ -888,6 +995,27 @@ a {
 	}
 	.footer-body {
 		padding: 32px 0 32px !important
+	}
+
+	#select_scheme .card-title {
+		font-size:small !important;
+	}
+
+	#select_scheme .card-text {
+		font-size: 10px !important;
+	}
+
+	#custom_donation_card .input-group-text {
+		font-weight: 200;
+		font-size: small;
+	}
+
+	#events-banner .events_book_now_btn {
+		top: 230px !important; 
+		left: 85% !important; 
+		z-index: 100;
+		font-size: medium;
+		padding: 8px;
 	}
 } 
 
@@ -1010,6 +1138,31 @@ a {
 	.footer-body {
 		padding: 32px 0 32px !important
 	}
+
+	#select_scheme {
+		margin-left: 32px;
+	}
+
+	#select_scheme .card-title {
+		font-size:larger !important;
+	}
+
+	#select_scheme .card-text {
+		font-size: large !important; 
+	}
+
+	#custom_donation_card .input-group-text {
+		/* font-weight: 200;
+		font-size: small; */
+	}
+
+	#events-banner .events_book_now_btn {
+		top: 155px !important; 
+		left: 80% !important; 
+		z-index: 100;
+		font-size: small;
+		padding: 8px;
+	}
 } 
 
 /* iPhone XR : tested*/
@@ -1125,6 +1278,18 @@ a {
 	.footer-body {
 		padding: 32px 0 32px !important
 	}
+
+	#select_scheme {
+		margin-left: 32px;
+	}
+
+	#events-banner .events_book_now_btn {
+		top: 120px !important; 
+		left: 85% !important; 
+		z-index: 100;
+		font-size: 8px;
+		padding: 4px;
+	}
 } 
 
 /* iPhone 12 Pro : tested*/
@@ -1230,6 +1395,18 @@ a {
 	}
 	.footer-body {
 		padding: 32px 0 32px !important
+	}
+
+	#select_scheme {
+		margin-left: 32px;
+	}
+
+	#events-banner .events_book_now_btn {
+		top: 120px !important; 
+		left: 85% !important; 
+		z-index: 100;
+		font-size: 8px;
+		padding: 4px;
 	}
 } 
 
@@ -1356,6 +1533,19 @@ a {
 	.footer-body {
 		padding: 32px 0 32px !important
 	}
+
+	#select_scheme {
+		margin-left: 16px;
+	}
+
+	#events-banner .events_book_now_btn {
+		top: 110px !important; 
+		left: 80% !important; 
+		z-index: 100;
+		font-size: 8px;
+		padding: 4px;
+	}
+	
 } 
 
 /* Galaxy fold - tested okay */
@@ -1480,6 +1670,18 @@ a {
 	}
 	.footer-body {
 		padding: 32px 0 32px !important
+	}
+
+	#select_scheme {
+		margin-left: -16px;
+	}
+
+	#events-banner .events_book_now_btn {
+		top: 75px !important; 
+		left: 78% !important; 
+		z-index: 100;
+		font-size: 8px;
+		padding: 4px;
 	}
 } 
 
