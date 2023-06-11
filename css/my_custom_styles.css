@@ -106,7 +106,7 @@ a {
 	/* padding-left: 50px;
 	padding-right: 50px; */
 	position: absolute;
-	top: 425px;  
+	top: 185px;  
 	left: 85% !important; 
 	/* right: 0% !important;  */
 	z-index: 100;
@@ -181,7 +181,7 @@ a {
 #initiativesbanner .owl-nav .owl-next, 
 #schemabanner .owl-nav .owl-prev,
 #schemabanner .owl-nav .owl-next  {
-	font-size: 25px !important; 
+	font-size: 50px !important; 
 }
 
 .sadananda-slides .owl-nav .owl-next:hover,
@@ -201,12 +201,12 @@ a {
 }
 
 #initiativesbanner {
-	padding-left: 50px;
-	padding-right: 50px;
+	/* padding-left: 180px; */
+	/* padding-right: 50px; */
 	position: absolute;
 	top: 30%;
-	left: 5% !important;
-	right: 5% !important; 
+	left: 12% !important;
+	/* right: 5% !important;  */
 	/* height: 100px; */
 	/* border: 2px solid black; */
 	/* background-color: #064ba0; */
@@ -219,7 +219,7 @@ a {
 	padding-left: 50px;
 	padding-right: 50px;
 	position: absolute;
-	top: 30%;
+	top: 27%;
 	left: 5% !important;
 	right: 5% !important; 
 	/* height: 100px; */
@@ -230,13 +230,33 @@ a {
 	z-index: 10;
 }
 
-#schemabanner-medicalcare {
+.schemabanner-medicalcare  {
 	padding-left: 50px;
 	padding-right: 50px;
 	position: absolute;
-	top: 28%;
+	top: 30% !important;
 	left: 5% !important;
 	right: 5% !important; 
+	/* height: 100px; */
+	/* border: 2px solid black; */
+	/* background-color: #064ba0; */
+	/* opacity: 0.8; */
+	/* border-radius: 8px; */
+	z-index: 400;
+}
+
+.future_projects_section-featured {
+	padding: 24px 0 24px !important;
+}
+
+.schemabanner-future_projects {
+	padding-left: 0px !important;
+	margin-right: 80px !important;
+	position: relative !important;
+	margin-top: 0px !important;
+	/* top: 40% !important;
+	left: 5% !important;
+	right: 5% !important;  */
 	/* height: 100px; */
 	/* border: 2px solid black; */
 	/* background-color: #064ba0; */
@@ -283,7 +303,7 @@ a {
 }
 
 .initiative-slide-container {
-	/* max-width: 300px; */
+	max-width: 260px !important;
 	/* height: 260px; */
 	/* border: 2px solid red; */
 	/* border-radius: 5px; */
@@ -319,6 +339,7 @@ a {
 	font-weight: bold;
 	text-align: center;
 	word-wrap: normal;
+	font-size: medium;
 }
 
 #initiativesbanner .initiative-slide-container a:link {
@@ -330,7 +351,7 @@ a {
 }
 
 /* #initiativesbanner .initiative-slide-container .initiative-image .slide-overlay { */
-#initiativesbanner .initiative-slide-container  .slide-overlay {
+/* #initiativesbanner .initiative-slide-container  .slide-overlay {
 	position: absolute;
 	top: 0%;
 	width: 260px;
@@ -338,9 +359,9 @@ a {
 	background: rgba(39, 38, 44, 0.7);
 	visibility: hidden;
 	opacity: 0;
-}
+} */
 
-#schemabanner .initiative-slide-container .slide-overlay {
+/* #schemabanner .initiative-slide-container .slide-overlay {
 	position: absolute;
 	top: 0;
 	width: 260px;
@@ -348,7 +369,7 @@ a {
 	background: rgba(39, 38, 44, 0.7);
 	visibility: hidden;
 	opacity: 0;
-}
+} */
 
 
 /* #initiativesbanner .initiative-slide-container .initiative-image .slide-overlay, */
@@ -404,6 +425,38 @@ a {
 	transform: translate(-50%, -50%);
 }
 
+#initiativesbanner .card,
+#schemabanner .card {
+	border: 2px solid #fff;
+	/* padding-right: 40px; */
+}
+#initiativesbanner .card-body,
+#schemabanner .card-body {
+	padding: 0px;
+	background-color: transparent !important;
+}
+
+#initiativesbanner .card-footer,
+#schemabanner .card-footer {
+	padding: 4px;
+	border: 0px;
+	background-color: transparent !important;
+}
+#initiativesbanner .card-footer .button,
+#schemabanner .card-footer .button {
+	padding: 4px 8px 4px;
+	border-radius: 4px;
+	font-size: small;
+	margin-bottom: 4px;;
+}
+
+#schemabanner .card-body .scheme-name {
+	font-weight: bold;
+	text-align: center;
+	word-wrap: normal;
+	font-size: small;
+}
+
 #section_about_sadananda,
 .initiative-head {
 	position: relative;
@@ -415,6 +468,7 @@ a {
 .initiative-head  {
 	/* text-align: center; */
 	padding: 48px 48px 16px;
+	margin-top: 12px;
 }
 
 #section_about_sadananda .page-head .section-image,
@@ -431,6 +485,7 @@ a {
 .page-head,
 .initiative-head {
 	padding: 16px 48px 16px;
+	margin-top: 160px;
 }
 
 .page-head .page-head-title .section-image,
@@ -552,6 +607,10 @@ a {
 	position: relative;
 }
 
+.about_us_team_name {
+	text-transform: uppercase;
+}
+
 #contactus-section .section-head {
 	margin-bottom: 20px !important;
 }
@@ -559,6 +618,7 @@ a {
 #contactus-section .section-body .page-head {
 	padding: 16px 48px 16px;
 	text-align: center;
+	margin-top: 24px !important;
 }
 
 #btnContactSubmit {
@@ -602,14 +662,19 @@ a {
 #donation-section .card-body {
 	max-height: 160px !important;
 	height: 160px !important;
+	text-align: center;
 }
 
+#donation-section .card-title {
+	font-size: 14px;
+}
 #donation-section .card .card-footer span {
 	font-size: xx-large;
 }
 
 #donation-section label {
 	font-weight: bold !important;
+	font-size: small;
 }
 
 
@@ -627,7 +692,7 @@ a {
 	}
 
 	#events-banner .events_book_now_btn {
-		top: 410px !important; 
+		top: 140px !important; 
 		left: 88% !important; 
 		z-index: 100;
 		font-size: larger;
@@ -742,7 +807,7 @@ a {
 	}
 
 	#events-banner .events_book_now_btn {
-		top: 320px !important; 
+		top: 110px !important; 
 		left: 85% !important; 
 		z-index: 100;
 		font-size: larger;
@@ -757,7 +822,12 @@ a {
 		width: 40%;
 		height: auto;
 	}
-
+	.header .header-actions {
+		display: block;
+	}
+	.header .header-actions .button {
+    	margin-top: 8px;
+	}
 	#events-banner {
 		height: 310px !important;
 	}
@@ -805,7 +875,7 @@ a {
 	}
 
 	#events-banner .events_book_now_btn {
-		top: 280px !important; 
+		top: 90px !important; 
 		left: 85% !important; 
 		z-index: 100;
 		font-size: large;
@@ -820,6 +890,14 @@ a {
 		width: 50%;
 		height: auto;
 	}
+
+	.header .header-actions {
+		display: block;
+	}
+	.header .header-actions .button {
+    	margin-top: 8px;
+	}
+
 	#events-banner {
 		height: 280px !important;
 	}
@@ -863,6 +941,10 @@ a {
 		right: 10% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
+	}
+
+	.schemabanner-medicalcare {
+		top: 26% !important;
 	}
 
 
@@ -915,7 +997,7 @@ a {
 	}
 
 	#events-banner .events_book_now_btn {
-		top: 250px !important; 
+		top: 80px !important; 
 		left: 85% !important; 
 		z-index: 100;
 		font-size: medium;
@@ -1011,7 +1093,7 @@ a {
 	}
 
 	#events-banner .events_book_now_btn {
-		top: 230px !important; 
+		top: 90px !important; 
 		left: 85% !important; 
 		z-index: 100;
 		font-size: medium;
@@ -1072,6 +1154,10 @@ a {
 		/* border-radius: 8px; */
 	}
 
+	.schemabanner-medicalcare {
+		top: 12% !important;
+	}
+
 
 	#initiativesbanner .owl-nav {
 		position: absolute;
@@ -1119,6 +1205,7 @@ a {
 
 	.page-head, .initiative-head {
 		padding: 80px 48px 80px;
+		margin-top: 64px;;
 	}
 
 	.section-featured .slider-featured {
@@ -1157,7 +1244,7 @@ a {
 	}
 
 	#events-banner .events_book_now_btn {
-		top: 155px !important; 
+		top: 60px !important; 
 		left: 80% !important; 
 		z-index: 100;
 		font-size: small;
@@ -1170,6 +1257,14 @@ a {
 	.header .header-logo img {
 		width: auto;
 		height: auto;
+	}
+	.header .header-actions {
+		display: block;
+	}
+	.header .header-actions .button {
+		min-width: 80px;
+		padding: 8px 8px 8px;
+    	margin-top: 16px;
 	}
 
 	#events-banner {
@@ -1214,6 +1309,10 @@ a {
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
+	}
+
+	.schemabanner-medicalcare {
+		top: 10% !important;
 	}
 
 
@@ -1284,7 +1383,7 @@ a {
 	}
 
 	#events-banner .events_book_now_btn {
-		top: 120px !important; 
+		top: 40px !important; 
 		left: 85% !important; 
 		z-index: 100;
 		font-size: 8px;
@@ -1338,6 +1437,10 @@ a {
 		right: 20% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
+	}
+
+	.schemabanner-medicalcare {
+		top: 9% !important;
 	}
 
 	#initiativesbanner .owl-nav {
@@ -1402,7 +1505,7 @@ a {
 	}
 
 	#events-banner .events_book_now_btn {
-		top: 120px !important; 
+		top: 45px !important; 
 		left: 85% !important; 
 		z-index: 100;
 		font-size: 8px;
@@ -1416,6 +1519,15 @@ a {
 	.header .header-logo img {
 		width: auto;
 		height: auto;
+	}
+
+	.header .header-actions {
+		display: block;
+	}
+	.header .header-actions .button {
+		min-width: 80px;
+		padding: 8px 8px 8px;
+    	margin-top: 16px;
 	}
 	#events-banner {
 		height: 115px !important;
@@ -1497,6 +1609,7 @@ a {
 		padding-left: 48px; 
 		padding-right: 48px; 
 		padding-bottom: 16px; 
+		margin-top: 24px !important;
 	}
 
 	
@@ -1539,8 +1652,8 @@ a {
 	}
 
 	#events-banner .events_book_now_btn {
-		top: 110px !important; 
-		left: 80% !important; 
+		top: 40px !important; 
+		left: 85% !important; 
 		z-index: 100;
 		font-size: 8px;
 		padding: 4px;
@@ -1552,8 +1665,10 @@ a {
 @media (max-width: 280px) {
 
 	.header .header-logo img {
-		width: 100%;
-		height: auto;
+		/* width: 100%; */
+
+		height: 100%;
+		margin-top: 20px;
 	}
 
 	#events-banner {
@@ -1596,6 +1711,10 @@ a {
 		right: 4% !important; 
 		/* height: 100px; */
 		/* background-color: orange; */
+	}
+
+	.schemabanner-medicalcare {
+		top: 7% !important;
 	}
 
 	#initiativesbanner .owl-nav {
@@ -1677,7 +1796,7 @@ a {
 	}
 
 	#events-banner .events_book_now_btn {
-		top: 75px !important; 
+		top: 30px !important; 
 		left: 78% !important; 
 		z-index: 100;
 		font-size: 8px;

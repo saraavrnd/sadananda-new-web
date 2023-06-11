@@ -17,9 +17,16 @@ const custom_donation_config = {
     id: -1,
     name: "Custom",
     desc: "You can choose any amount to be donated",
-    image: "images/default/Slide-1-Sadananda-homeview.png",
+    image: "images/default/sadananda_homeview_custom_donate.png",
     currency: "USD"
 }
+
+const custom_initiatives = [
+    // {
+    //     name: "Future Projects",
+    //     link: "future_projects.html"
+    // }
+]
 var selected_initiative_donation = undefined;
 var initiatives_loaded = undefined;
 var selected_initiative_for_donation = undefined;
@@ -224,7 +231,8 @@ renderBanner = function(id, bannerdata) {
     var bannerHTML = []
     var index=1;
     bannerdata.forEach((banner) => {
-        var tmp = template.replace("<REPLACE_IMAGE>", updateImagePathAsperNormalizedImage(banner.image));
+        // var tmp = template.replace("<REPLACE_IMAGE>", updateImagePathAsperNormalizedImage(banner.image));
+        var tmp = template.replace("<REPLACE_IMAGE>", banner.image);
         tmp = tmp.replace("<REPLACE_SUBHEADING>", banner.sub_heading);
         tmp = tmp.replace("<REPLACE_HEADING>", banner.heading);
         tmp = tmp.replace("<REPLACE_BANNER_ID>", index);
@@ -366,44 +374,45 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
     //cache the initiatives for donation page
     initiatives_loaded = initiatives;
 
-    const initiativetemplate = `<div class="carousel-item <REPLACE_ACTIVE>">
-                                        <div class="col-md-3 col-sm-12">
+    const initiativetemplate = `<div class="carousel-item <REPLACE_ACTIVE> ">
+                                        <div class="col-md-3 col-sm-12 ">
                                             <div class="initiative-slide-container" >
-                                                <div class="initiative-image">
+                                                <div class="card mb-3" >
                                                     <a href="<REPLACE_LINK>">
-                                                        <img src="<REPLACE_IMAGE>" class="rounded">
+                                                        <img class="card-img-top" src="<REPLACE_IMAGE>" alt="<REPLACE_NAME>">
                                                     </a>
-                                                    <div class="slide-overlay">
-                                                        <div class="slide-overlay-inner">
-                                                            <a href="page-donate.html?name=<REPLACE_ID>" class="button button-white">Donate Now</a>
-                                                            <a href="<REPLACE_LINK>" class="button button-white">more...</a>
-                                                        </div>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title initiative-name"><REPLACE_NAME></h5>
+                                                    </div>                                                        
+                                                    <div class="card-footer text-center">
+                                                        <a href="page-donate.html?initiative_id=<REPLACE_ID>" class="button">Donate Now</a>
+                                                        <!-- <a href="<REPLACE_LINK>" class="button ">more...</a> -->
                                                     </div>
                                                 </div>
-                                                <a href="<REPLACE_LINK>">
-                                                    <h6 class="initiative-name">
-                                                        <REPLACE_NAME>
-                                                    </h6>
-                                                </a>
-                                            </div>
+                                            </div>	                                
                                         </div>
                                     </div>
                                 `
                                 
+                                // "is_enabled_in_initiative_banner" : 1,
+                                // "is_enabled_in_menu": 1
+                        
     var initiativeHTML = []
     var index = 0;
     initiatives.forEach((initiative) => {
-        var tmp = initiativetemplate.replaceAll("<REPLACE_LINK>", initiative.link);
-        tmp = tmp.replaceAll("<REPLACE_IMAGE>", initiative.image);
-        tmp = tmp.replaceAll("<REPLACE_NAME>", initiative.name);
-        tmp = tmp.replaceAll("<REPLACE_ID>", initiative.id);
-        if(index == 0) {
-            tmp = tmp.replaceAll("<REPLACE_ACTIVE>", "active");
-        } else {
-            tmp = tmp.replaceAll("<REPLACE_ACTIVE>", "");
+        if(initiative.is_enabled_in_initiative_banner == 1) {
+            var tmp = initiativetemplate.replaceAll("<REPLACE_LINK>", initiative.link);
+            tmp = tmp.replaceAll("<REPLACE_IMAGE>", initiative.image);
+            tmp = tmp.replaceAll("<REPLACE_NAME>", initiative.name);
+            tmp = tmp.replaceAll("<REPLACE_ID>", initiative.id);
+            if(index == 0) {
+                tmp = tmp.replaceAll("<REPLACE_ACTIVE>", "active");
+            } else {
+                tmp = tmp.replaceAll("<REPLACE_ACTIVE>", "");
+            }
+            initiativeHTML.push(tmp)
         }
         index++;
-        initiativeHTML.push(tmp)
     })
     $(id).html(initiativeHTML.join(''))
     // $(id + ' .carousel-item:first-child').toggle("active")
@@ -415,10 +424,20 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
                                         </li>`
     var initiativeMenuHTML = []
     initiatives.forEach((initiative) => {
-        var tmp = initiatives_menu_template.replaceAll("<REPLACE_LINK>", initiative.link);
-        tmp = tmp.replaceAll("<REPLACE_NAME>", initiative.name);
+
+        if(initiative.is_enabled_in_menu == 1) {
+            var tmp = initiatives_menu_template.replaceAll("<REPLACE_LINK>", initiative.link);
+            tmp = tmp.replaceAll("<REPLACE_NAME>", initiative.name);
+            initiativeMenuHTML.push(tmp)
+        }
+    })
+
+    custom_initiatives.forEach((custom_initiative) => {
+        var tmp = initiatives_menu_template.replaceAll("<REPLACE_LINK>", custom_initiative.link);
+        tmp = tmp.replaceAll("<REPLACE_NAME>", custom_initiative.name);
         initiativeMenuHTML.push(tmp)
     })
+    
     $(menuid).html(initiativeMenuHTML.join(''));
 
     var schemeDetailsHTML  = [];
@@ -428,43 +447,21 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
                                 <div class="carousel-item <REPLACE_ACTIVE>">
                                     <div class="col-md-3 col-sm-12">
                                         <div class="initiative-slide-container" >
-                                            <div class="initiative-image">
-                                                <img src="<REPLACE_IMAGE>" class="rounded">
-                                                <div class="slide-overlay">
-                                                    <div class="slide-overlay-inner">
-                                                        <a href="page-donate.html?scheme_id=<REPLACE_SCHEME_ID>&initiative_id=<REPLACE_INITIATIVE_ID>" class="button button-white">Donate Now</a>
-                                                    </div>
+                                            <div class="card mb-3" style="max-width: 18rem;">
+                                                <img class="card-img-top" src="<REPLACE_IMAGE>" alt="<REPLACE_SCHEME_NAME>">
+                                                <div class="card-body">
+                                                    <h5 class="card-title scheme-name"><REPLACE_SCHEME_NAME></h5>
+                                                </div>                                                        
+                                                <div class="card-footer text-center">
+                                                    <a href="page-donate.html?scheme_id=<REPLACE_SCHEME_ID>&initiative_id=<REPLACE_INITIATIVE_ID>" class="button">Donate Now</a>
                                                 </div>
                                             </div>
-                                            <h6 class="initiative-name">
-                                                <REPLACE_SCHEME_NAME>
-                                            </h6>
                                         </div>
                                     </div>
                                 </div>
                                 `
 
-                                /*
-        const scheme_template = `<li class="slide">
-                                    <div class="slide-image">
-                                        <img src="<REPLACE_IMAGE>" class="rounded" height="175" width="270" alt="">
-                                        
-                                        <div class="slide-overlay">
-                                            <div class="slide-overlay-inner">
-                                                <a href="page-donate.html?scheme_id=<REPLACE_SCHEME_ID>&initiative_id=<REPLACE_INITIATIVE_ID>" class="button button-white">Donate Now</a>
-                                            </div>
-                                        </div>
-                                    </div><!-- /.slide-image -->
-
-                                    <div class="slide-content">
-                                        <h3><REPLACE_SCHEME_NAME></h3>
-
-                                        <p>
-                                            <REPLACE_SCHEME_DESCRIPTION>
-                                        </p>
-                                    </div><!-- /.slide-content -->
-                                </li>`
-                                */
+                                
         const selected_initiative_list = initiatives.filter((initiative) => {
             return initiative['id'] == initiative_id
         })
@@ -496,6 +493,9 @@ renderInitiatives = function(id, menuid, initiatives, initiative_id) {
             schemeDetailsHTML.push(tmp)
         })
         $(id).html(schemeDetailsHTML.join(''));
+
+        //change the name here
+        $('.initiative-head .page-title').text(selected_initiative_list[0].name)
     }
 
     initCarousel(id);
@@ -1274,6 +1274,9 @@ initiateDonateNow = function() {
     const donor_phone = $.trim($('#donate_contact_phone_customer').val());
     const donor_address = $.trim($('#donate_contact_address_customer').val());
     const donor_zip = $.trim($('#donate_contact_zip_customer').val());
+    const heardusfrom= $.trim($('input[name="howdiduhearus"]:checked').val())
+
+    console.log('heard about us from:', heardusfrom)
 
     if(total_donation_amount.length <= 0) {
         resetDonateError('Donation amount found to be invalid');
@@ -1368,6 +1371,7 @@ initiateDonateNow = function() {
         "phone": donor_phone,
         "address": donor_address,
         "zip": donor_zip,
+        "heardusfrom":  heardusfrom,
         "donation_frequency" : donation_freq,
         "subscription_plan_id": selected_plan_id_for_subscription,
         "initiative" : selected_initiative_for_donation.name,
