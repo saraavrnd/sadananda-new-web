@@ -212,7 +212,7 @@ const INITIATIVES_DATA = [
                 "type": "scheme",
                 "initiative_id": "initiative3",
                 "image": "images/medcare_schemes/Thumbnail_resized_1.png",
-                "name": "monthly MEDICINES FOR 10 PATIENTS",
+                "name": "MONTHLY MEDICINES FOR 10 PATIENTS",
                 "minimum_donation": 20,
                 "currency": "USD",
                 "description":"Support expenses for the medical centre for half a day"
@@ -366,16 +366,17 @@ const ABOUT_US = {
     "CONTACT_PHONE": "tel:+1 (408) 674 4683",
     "CONTACT_EMAIL_ID": "mailto:ananda@sadananda.org",
     "CONTACT_ADDRESS": "12421 Enchanted Forest dr, Austin, TX 78727",
-    "CONTACT_FACEBOOK_ID": "https://www.facebook.com/anandamoldagehome15?mibextid=LQQJ4d",
+    "CONTACT_FACEBOOK_ID": "https://www.facebook.com/profile.php?id=100092506712735&mibextid=LQQJ4d",
     "CONTACT_TWITTER_ID": "",
     "LEGAL_DISCLAIMER": "This is the legal disclaimer to be set for ativities together. ABOUT_SADANANDA_DETAILED_DESC=Sadananda Anandam was registered in 1995 with the aim of supporting the lowe",
-    "DONATION_CONTACT_NAME": "Contact Name",
+    "DONATION_CONTACT_NAME": "Rohit Dhamakar",
     "DONATION_TAX_EXEMPTION_CLAUSE": "Donations are tax exempted under section 501 (c) (3), US IRS code section 170; <strong>EID number – 87-4187319</strong>",
     "DONATION_CONFIRMATION_TEXT": `Dear <REPLACE_FIRST_NAME>, <br/> Thank you for your generous contribution as donation towards Sadananada. 
                                         <REPLACE_DONATION_DATA>
                                         
 
-                                        `, 
+                                        `,
+    "DONATION_FAILURE_TEXT": "Apologies. Your transaction was not successful. Please try again", 
     "DONATION_RESULTS_TEXT": `Dear <span class="badge bg-info"><REPLACE_FIRST_NAME></span><br/>
                                 We truly can't thank you enough for your generous support to our initiatives such as <span class="badge bg-secondary"><REPLACE_INITIATIVE_NAME></span>.
                                 Your support will allow us to continue helping the people in our community who need them most. People like you truly make a difference in the world, 
@@ -388,7 +389,7 @@ const ABOUT_US = {
                                 Thank you again,<br/><br/>
                                 Warm regards,<br/>
                                 <REPLACE_CONTACT_NAME><br/>
-                                Sadananda
+                                Trustee, Sadananda
                                 `,                    
 }
 
@@ -417,26 +418,26 @@ const events_BANNER_DATA = [
 const GALLERY_DATA = [
     {
         "image" :"images/banner_tmp_new_1.jpeg",
-        "desc" : "This is the desc for this gallery image given...."
+        "desc" : ""
     },
     {
         "image" :"images/lrn_cntr_spl_child_corpus_fund.jpeg",
-        "desc" : "This is the desc for this gallery image given...."
+        "desc" : ""
     },
     {
         "image" :"images/lrn_cntr_spl_child_year_therapy_expenses.jpeg",
-        "desc" : "This is the desc for this gallery image given...."
+        "desc" : ""
     },
     {
         "image" :"images/lrn_cntr_spl_child_monthly_expenses.jpeg",
-        "desc" : "This is the desc for this gallery image given...."
+        "desc" : ""
     },
     {
         "image" :"images/lrn_cntr_spl_child_sub_4.jpeg",
-        "desc" : "This is the desc for this gallery image given...."
+        "desc" : ""
     },
     {
         "image" :"images/medical_care_full_day_expenses.jpg",
-        "desc" : "This is the desc for this gallery image given...."
+        "desc" : ""
     }
 ]

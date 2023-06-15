@@ -120,8 +120,8 @@
 						<div class="section-image">
 							<img src="images/ico-droplet.png" height="22" width="14" alt="">
 						</div><!-- /.section-image -->
+						<p class="donation_tax_exemption_clause"></p>
 					</header>
-				</header>
 					<div class="section-body">
 						<form>
 							<div class="row form-group">
@@ -157,11 +157,11 @@
 										<div class="input-group-text">USD</div>
 										</div>
 										<input type="text" class="form-control" id="selected_donation_amount"                         
-											onBlur="javascript:formatCurrency(this, 'blur');"
-											onkeyup="javascript:formatCurrency(this);"
+											onBlur="javascript:formatCurrency(event, this, 'blur');"
+											onkeyup="javascript:formatCurrency(event, this);"
 											placeholder="0">
 									</div>
-									<small id="donation_tax_exemption_clause" class="form-text text-muted">
+									<small  class="form-text text-muted donation_tax_exemption_clause">
 										
 									</small>
 								</div>
@@ -174,71 +174,74 @@
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12 col-sm-12">
-									<label for="recurring_donation_enabled">How did you hear about us:</label>
+									<label>How did you hear about us:</label>
 								</div>
-								<div class="row">
-									<div class="col-md-3 col-sm-12">
-											
-									</div>
-									<div class="col-md-3 col-sm-12">
-										<div class="form-check">
-											<input class="form-check-input" type="radio" name="howdiduhearus" id="social_media" value="Social media" checked>
-											<label class="form-check-label" for="social_media">
-												Social media
-											</label>
-										</div>	
-									</div>
-									<div class="col-md-3 col-sm-12">
-										<div class="form-check">
-											<input class="form-check-input" type="radio" name="howdiduhearus" id="friends_or_family" value="Friends or family">
-											<label class="form-check-label" for="friends_or_family">
-												Friends or family
-											</label>
+								<div class="col-md-12 col-sm-12">
+									<div class="row form-group">
+										<div class="col-md-3 col-sm-12">
+												
 										</div>
-									</div>
-									<div class="col-md-3 col-sm-12">
-										<div class="form-check">
-											<input class="form-check-input" type="radio" name="howdiduhearus" id="ananda_dana_san_jose" value="Ananda Dana - San Jose">
-											<label class="form-check-label" for="ananda_dana_san_jose">
-												Ananda Dana - San Jose
-											</label>
+										<div class="col-md-3 col-sm-12">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="howdiduhearus" id="social_media" value="Social media" checked>
+												<label class="form-check-label" for="social_media">
+													Social media
+												</label>
+											</div>	
 										</div>
-									</div>
-									<div class="col-md-3 col-sm-12">
-									</div>
-									<div class="col-md-3 col-sm-12">
+										<div class="col-md-3 col-sm-12">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="howdiduhearus" id="friends_or_family" value="Friends or family">
+												<label class="form-check-label" for="friends_or_family">
+													Friends or family
+												</label>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-12">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="howdiduhearus" id="ananda_dana_san_jose" value="Ananda Dana - San Jose">
+												<label class="form-check-label" for="ananda_dana_san_jose">
+													Ananda Dana - San Jose
+												</label>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-12">
+										</div>
+										<div class="col-md-3 col-sm-12">
 
-										<div class="form-check">
-											<input class="form-check-input" type="radio" name="howdiduhearus" id="ananda_dana_austin" value="Ananda Dana - Austin">
-											<label class="form-check-label" for="ananda_dana_austin">
-												Ananda Dana - Austin
-											</label>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="howdiduhearus" id="ananda_dana_austin" value="Ananda Dana - Austin">
+												<label class="form-check-label" for="ananda_dana_austin">
+													Ananda Dana - Austin
+												</label>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-3 col-sm-12">
+										<div class="col-md-3 col-sm-12">
 
-										<div class="form-check">
-											<input class="form-check-input" type="radio" name="howdiduhearus" id="ananda_dana_newjercy" value="Ananda Dana - New Jersey">
-											<label class="form-check-label" for="ananda_dana_newjercy">
-												Ananda Dana - New Jersey
-											</label>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="howdiduhearus" id="ananda_dana_newjercy" value="Ananda Dana - New Jersey">
+												<label class="form-check-label" for="ananda_dana_newjercy">
+													Ananda Dana - New Jersey
+												</label>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-3 col-sm-12">
-										<div class="form-check">
-											<input class="form-check-input" type="radio" name="howdiduhearus" id="others" value="Others">
-											<label class="form-check-label" for="others">
-												Others
-											</label>
+										<div class="col-md-3 col-sm-12">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="howdiduhearus" id="others" value="Others">
+												<label class="form-check-label" for="others">
+													Others
+												</label>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- <div class="row form-group">
-								<div class="col-md-12 col-sm-12">
-									&nbsp;
+							<div class="row form-group">
+								<div class="form-group col-md-8 col-sm-12">
+									<label for="connect_with_donor_on_future_initiatives">Can we contact you in the future on Sadananda's Initiatives </label>
+									<input type="checkbox" id="connect_with_donor_on_future_initiatives" data-toggle="toggle" data-size="xs" data-on="Yes" data-off="No" checked data-onstyle="success" data-offstyle="secondary">
 								</div>
-							</div> -->
+							</div>
 							<label>Personal Info</label>
 							<div class="row form">
 								<div class="col-md-6 col-sm-12">
@@ -355,11 +358,13 @@
 								<li>
 									<a href="page_events.html">Events</a>
 								</li>
-								<li>
+
+								<!-- commented the legal Disclaimer as the content is not yet reviewed -->
+								<!-- <li>
 									<a href="javascript:showLegalDisclaimer();">
-										Legal Desclaimer
+										Legal Disclaimer
 									</a>
-								</li>
+								</li> -->
 							</ul>
 						</div><!-- /.footer-section-body -->
 					</div><!-- /.footer-section -->

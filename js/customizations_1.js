@@ -1,9 +1,9 @@
 // var app_url_prefix = `/sadananda-new-web`
 var app_url_prefix = ''
-var GET_CONFIG_API_URL = `/Prod/api/config`
-var SAVE_CONTACT_API_URL = `/Prod/api/saveContact`
-var CREATE_PAYMENT_API_URL = `/Prod/api/initiatePayment`
-var COMPLETE_PAYMENT_API_URL = `/Prod/api/completePayment`
+var GET_CONFIG_API_URL = `api/config`
+var SAVE_CONTACT_API_URL = `api/saveContact`
+var CREATE_PAYMENT_API_URL = `api/initiatePayment`
+var COMPLETE_PAYMENT_API_URL = `api/completePayment`
 const INSERT_SELECTED_SCHEME = `<input type="hidden" id="user_selected_scheme" value="<REPLACE_SELECTED_SCHEME>">`
 const SELECTED_ICON_DISPLAY = `<i class="fa-solid fa-circle-check"></i>${INSERT_SELECTED_SCHEME}`
 const BTN_LOADING_STATUS = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="false"></span> Loading Payment Options...`
@@ -575,7 +575,7 @@ renderAboutUsAndSocialContacts = function(about_us_data) {
 
     renderLegalClaim('#legalDisclaimer .modal-body', 'LEGAL_DISCLAIMER', about_us_data)
 
-    renderDonationTaxExemptionClass('#donation_tax_exemption_clause', 'DONATION_TAX_EXEMPTION_CLAUSE', about_us_data)
+    renderDonationTaxExemptionClass('.donation_tax_exemption_clause', 'DONATION_TAX_EXEMPTION_CLAUSE', about_us_data)
 }
 
 renderDonationTaxExemptionClass = function(id, key, about_us_data) {
@@ -792,7 +792,10 @@ handlePaymentResponse = function(details)  {
 
     if(details == undefined || details.txn_results == undefined) {
         var donation_results_pretext = `<span class="badge bg-danger">Something went wrong while doing payment. Please try again later. </span>`;
-        $('#donation_results_dialog #donationResultsTitle').html('Donation Failed')
+        if(gl_about_us_data['DONATION_FAILURE_TEXT']) {
+            donation_results_pretext = gl_about_us_data['DONATION_FAILURE_TEXT'];
+        }
+        $('#donation_results_dialog #donationResultsTitle').html('<span class="badge bg-danger">Donation unsuccessful</span>')
         $('#donation_results_text').html(donation_results_pretext)
         $('#donation_results_dialog').modal('show')
         return;
@@ -943,9 +946,9 @@ getCustomDonationOption = function(template, schemeNumber) {
                     <div class="input-group-text"><REPLACE_DONATION_CURRENCY></div>
                     </div>
                     <input 
-                        onBlur="formatCurrency(this, 'blur');"
-                        onkeyup="formatCurrency(this);
-                    type="text" class="form-control" id="custom_donation_amount" placeholder="">
+                        onBlur="formatCurrency(event, this, 'blur');"
+                        onkeyup="formatCurrency(event, this);" 
+                        type="text" class="form-control" id="custom_donation_amount" placeholder="">
                 </div>
             </div>
             <div class="card-footer text-center">
@@ -990,8 +993,13 @@ function formatNumber(n) {
     return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function formatCurrency(input, blur) {
+function formatCurrency(event, input, blur) {
 
+    // console.log('key:', event.key)
+    // console.log('key code:', event.code)
+    if(! input) {
+        return;
+    }
     var input_val = input.value;
     // don't validate empty input
     if (input_val === "") {
@@ -1050,9 +1058,9 @@ function formatCurrency(input, blur) {
     $('#donation-section #selected_donation_amount').val(input_val);
 
     // put caret back in the right position
-    var updated_len = input_val.length;
-    caret_pos = updated_len - original_len + caret_pos;
-    input.setSelectionRange(caret_pos, caret_pos);
+    // var updated_len = input_val.length;
+    // caret_pos = updated_len - original_len + caret_pos;
+    // input.setSelectionRange(caret_pos, caret_pos);
 
 
 }
@@ -1068,7 +1076,7 @@ addCardClickListeners = function() {
             //custom option is selected
             //bring the textinput focus
             $(e.currentTarget).find('input').focus();
-            $('#donation-section #selected_donation_amount').val('');
+            $('#donation-section #selected_donation_amount').val($(e.currentTarget).find('input').val());
 
         }
         $(e.currentTarget).find(".card-footer span input").val(selected_scheme);
@@ -1275,14 +1283,19 @@ initiateDonateNow = function() {
     const donor_address = $.trim($('#donate_contact_address_customer').val());
     const donor_zip = $.trim($('#donate_contact_zip_customer').val());
     const heardusfrom= $.trim($('input[name="howdiduhearus"]:checked').val())
-
-    console.log('heard about us from:', heardusfrom)
+    const contact_donor_on_future_initiatives = $('#connect_with_donor_on_future_initiatives').prop('checked');
 
     if(total_donation_amount.length <= 0) {
         resetDonateError('Donation amount found to be invalid');
         $('#selected_donation_amount').focus();
         return;
     }
+    if(isNaN(total_donation_amount)) {
+        resetDonateError('Donation amount found to be invalid');
+        $('#selected_donation_amount').focus();
+        return;
+    }
+
     if(donor_first_name.length <= 0) {
         resetDonateError('Your name cannot be empty');
         $('#donate_contact_firstname').focus();
@@ -1310,26 +1323,26 @@ initiateDonateNow = function() {
 
     var donation_amount_freq_template = `
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
                                                 Selected Initiative
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="col-lg-9 col-md-6 col-sm-12">
                                                 <span class="badge bg-secondary"><REPLACE_DONATION_INITIATIVE> -> <REPLACE_DONATION_SCHEME></span>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
                                                 Donation Amount
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="col-lg-9 col-md-6 col-sm-12">
                                                 <span class="badge bg-success"><REPLACE_DONATION_AMOUNT> <REPLACE_DONATION_CURRENCY></span>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
                                                 Donation Frequency
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="col-lg-9 col-md-6 col-sm-12">
                                                 <span class="badge bg-primary"><REPLACE_DONATION_FREQUENCY></span>
                                             </div>
                                         </div>
@@ -1372,6 +1385,7 @@ initiateDonateNow = function() {
         "address": donor_address,
         "zip": donor_zip,
         "heardusfrom":  heardusfrom,
+        "contact_donor_on_future_initiatives" : contact_donor_on_future_initiatives,
         "donation_frequency" : donation_freq,
         "subscription_plan_id": selected_plan_id_for_subscription,
         "initiative" : selected_initiative_for_donation.name,
@@ -1385,6 +1399,7 @@ initiateDonateNow = function() {
     getEnvConfig((err, config) => {
         if(err) {
             console.log('Failed to get the env configuration');
+            resetDonateError('Something went wrong while processing the donation. Pls try again later.');
             enableDonationBtnLoadingStatus(false)
             return;
         }
