@@ -156,10 +156,12 @@
 										<div class="input-group-prepend">
 										<div class="input-group-text">USD</div>
 										</div>
-										<input type="text" class="form-control" id="selected_donation_amount"                         
+										<!-- <input type="text" class="form-control" id="selected_donation_amount"                         
 											onBlur="javascript:formatCurrency(event, this, 'blur');"
 											onkeyup="javascript:formatCurrency(event, this);"
-											placeholder="0">
+											placeholder="0"> -->
+										<input type="text" class="form-control" id="selected_donation_amount"                         
+											placeholder="0" readonly>
 									</div>
 									<small  class="form-text text-muted donation_tax_exemption_clause">
 										
@@ -168,8 +170,9 @@
 							</div>
 							<div class="row form-group">
 								<div class="form-group col-md-8 col-sm-12">
-									<label for="recurring_donation_enabled">Enable above total donation as Recurring Donation per month </label>
+									<label for="recurring_donation_enabled">Make this a recurring donation every month ? </label>
 									<input type="checkbox" id="recurring_donation_enabled" data-toggle="toggle" data-size="xs" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="secondary">
+									<br/><small class="form-text text-muted  font-weight-light">You can opt out at any time from your Paypal account</small>
 								</div>
 							</div>
 							<div class="row form-group">

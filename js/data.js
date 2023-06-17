@@ -316,8 +316,8 @@ const INITIATIVES_DATA = [
                 "type": "scheme",
                 "initiative_id": "initiative5",
                 "image": "images/futureproject_schemes/comfort_medical_care.png",
-                "name": "Comfort Care - SUPPORT ONE PATIENT FOR ONE YEAR",
-                "minimum_donation": 138,
+                "name": "Comfort Care - MONTHLY SUPPORT FOR ONE PATIENT",
+                "minimum_donation": 115,
                 "currency": "USD",
                 "description":"Provide uniform/diwali dress for one student per year"
             },
@@ -327,7 +327,7 @@ const INITIATIVES_DATA = [
                 "initiative_id": "initiative5",
                 "image": "images/futureproject_schemes/comfort_medical_care.png",
                 "name": "Comfort Care - CORPUS - SUPPORT ONE PATIENT EVERY YEAR",
-                "minimum_donation": 2300,
+                "minimum_donation": 23000,
                 "currency": "USD",
                 "description":"Support the monthly expenses for one student"
             },
@@ -336,8 +336,8 @@ const INITIATIVES_DATA = [
                 "type": "scheme",
                 "initiative_id": "initiative5",
                 "image": "images/futureproject_schemes/palliative_care_center.png",
-                "name": "Palliative Care - SUPPORT ONE PATIENT FOR ONE YEAR",
-                "minimum_donation": 415,
+                "name": "Palliative Care - MONTHLY SUPPORT FOR ONE PATIENT",
+                "minimum_donation": 350,
                 "currency": "USD",
                 "description":"Support the monthly expenses for one student"
             },
@@ -347,7 +347,7 @@ const INITIATIVES_DATA = [
                 "initiative_id": "initiative5",
                 "image": "images/futureproject_schemes/palliative_care_center.png",
                 "name": "Palliative Care - CORPUS - SUPPORT ONE PATIENT EVERY YEAR",
-                "minimum_donation": 7000,
+                "minimum_donation": 70000,
                 "currency": "USD",
                 "description":"Support the monthly expenses for one student"
             }
