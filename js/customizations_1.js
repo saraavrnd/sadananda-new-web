@@ -1055,7 +1055,10 @@ function formatCurrency(event, input, blur) {
     // send updated string to input
     input.value = input_val;
 
-    $('#donation-section #selected_donation_amount').val(input_val);
+    //following 2 lines, updated by Lister team to resolve the invalid donation amount when comma is present
+    let valueWithoutComma = parseFloat(input_val.replace(/,/g, ""));
+
+    $('#donation-section #selected_donation_amount').val(valueWithoutComma);
 
     // put caret back in the right position
     // var updated_len = input_val.length;
